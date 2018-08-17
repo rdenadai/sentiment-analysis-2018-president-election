@@ -19,4 +19,11 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     $> pip install -r requirements.txt
     $> source venv/bin/activate
     ```
- 3. Após isso estará pronto para iniciar o projeto.
+ 3. Crie um arquivo no diretório raiz com o nome .env, o qual deve conter
+    ```bash
+    TWITTER_CONSUMER_API=
+    TWITTER_CONSUMER_SECRET=
+    TWITTER_ACCESS_TOKEN=
+    TWITTER_ACCESS_TOKEN_SECRET=
+    ```
+ 4. Após isso estará pronto para iniciar o projeto.
