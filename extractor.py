@@ -12,7 +12,7 @@ if __name__ == '__main__':
     clients = [
         FacebookClient(names=facebook_names, np_posts=1),
         TwitterClient(names=twitter_names, np_posts=1),
-        # InstagramClient(names=instagram_names, np_posts=1, np_comments=1),
+        InstagramClient(names=instagram_names, np_posts=1, np_comments=1),
         YouTubeClient(names=youtube_names, np_posts=1)
     ]
 
