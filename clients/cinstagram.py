@@ -50,9 +50,15 @@ class InstagramClient:
                     logging.info(f'ERROR: No button to load more comments : {e}')
 
                 try:
-                    comments = driver.find_elements_by_xpath('//ul/li/div/div/div/span')
-                    for comment in comments:
-                        data['comments'].append(comment.text)
+                    user_posts = driver.find_elements_by_xpath('//ul/li/div/div/div')
+                    for upost in user_posts:
+                        username = upost.find_element_by_tag_name('a')
+                        comment = upost.find_element_by_tag_name('span')
+                        if username and comment:
+                            data['comments'].append({
+                                'username': (username.text).strip(),
+                                'comment': (comment.text).strip()
+                            })
                 except Exception as e:
                     logging.info(f'ERROR: No Comments found : {e}')
 

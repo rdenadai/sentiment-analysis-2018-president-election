@@ -34,7 +34,6 @@ class TwitterClient:
                     feeds.append('https://twitter.com%s' % link)
 
             for feed in feeds:
-                print(feed)
                 feed_data = {
                     'feed_views_retweets': 0,
                     'feed_views_likes': 0,
@@ -60,9 +59,17 @@ class TwitterClient:
                     reply.click()
                     time.sleep(.5)
 
-                comments = driver.find_elements_by_class_name('tweet-text')
-                for comment in comments:
-                    feed_data['comments'].append(comment.text)
+                replies_feed = driver.find_element_by_class_name('replies-to')
+                if replies_feed:
+                    user_posts = replies_feed.find_elements_by_class_name('content')
+                    for upost in user_posts:
+                        username = upost.find_element_by_class_name('username')
+                        comment = upost.find_element_by_class_name('tweet-text')
+                        if username and comment:
+                            feed_data['comments'].append({
+                                'username': (username.text).strip(),
+                                'comment': (comment.text).strip()
+                            })
                 data['feed'].append(feed_data)
 
             self.results.append(data)
