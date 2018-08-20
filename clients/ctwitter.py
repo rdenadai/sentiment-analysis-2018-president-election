@@ -23,9 +23,47 @@ class TwitterClient:
 
             data = {
                 'name': name,
-                'feed_views_likes': 0,
-                'comments': []
+                'feed': []
             }
+
+            feeds = []
+            posts = driver.find_elements_by_xpath('//*[@id="stream-items-id"]/li/div')
+            for post in posts:
+                link = post.get_attribute('data-permalink-path')
+                if link:
+                    feeds.append('https://twitter.com%s' % link)
+
+            for feed in feeds:
+                print(feed)
+                feed_data = {
+                    'feed_views_retweets': 0,
+                    'feed_views_likes': 0,
+                    'comments': []
+                }
+
+                driver.get(feed)
+
+                retweets = driver.find_element_by_class_name('request-retweeted-popup').text
+                feed_data['feed_views_retweets'] = int(retweets.replace('Retweets', '').replace(',', ''))
+                likes = driver.find_element_by_class_name('request-favorited-popup').text
+                feed_data['feed_views_likes'] = int(likes.replace('Likes', '').replace(',', ''))
+
+                i = 0
+                for _ in range(self.np_comments):
+                    m = i * 2000
+                    driver.execute_script(f"document.getElementById('permalink-overlay').scrollTo(0, {m})")
+                    time.sleep(1)
+                    i += 1
+
+                replies = driver.find_elements_by_class_name('ThreadedConversation-moreRepliesLink')
+                for reply in replies:
+                    reply.click()
+                    time.sleep(.5)
+
+                comments = driver.find_elements_by_class_name('tweet-text')
+                for comment in comments:
+                    feed_data['comments'].append(comment.text)
+                data['feed'].append(feed_data)
 
             self.results.append(data)
             driver.close()

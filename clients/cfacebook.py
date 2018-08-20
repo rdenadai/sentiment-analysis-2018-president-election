@@ -14,7 +14,7 @@ class FacebookClient:
     def start(self):
         for name in self.names:
             driver = webdriver.Firefox()
-            driver.get(f"https://www.facebook.com/{name}/")
+            driver.get(f"https://www.facebook.com/pg/{name}/posts/?ref=page_internal")
 
             for _ in range(self.np_posts):
                 # for _ in range(scroll):
