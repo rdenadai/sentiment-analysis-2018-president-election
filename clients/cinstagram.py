@@ -1,5 +1,5 @@
-import logging
 import time
+import hashlib
 from selenium import webdriver
 
 
@@ -51,7 +51,7 @@ class InstagramClient:
                         btn.click()
                         time.sleep(.5)
                 except Exception as e:
-                    logging.info(f'ERROR: No button to load more comments : {e}')
+                    print(f'ERROR: No button to load more comments : {e}')
 
                 try:
                     user_posts = driver.find_elements_by_xpath('//ul/li/div/div/div')
@@ -60,14 +60,17 @@ class InstagramClient:
                             username = upost.find_element_by_tag_name('a')
                             comment = upost.find_element_by_tag_name('span')
                             if username and comment:
+                                username = username.text.strip()
+                                comment = comment.text.strip()
                                 feed_data['comments'].append({
-                                    'username': username.text.strip(),
-                                    'comment': comment.text.strip()
+                                    'uuid': hashlib.sha256((username + '|' + comment).encode('ascii', 'ignore')).hexdigest(),
+                                    'username': username,
+                                    'comment': comment
                                 })
                         except Exception as e:
-                            logging.info(f'ERROR: username or comment not found : {e}')
+                            print(f'ERROR: username or comment not found : {e}')
                 except Exception as e:
-                    logging.info(f'ERROR: No Comments found : {e}')
+                    print(f'ERROR: No Comments found : {e}')
                 data['feed'].append(feed_data)
 
             self.results.append(data)

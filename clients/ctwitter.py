@@ -1,5 +1,5 @@
-import logging
 import time
+import hashlib
 from selenium import webdriver
 
 
@@ -67,12 +67,15 @@ class TwitterClient:
                             username = upost.find_element_by_class_name('username')
                             comment = upost.find_element_by_class_name('tweet-text')
                             if username and comment:
+                                username = username.text.strip()
+                                comment = comment.text.strip()
                                 feed_data['comments'].append({
-                                    'username': username.text.strip(),
-                                    'comment': comment.text.strip()
+                                    'uuid': hashlib.sha256((username + '|' + comment).encode('ascii', 'ignore')).hexdigest(),
+                                    'username': username,
+                                    'comment': comment
                                 })
                         except Exception as e:
-                            logging.info(f'ERROR: username or comment not found : {e}')
+                            print(f'ERROR: username or comment not found : {e}')
                 data['feed'].append(feed_data)
 
             self.results.append(data)
