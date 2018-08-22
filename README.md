@@ -55,4 +55,14 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     - [DebateNaBand](https://twitter.com/hashtag/DebateNaBand)
     - [DebateRedeTv](https://twitter.com/hashtag/debateRedetv?src=tren) 
 
+ #### Datasets
+ 
+ 1. [SentiLex-PT01](http://xldb.fc.ul.pt/wiki/SentiLex-PT01)
+ 
+ > SentiLex-PT01 é um léxico de sentimentos para o português constituído por 6.321 lemas adjectivais (por convenção, na forma masculina singular) e 25.406 formas flexionadas.
+
+ 2. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
+ 
+ > Chamamos de "Floresta Sintáctica" um conjunto de frases (corpus) analisadas (morfo)sintaticamente. Como, além da indicação das funções sintácticas, a análise também explicita hierarquicamente informação relativa à estrutura de constituintes, dizemos que uma frase sintaticamente analisada se parece com uma árvore, donde um conjunto de árvores constitui uma floresta sintáctica (em inglês, treebank).
+
  #### Referências

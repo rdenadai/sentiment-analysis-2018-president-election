@@ -47,7 +47,7 @@ class TwitterClient:
                 likes = driver.find_element_by_class_name('request-favorited-popup').text
                 feed_data['feed_views_likes'] = int(likes.replace('Likes', '').replace(',', ''))
 
-                i = 0
+                i = 1
                 for _ in range(self.np_comments):
                     m = i * 2000
                     driver.execute_script(f"document.getElementById('permalink-overlay').scrollTo(0, {m})")
@@ -63,13 +63,16 @@ class TwitterClient:
                 if replies_feed:
                     user_posts = replies_feed.find_elements_by_class_name('content')
                     for upost in user_posts:
-                        username = upost.find_element_by_class_name('username')
-                        comment = upost.find_element_by_class_name('tweet-text')
-                        if username and comment:
-                            feed_data['comments'].append({
-                                'username': (username.text).strip(),
-                                'comment': (comment.text).strip()
-                            })
+                        try:
+                            username = upost.find_element_by_class_name('username')
+                            comment = upost.find_element_by_class_name('tweet-text')
+                            if username and comment:
+                                feed_data['comments'].append({
+                                    'username': username.text.strip(),
+                                    'comment': comment.text.strip()
+                                })
+                        except Exception as e:
+                            logging.info(f'ERROR: username or comment not found : {e}')
                 data['feed'].append(feed_data)
 
             self.results.append(data)

@@ -10,10 +10,10 @@ if __name__ == '__main__':
     youtube_names = ['jbolsonaro', 'UCNxCni0Iv9pr7i_pQZ6ijlg', 'msilvaonline', 'UCHFO37KCJlMNUXNK21MV8SQ']
 
     clients = [
-        FacebookClient(names=facebook_names, np_posts=2),
+        FacebookClient(names=facebook_names, np_posts=1, np_comments=1),
         TwitterClient(names=twitter_names, np_posts=1, np_comments=1),
         InstagramClient(names=instagram_names, np_posts=1, np_comments=1),
-        YouTubeClient(names=youtube_names, np_posts=1)
+        YouTubeClient(names=youtube_names, np_posts=2, np_comments=1)
     ]
 
     for client in clients:

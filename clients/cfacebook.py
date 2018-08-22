@@ -16,10 +16,17 @@ class FacebookClient:
             driver = webdriver.Firefox()
             driver.get(f"https://www.facebook.com/pg/{name}/posts/?ref=page_internal")
 
+            i = 1
             for _ in range(self.np_posts):
-                # for _ in range(scroll):
-                driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                m = i * 10000
+                driver.execute_script(f"window.scrollTo(0, {m})")
                 time.sleep(1)
+                i += 1
+
+            links = driver.find_elements_by_class_name('UFIPagerLink')
+            for link in links:
+                link.click()
+                time.sleep(.5)
 
             data = {
                 'name': name,
@@ -28,4 +35,4 @@ class FacebookClient:
             }
 
             self.results.append(data)
-            driver.close()
+            # driver.close()

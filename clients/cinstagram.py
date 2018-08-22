@@ -30,16 +30,20 @@ class InstagramClient:
 
             data = {
                 'name': name,
-                'feed_views_likes': 0,
-                'comments': []
+                'feed': []
             }
 
             for feed in feeds:
+                feed_data = {
+                    'feed_views_likes': 0,
+                    'comments': []
+                }
+
                 driver.get(feed)
 
                 like = driver.find_element_by_xpath(
                     "/html/body/span/section/main/div/div/article/div[2]/section[2]/div/span/span")
-                data['feed_views_likes'] = int((like.text).replace(',', ''))
+                feed_data['feed_views_likes'] = int(like.text.replace(',', ''))
 
                 try:
                     btn = driver.find_element_by_xpath("//button[contains(text(),'Load more comments')]")
@@ -52,15 +56,19 @@ class InstagramClient:
                 try:
                     user_posts = driver.find_elements_by_xpath('//ul/li/div/div/div')
                     for upost in user_posts:
-                        username = upost.find_element_by_tag_name('a')
-                        comment = upost.find_element_by_tag_name('span')
-                        if username and comment:
-                            data['comments'].append({
-                                'username': (username.text).strip(),
-                                'comment': (comment.text).strip()
-                            })
+                        try:
+                            username = upost.find_element_by_tag_name('a')
+                            comment = upost.find_element_by_tag_name('span')
+                            if username and comment:
+                                feed_data['comments'].append({
+                                    'username': username.text.strip(),
+                                    'comment': comment.text.strip()
+                                })
+                        except Exception as e:
+                            logging.info(f'ERROR: username or comment not found : {e}')
                 except Exception as e:
                     logging.info(f'ERROR: No Comments found : {e}')
+                data['feed'].append(feed_data)
 
             self.results.append(data)
             driver.close()
