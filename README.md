@@ -61,8 +61,16 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
  
  > SentiLex-PT01 é um léxico de sentimentos para o português constituído por 6.321 lemas adjectivais (por convenção, na forma masculina singular) e 25.406 formas flexionadas.
 
- 2. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
+ 2. [OpLexicon](http://ontolp.inf.pucrs.br/Recursos/downloads-OpLexicon.php)
+ 
+ > OpLexicon é um léxico de sentimento para a língua portuguesa.
+
+ 3. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
  
  > Chamamos de "Floresta Sintáctica" um conjunto de frases (corpus) analisadas (morfo)sintaticamente. Como, além da indicação das funções sintácticas, a análise também explicita hierarquicamente informação relativa à estrutura de constituintes, dizemos que uma frase sintaticamente analisada se parece com uma árvore, donde um conjunto de árvores constitui uma floresta sintáctica (em inglês, treebank).
+
+ 4. ***rever?*** [CETEMPúblico](https://www.linguateca.pt/acesso/corpus.php?corpus=CETEMPUBLICO)
+ 
+ > O CETEMPúblico (Corpus de Extractos de Textos Electrónicos MCT/Público) é um corpus de aproximadamente 180 milhões de palavras em português europeu, criado pelo projecto Processamento computacional do português (projecto que deu origem à Linguateca) após a assinatura de um protocolo entre o Ministério da Ciência e da Tecnologia (MCT) português e o jornal PÚBLICO em Abril de 2000.
 
  #### Referências
