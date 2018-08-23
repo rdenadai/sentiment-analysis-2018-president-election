@@ -61,7 +61,7 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     - [eleições2018](https://twitter.com/hashtag/eleições2018)
     - [DebateNaBand](https://twitter.com/hashtag/DebateNaBand)
     - [DebateRedeTv](https://twitter.com/hashtag/debateRedetv)
-    - [MulheresComBolsonaro](https://twitter.com/hashtag/MulheresComBolsonaro)
+    - ***rever?*** [MulheresComBolsonaro](https://twitter.com/hashtag/MulheresComBolsonaro)
 
  #### Datasets
  
