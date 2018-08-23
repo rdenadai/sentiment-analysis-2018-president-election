@@ -56,9 +56,12 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     - [Fernando Haddad](???)
     - [Marina Silva](https://www.youtube.com/user/msilvaonline/videos)
     - [Ciro Gomes](https://www.youtube.com/channel/UCHFO37KCJlMNUXNK21MV8SQ/videos)
-5. Twitter tredding
+5. Twitter treding
+    - [eleicoes2018](https://twitter.com/hashtag/eleicoes2018)
+    - [eleições2018](https://twitter.com/hashtag/eleições2018)
     - [DebateNaBand](https://twitter.com/hashtag/DebateNaBand)
-    - [DebateRedeTv](https://twitter.com/hashtag/debateRedetv?src=tren) 
+    - [DebateRedeTv](https://twitter.com/hashtag/debateRedetv)
+    - [MulheresComBolsonaro](https://twitter.com/hashtag/MulheresComBolsonaro)
 
  #### Datasets
  

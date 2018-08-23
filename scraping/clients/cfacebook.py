@@ -21,7 +21,7 @@ class FacebookClient:
         driver.execute_script(f'document.getElementById("email").value = "{username}"')
         driver.execute_script(f'document.getElementById("pass").value = "{password}"')
         driver.find_element_by_id('loginbutton').click()
-        time.sleep(3)
+        time.sleep(5)
 
         for name in self.names:
             driver.get(f"https://www.facebook.com/pg/{name}/posts/?ref=page_internal")
