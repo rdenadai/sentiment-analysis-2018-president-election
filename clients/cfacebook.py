@@ -50,18 +50,21 @@ class FacebookClient:
                     upost = feed.find_element_by_class_name('UFICommentActorAndBody')
                     username = upost.find_element_by_class_name('UFICommentActorName')
                     comment = upost.find_element_by_class_name('UFICommentBody')
-                    data = feed.find_element_by_class_name('UFISutroCommentTimestamp')
+                    dt = feed.find_element_by_class_name('UFISutroCommentTimestamp')
 
                     if username and comment:
                         username = username.text.strip()
                         comment = comment.text.strip()
+                        tm = int(dt.get_attribute('data-utime'))
+
                         data['comments'].append({
                             'uuid': hashlib.sha256((username + '|' + comment).encode('ascii', 'ignore')).hexdigest(),
                             'username': username,
-                            'data': data,
+                            'data': time.strftime("%d/%m/%Y %H:%M", time.localtime(tm)),
+                            'timestamp': tm,
                             'comment': comment
                         })
                 except Exception as e:
                     print(f'ERROR: username or comment not found : {e}')
             self.results.append(data)
-        # driver.close()
+        driver.close()
