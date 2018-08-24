@@ -21,7 +21,7 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     ```
  3.
     ```bash
-    DATABASE_NAME=
+    DATABASE_PATH=/home/root/sentiment_analysis.db
     FACEBOOK_USER=
     FACEBOOK_PASSWORD=
     ```
