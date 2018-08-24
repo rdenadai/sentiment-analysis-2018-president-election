@@ -1,10 +1,13 @@
+import sys
+sys.path.append("..")  # Adds higher directory to python modules path.
+
 import concurrent.futures
 from datatype_c import facebook_names, twitter_names, instagram_names, youtube_names
 from clients.cfacebook import FacebookClient
 from clients.ctwitter import TwitterClient
 from clients.cinstagram import InstagramClient
 from clients.cyoutube import YouTubeClient
-from ..database.models import FacebookComments, TwitterComments, InstagramComments, YouTubeComments
+from database.models import FacebookComments, TwitterComments, InstagramComments, YouTubeComments
 
 
 def run_client(client):
@@ -12,8 +15,16 @@ def run_client(client):
     return client.results
 
 
-if __name__ == '__main__':
+def save_content(content, commentsClass):
+    for data in content['data']:
+        candidate = data['name']
+        for comment in data['comments']:
+            exist = commentsClass.get(commentsClass.uuid == comment['uuid'])
+            if not exist:
+                commentsClass(candidate=candidate, **comment).save()
 
+
+if __name__ == '__main__':
     np_posts = 1
     np_comments = 1
 
@@ -28,16 +39,11 @@ if __name__ == '__main__':
         contents = list(executorProcess.map(run_client, clients))
         for content in contents:
             if content['network'] == 'facebook':
-                for data in content['data']:
-                    candidate = data['name']
-                    for comment in data['comments']:
-                        exist = FacebookComments.get(FacebookComments.uuid == comment['uuid'])
-                        if not exist:
-                            FacebookComments(candidate=candidate, **comment).save()
+                save_content(content, FacebookComments)
             elif content['network'] == 'twitter':
-                pass
+                save_content(content, TwitterComments)
             elif content['network'] == 'instagram':
-                pass
+                save_content(content, InstagramComments)
             elif content['network'] == 'youtube':
-                pass
+                save_content(content, YouTubeComments)
 
