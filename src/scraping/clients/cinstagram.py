@@ -9,7 +9,10 @@ class InstagramClient:
         self.names = names
         self.np_posts = np_posts
         self.np_comments = np_comments
-        self.results = []
+        self.results = {
+            'network': 'instagram',
+            'data': []
+        }
 
     def start(self):
         for name in self.names:
@@ -73,5 +76,5 @@ class InstagramClient:
                     print(f'ERROR: No Comments found : {e}')
                 data['feed'].append(feed_data)
 
-            self.results.append(data)
+            self.results['data'].append(data)
             driver.close()

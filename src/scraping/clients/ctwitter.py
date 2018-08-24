@@ -9,7 +9,10 @@ class TwitterClient:
         self.names = names
         self.np_posts = np_posts
         self.np_comments = np_comments
-        self.results = []
+        self.results = {
+            'network': 'twitter',
+            'data': []
+        }
 
     def start(self):
         for name in self.names:
@@ -84,5 +87,5 @@ class TwitterClient:
                             print(f'ERROR: username or comment not found : {e}')
                 data['feed'].append(feed_data)
 
-            self.results.append(data)
+            self.results['data'].append(data)
             driver.close()

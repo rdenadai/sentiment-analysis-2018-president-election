@@ -24,4 +24,6 @@ if __name__ == '__main__':
     ]
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executorThread:
-        print(list(executorThread.map(run_client, clients)))
+        contents = list(executorThread.map(run_client, clients))
+        for content in contents:
+            print(content)

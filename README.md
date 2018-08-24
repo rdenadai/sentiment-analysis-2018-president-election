@@ -21,6 +21,7 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     ```
  3.
     ```bash
+    DATABASE_NAME=
     FACEBOOK_USER=
     FACEBOOK_PASSWORD=
     ```

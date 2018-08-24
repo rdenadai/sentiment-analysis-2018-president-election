@@ -10,11 +10,14 @@ class FacebookClient:
         self.names = names
         self.np_posts = np_posts
         self.np_comments = np_comments
-        self.results = []
+        self.results = {
+            'network': 'facebook',
+            'data': []
+        }
 
     def start(self):
-        username = config('FACEBOOK_USER', default='localhost')
-        password = config('FACEBOOK_PASSWORD', default='localhost')
+        username = config('FACEBOOK_USER', default='')
+        password = config('FACEBOOK_PASSWORD', default='')
 
         driver = webdriver.Firefox()
         driver.get('https://www.facebook.com/')
@@ -66,5 +69,5 @@ class FacebookClient:
                         })
                 except Exception as e:
                     print(f'ERROR: username or comment not found : {e}')
-            self.results.append(data)
+            self.results['data'].append(data)
         driver.close()
