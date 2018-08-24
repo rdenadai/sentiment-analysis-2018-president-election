@@ -3,13 +3,6 @@ from collections import namedtuple
 
 Candidate = namedtuple('Candidate', ['uuid', 'name'])
 
-instagram_names = [
-    Candidate('jairmessiasbolsonaro', 'Jair Bolsonaro'),
-    #Candidate('geraldoalckmin_', 'Geraldo Alckmin'),
-    #Candidate('fernandohaddadoficial', 'Fernando Haddad'),
-    #Candidate('_marinasilva_', 'Marina Silva'),
-    #Candidate('cirogomes', 'Ciro Gomes'),
-]
 facebook_names = [
     Candidate('jairmessias.bolsonaro', 'Jair Bolsonaro'),
     Candidate('geraldoalckmin', 'Geraldo Alckmin'),
@@ -22,6 +15,13 @@ twitter_names = [
     Candidate('geraldoalckmin', 'Geraldo Alckmin'),
     Candidate('haddad_fernando', 'Fernando Haddad'),
     Candidate('marinasilva', 'Marina Silva'),
+    Candidate('cirogomes', 'Ciro Gomes'),
+]
+instagram_names = [
+    Candidate('jairmessiasbolsonaro', 'Jair Bolsonaro'),
+    Candidate('geraldoalckmin_', 'Geraldo Alckmin'),
+    Candidate('fernandohaddadoficial', 'Fernando Haddad'),
+    Candidate('_marinasilva_', 'Marina Silva'),
     Candidate('cirogomes', 'Ciro Gomes'),
 ]
 youtube_names = [
