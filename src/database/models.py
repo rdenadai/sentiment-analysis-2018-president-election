@@ -7,6 +7,7 @@ db = SqliteDatabase(config('DATABASE_NAME', default='sentiment_analysis.db'))
 
 class SmallComments(Model):
     uuid = UUIDField(primary_key=True, unique=True, index=True)
+    candidate = CharField(max_length=150, index=True)
     username = CharField(max_length=255)
     comment = TextField()
 

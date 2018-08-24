@@ -17,7 +17,7 @@ class YouTubeClient:
     def start(self):
         for name in self.names:
             driver = webdriver.Firefox()
-            driver.get(f"https://www.youtube.com/user/{name}/videos")
+            driver.get(f"https://www.youtube.com/user/{name.uuid}/videos")
 
             i = 1
             for _ in range(self.np_posts):
@@ -27,7 +27,7 @@ class YouTubeClient:
                 i += 1
 
             data = {
-                'name': name,
+                'name': name.name,
                 'feed': []
             }
 

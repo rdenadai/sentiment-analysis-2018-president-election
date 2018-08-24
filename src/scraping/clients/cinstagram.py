@@ -17,7 +17,7 @@ class InstagramClient:
     def start(self):
         for name in self.names:
             driver = webdriver.Firefox()
-            driver.get(f"https://www.instagram.com/{name}/?hl=pt-br")
+            driver.get(f"https://www.instagram.com/{name.uuid}/?hl=pt-br")
 
             for _ in range(self.np_posts):
                 # for _ in range(scroll):
@@ -32,7 +32,7 @@ class InstagramClient:
                     feeds.append(href)
 
             data = {
-                'name': name,
+                'name': name.name,
                 'feed': []
             }
 

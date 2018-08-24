@@ -1,8 +1,10 @@
 import concurrent.futures
+from datatype_c import facebook_names, twitter_names, instagram_names, youtube_names
 from clients.cfacebook import FacebookClient
 from clients.ctwitter import TwitterClient
 from clients.cinstagram import InstagramClient
 from clients.cyoutube import YouTubeClient
+from ..database.models import FacebookComments, TwitterComments, InstagramComments, YouTubeComments
 
 
 def run_client(client):
@@ -11,17 +13,13 @@ def run_client(client):
 
 
 if __name__ == '__main__':
-    instagram_names = ['jairmessiasbolsonaro']#, 'geraldoalckmin_', 'fernandohaddadoficial', '_marinasilva_', 'cirogomes']
-    facebook_names = ['jairmessias.bolsonaro']#, 'geraldoalckmin', 'fernandohaddad', 'marinasilva.oficial', 'cirogomesoficial']
-    twitter_names = ['jairbolsonaro']#, 'geraldoalckmin', 'haddad_fernando', 'marinasilva', 'cirogomes']
-    youtube_names = ['jbolsonaro']#, 'UCNxCni0Iv9pr7i_pQZ6ijlg', 'msilvaonline', 'UCHFO37KCJlMNUXNK21MV8SQ']
 
     np_posts = 1
     np_comments = 1
 
     clients = [
         FacebookClient(names=facebook_names, np_posts=np_posts, np_comments=np_comments),
-        TwitterClient(names=twitter_names, np_posts=np_posts, np_comments=np_comments),
+        #TwitterClient(names=twitter_names, np_posts=np_posts, np_comments=np_comments),
         #InstagramClient(names=instagram_names, np_posts=np_posts, np_comments=np_comments),
         #YouTubeClient(names=youtube_names, np_posts=np_posts, np_comments=np_comments)
     ]
@@ -29,4 +27,17 @@ if __name__ == '__main__':
     with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executorProcess:
         contents = list(executorProcess.map(run_client, clients))
         for content in contents:
-            print(content)
+            if content['network'] == 'facebook':
+                for data in content['data']:
+                    candidate = data['name']
+                    for comment in data['comments']:
+                        exist = FacebookComments.get(FacebookComments.uuid == comment['uuid'])
+                        if not exist:
+                            FacebookComments(candidate=candidate, **comment).save()
+            elif content['network'] == 'twitter':
+                pass
+            elif content['network'] == 'instagram':
+                pass
+            elif content['network'] == 'youtube':
+                pass
+

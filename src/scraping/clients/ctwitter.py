@@ -17,14 +17,14 @@ class TwitterClient:
     def start(self):
         for name in self.names:
             driver = webdriver.Firefox()
-            driver.get(f"https://twitter.com/{name}")
+            driver.get(f"https://twitter.com/{name.uuid}")
 
             for _ in range(self.np_posts):
                 driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
                 time.sleep(1)
 
             data = {
-                'name': name,
+                'name': name.name,
                 'feed': []
             }
 

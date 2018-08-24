@@ -30,7 +30,7 @@ class FacebookClient:
         time.sleep(2)
 
         for name in self.names:
-            driver.get(f"https://www.facebook.com/pg/{name}/posts/?ref=page_internal")
+            driver.get(f"https://www.facebook.com/pg/{name.uuid}/posts/?ref=page_internal")
 
             i = 1
             for _ in range(self.np_posts):
@@ -49,7 +49,7 @@ class FacebookClient:
                     print(f'ERROR: UFIPagerLink not found : {e}')
 
             data = {
-                'name': name,
+                'name': name.name,
                 'comments': []
             }
 
