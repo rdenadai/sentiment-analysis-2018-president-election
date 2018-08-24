@@ -58,7 +58,10 @@ class TwitterClient:
 
                 replies = driver.find_elements_by_class_name('ThreadedConversation-moreRepliesLink')
                 for reply in replies:
-                    reply.click()
+                    try:
+                        reply.click()
+                    except Exception as e:
+                        print(f'ERROR: ThreadedConversation-moreRepliesLink element not found : {e}')
                     time.sleep(.5)
 
                 replies_feed = driver.find_element_by_class_name('replies-to')

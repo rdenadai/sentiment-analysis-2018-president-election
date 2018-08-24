@@ -22,8 +22,8 @@ if __name__ == '__main__':
     clients = [
         FacebookClient(names=facebook_names, np_posts=np_posts, np_comments=np_comments),
         TwitterClient(names=twitter_names, np_posts=np_posts, np_comments=np_comments),
-        InstagramClient(names=instagram_names, np_posts=np_posts, np_comments=np_comments),
-        YouTubeClient(names=youtube_names, np_posts=np_posts, np_comments=np_comments)
+        #InstagramClient(names=instagram_names, np_posts=np_posts, np_comments=np_comments),
+        #YouTubeClient(names=youtube_names, np_posts=np_posts, np_comments=np_comments)
     ]
 
     with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executorProcess:

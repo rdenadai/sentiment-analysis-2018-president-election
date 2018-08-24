@@ -19,12 +19,15 @@ class FacebookClient:
         username = config('FACEBOOK_USER', default='')
         password = config('FACEBOOK_PASSWORD', default='')
 
-        driver = webdriver.Firefox()
+        browser_profile = webdriver.FirefoxProfile()
+        browser_profile.set_preference("dom.webnotifications.enabled", False)
+
+        driver = webdriver.Firefox(firefox_profile=browser_profile)
         driver.get('https://www.facebook.com/')
         driver.execute_script(f'document.getElementById("email").value = "{username}"')
         driver.execute_script(f'document.getElementById("pass").value = "{password}"')
         driver.find_element_by_id('loginbutton').click()
-        time.sleep(5)
+        time.sleep(2)
 
         for name in self.names:
             driver.get(f"https://www.facebook.com/pg/{name}/posts/?ref=page_internal")
