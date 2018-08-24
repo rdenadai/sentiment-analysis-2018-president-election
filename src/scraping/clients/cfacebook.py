@@ -37,10 +37,13 @@ class FacebookClient:
                 i += 1
 
             for _ in range(self.np_comments):
-                links = driver.find_elements_by_class_name('UFIPagerLink')
-                for link in links:
-                    link.click()
-                    time.sleep(.5)
+                try:
+                    links = driver.find_elements_by_class_name('UFIPagerLink')
+                    for link in links:
+                        link.click()
+                        time.sleep(.5)
+                except Exception as e:
+                    print(f'ERROR: UFIPagerLink not found : {e}')
 
             data = {
                 'name': name,

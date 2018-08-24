@@ -20,7 +20,6 @@ class TwitterClient:
             driver.get(f"https://twitter.com/{name}")
 
             for _ in range(self.np_posts):
-                # for _ in range(scroll):
                 driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
                 time.sleep(1)
 

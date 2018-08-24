@@ -82,7 +82,10 @@ class YouTubeClient:
                 replies = driver.find_elements_by_tag_name('ytd-expander')
                 for reply in replies:
                     if 'View' in reply.text.strip():
-                        reply.find_element_by_id('more').click()
+                        try:
+                            reply.find_element_by_id('more').click()
+                        except Exception as e:
+                            print(f'ERROR: element not found : {e}')
                         time.sleep(.5)
 
                 user_posts = driver.find_elements_by_tag_name('ytd-comment-thread-renderer')
