@@ -1,8 +1,5 @@
-from decouple import config
 from peewee import *
-
-
-db = SqliteDatabase(config('DATABASE_NAME', default='sentiment_analysis.db'))
+from .conn import db
 
 
 class SmallComments(Model):

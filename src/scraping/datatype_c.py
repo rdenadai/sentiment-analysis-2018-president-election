@@ -5,10 +5,10 @@ Candidate = namedtuple('Candidate', ['uuid', 'name'])
 
 facebook_names = [
     Candidate('jairmessias.bolsonaro', 'Jair Bolsonaro'),
-    Candidate('geraldoalckmin', 'Geraldo Alckmin'),
-    Candidate('fernandohaddad', 'Fernando Haddad'),
-    Candidate('marinasilva.oficial', 'Marina Silva'),
-    Candidate('cirogomesoficial', 'Ciro Gomes'),
+    #Candidate('geraldoalckmin', 'Geraldo Alckmin'),
+    #Candidate('fernandohaddad', 'Fernando Haddad'),
+    #Candidate('marinasilva.oficial', 'Marina Silva'),
+    #Candidate('cirogomesoficial', 'Ciro Gomes'),
 ]
 twitter_names = [
     Candidate('jairbolsonaro', 'Jair Bolsonaro'),

@@ -19,8 +19,8 @@ def save_content(content, commentsClass):
     for data in content['data']:
         candidate = data['name']
         for comment in data['comments']:
-            exist = commentsClass.get(commentsClass.uuid == comment['uuid'])
-            if not exist:
+            query = commentsClass.select().where(commentsClass.uuid == comment['uuid'])
+            if query.exists():
                 commentsClass(candidate=candidate, **comment).save()
 
 
