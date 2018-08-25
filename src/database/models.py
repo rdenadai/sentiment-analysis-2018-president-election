@@ -3,7 +3,7 @@ from .conn import db
 
 
 class SmallComments(Model):
-    uuid = UUIDField(primary_key=True, unique=True, index=True)
+    hash = CharField(primary_key=True, unique=True, index=True, max_length=255)
     candidate = CharField(max_length=150, index=True)
     username = CharField(max_length=255)
     comment = TextField()

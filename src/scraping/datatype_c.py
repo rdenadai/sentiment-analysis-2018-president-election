@@ -25,10 +25,10 @@ instagram_names = [
     Candidate('cirogomes', 'Ciro Gomes'),
 ]
 youtube_names = [
-    Candidate('jbolsonaro', 'Jair Bolsonaro'),
-    Candidate('UCNxCni0Iv9pr7i_pQZ6ijlg', 'Geraldo Alckmin'),
-    Candidate('msilvaonline', 'Marina Silva'),
-    Candidate('UCHFO37KCJlMNUXNK21MV8SQ', 'Ciro Gomes'),
+    Candidate('https://www.youtube.com/user/jbolsonaro/videos', 'Jair Bolsonaro'),
+    Candidate('https://www.youtube.com/channel/UCNxCni0Iv9pr7i_pQZ6ijlg/videos', 'Geraldo Alckmin'),
+    Candidate('https://www.youtube.com/user/msilvaonline/videos', 'Marina Silva'),
+    Candidate('https://www.youtube.com/channel/UCHFO37KCJlMNUXNK21MV8SQ/videos', 'Ciro Gomes'),
 ]
 hashtags = [
     'eleicoes2018',
