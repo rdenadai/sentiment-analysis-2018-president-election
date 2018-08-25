@@ -30,7 +30,16 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     ```bash
     $> python extractor.py
     ```
- 
+
+#### Python libs
+
+Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
+
+ - selenium
+    > Utlizada para realizar a raspagem dos comentários e outros dados das páginas apresentadas abaixo.
+      Infelizmente as api's das redes sociais são bem mais restritivas agora, ou mesmo tem um tempo moroso para habilitação de uso.
+ - peewee
+    > ORM em python para realizar a conexão com a base de dados. No caso estamos utilizando sqlite como base de dados.
  
 #### Páginas extraídas
 1. Instagram
@@ -60,6 +69,9 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
 5. Twitter treding
     - [eleicoes2018](https://twitter.com/hashtag/eleicoes2018)
     - [eleições2018](https://twitter.com/hashtag/eleições2018)
+    - [Eleições2018](https://twitter.com/hashtag/Eleições2018)
+    - [eleicao2018](https://twitter.com/hashtag/eleicao2018)1
+    - [Eleição2018](https://twitter.com/hashtag/Eleição2018)
     - [DebateNaBand](https://twitter.com/hashtag/DebateNaBand)
     - [DebateRedeTv](https://twitter.com/hashtag/debateRedetv)
     - ***rever?*** [MulheresComBolsonaro](https://twitter.com/hashtag/MulheresComBolsonaro)

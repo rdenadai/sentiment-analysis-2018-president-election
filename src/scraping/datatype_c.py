@@ -5,10 +5,10 @@ Candidate = namedtuple('Candidate', ['uuid', 'name'])
 
 facebook_names = [
     Candidate('jairmessias.bolsonaro', 'Jair Bolsonaro'),
-    #Candidate('geraldoalckmin', 'Geraldo Alckmin'),
-    #Candidate('fernandohaddad', 'Fernando Haddad'),
-    #Candidate('marinasilva.oficial', 'Marina Silva'),
-    #Candidate('cirogomesoficial', 'Ciro Gomes'),
+    Candidate('geraldoalckmin', 'Geraldo Alckmin'),
+    Candidate('fernandohaddad', 'Fernando Haddad'),
+    Candidate('marinasilva.oficial', 'Marina Silva'),
+    Candidate('cirogomesoficial', 'Ciro Gomes'),
 ]
 twitter_names = [
     Candidate('jairbolsonaro', 'Jair Bolsonaro'),
@@ -29,4 +29,13 @@ youtube_names = [
     Candidate('UCNxCni0Iv9pr7i_pQZ6ijlg', 'Geraldo Alckmin'),
     Candidate('msilvaonline', 'Marina Silva'),
     Candidate('UCHFO37KCJlMNUXNK21MV8SQ', 'Ciro Gomes'),
+]
+hashtags = [
+    'eleicoes2018',
+    'eleições2018',
+    'Eleições2018',
+    'eleicao2018',
+    'Eleição2018',
+    'DebateNaBand',
+    'DebateRedeTv',
 ]

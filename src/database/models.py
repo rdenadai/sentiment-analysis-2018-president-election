@@ -20,25 +20,25 @@ class DefaultComments(SmallComments):
         database = db
 
 
-class FacebookComments(DefaultComments):
+class RawFacebookComments(DefaultComments):
     class Meta:
         database = db
-        table_name = 'facebook_comments'
+        table_name = 'raw_facebook_comments'
 
 
-class TwitterComments(DefaultComments):
+class RawTwitterComments(DefaultComments):
     class Meta:
         database = db
-        table_name = 'twitter_comments'
+        table_name = 'raw_twitter_comments'
 
 
-class InstagramComments(SmallComments):
+class RawInstagramComments(SmallComments):
     class Meta:
         database = db
-        table_name = 'instagram_comments'
+        table_name = 'raw_instagram_comments'
 
 
-class YouTubeComments(SmallComments):
+class RawYouTubeComments(SmallComments):
     class Meta:
         database = db
-        table_name = 'youtube_comments'
+        table_name = 'raw_youtube_comments'
