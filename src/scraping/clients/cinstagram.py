@@ -20,7 +20,6 @@ class InstagramClient:
             driver.get(f"https://www.instagram.com/{name.uuid}/?hl=pt-br")
 
             for _ in range(self.np_posts):
-                # for _ in range(scroll):
                 driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
                 time.sleep(1)
 
@@ -28,7 +27,7 @@ class InstagramClient:
             links = driver.find_elements_by_tag_name('a')
             for link in links:
                 href = link.get_attribute('href')
-                if f'taken-by={name}' in href:
+                if f'taken-by={name.uuid}' in href:
                     feeds.append(href)
 
             data = {
