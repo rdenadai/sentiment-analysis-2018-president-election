@@ -42,3 +42,16 @@ class RawYouTubeComments(SmallComments):
     class Meta:
         database = db
         table_name = 'raw_youtube_comments'
+
+
+class RawHashtagComments(Model):
+    hash = CharField(primary_key=True, unique=True, index=True, max_length=255)
+    hashtag = CharField(max_length=150, index=True)
+    username = CharField(max_length=255)
+    comment = TextField()
+    data = CharField(max_length=50)
+    timestamp = TimestampField(resolution=100)
+
+    class Meta:
+        database = db
+        table_name = 'raw_hashtag_comments'

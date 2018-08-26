@@ -33,7 +33,7 @@ class InstagramClient:
             'feed': []
         }
 
-        for feed in feeds[0:2]:
+        for feed in feeds:
             feed_data = {
                 'feed_views_likes': 0,
                 'comments': []

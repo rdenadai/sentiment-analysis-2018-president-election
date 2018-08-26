@@ -33,7 +33,7 @@ class TwitterClient:
             if link:
                 feeds.append('https://twitter.com%s' % link)
 
-        for feed in feeds[0:1]:
+        for feed in feeds:
             feed_data = {
                 'feed_views_retweets': 0,
                 'feed_views_likes': 0,

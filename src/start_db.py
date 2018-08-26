@@ -1,5 +1,5 @@
 from database.conn import db
-from database.models import RawFacebookComments, RawTwitterComments, RawInstagramComments, RawYouTubeComments
+from database.models import RawFacebookComments, RawTwitterComments, RawInstagramComments, RawYouTubeComments, RawHashtagComments
 
 
 if __name__ == "__main__":
@@ -8,5 +8,6 @@ if __name__ == "__main__":
         RawFacebookComments,
         RawTwitterComments,
         RawInstagramComments,
-        RawYouTubeComments
+        RawYouTubeComments,
+        RawHashtagComments,
     ])

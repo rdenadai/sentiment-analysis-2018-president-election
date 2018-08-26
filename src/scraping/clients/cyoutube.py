@@ -36,7 +36,7 @@ class YouTubeClient:
             if link:
                 feeds.append(link.get_attribute('href'))
 
-        for feed in feeds[0:2]:
+        for feed in feeds:
             feed_data = {
                 'feed_views_views': 0,
                 'feed_views_likes': 0,
