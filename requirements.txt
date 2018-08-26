@@ -1,0 +1,6 @@
+requests==2.19.1
+python-decouple==3.1
+selenium==3.14.0
+peewee==3.6.4
+nltk==3.3
+textblob==0.15.1
