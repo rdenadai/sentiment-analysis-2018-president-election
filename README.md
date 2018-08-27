@@ -1,4 +1,4 @@
-# Sentiment Analysis for 2018 President Election
+# Sentiment Analysis for 2018 Presidential Election
 
 Análise de sentimentos relacionados aos candidatos a Eleição para a presidência de 2018
 
@@ -70,11 +70,10 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [eleicoes2018](https://twitter.com/hashtag/eleicoes2018)
     - [eleições2018](https://twitter.com/hashtag/eleições2018)
     - [Eleições2018](https://twitter.com/hashtag/Eleições2018)
-    - [eleicao2018](https://twitter.com/hashtag/eleicao2018)1
+    - [eleicao2018](https://twitter.com/hashtag/eleicao2018)
     - [Eleição2018](https://twitter.com/hashtag/Eleição2018)
     - [DebateNaBand](https://twitter.com/hashtag/DebateNaBand)
     - [DebateRedeTv](https://twitter.com/hashtag/debateRedetv)
-    - ***rever?*** [MulheresComBolsonaro](https://twitter.com/hashtag/MulheresComBolsonaro)
 
  #### Datasets
  
@@ -82,11 +81,16 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
 
  > Essa base foi construída para aplicações que utilizam vocabulário de palavras de emoções. Esse trabalho é relacionado ao estudo da análise de sentimentos em discurso da língua portuguesa.
  
- 2. [SentiLex-PT01](http://xldb.fc.ul.pt/wiki/SentiLex-PT01)
+ 2. [SentiLex-PT](https://b2share.eudat.eu/records/93ab120efdaa4662baec6adee8e7585f)
  
  > SentiLex-PT01 é um léxico de sentimentos para o português constituído por 6.321 lemas adjectivais (por convenção, na forma masculina singular) e 25.406 formas flexionadas.
+ 
+ > SentiLex-PT02 is a sentiment lexicon for Portuguese, made up of 7,014 lemmas, and 82,347 inflected forms. In detail, the lexicon describes: 4,779 (16,863) adjectives, 1,081 (1,280) nouns, 489 (29,504) verbs, and 666 (34,700) idiomatic expressions. The sentiment entries correspond to human predicates, i.e. predicates modifying human nouns, compiled from different publicly available resources (corpora and dictionaries). SentiLex-PT is especially useful for opinion mining applications involving Portuguese, in particular for detecting and classifying sentiments and opinions targeting human entities. 
 
- 3. [OpLexicon](http://ontolp.inf.pucrs.br/Recursos/downloads-OpLexicon.php)
+  - [SentiLex-PT01](http://xldb.fc.ul.pt/wiki/SentiLex-PT01)
+  - [SentiLex-PT02](https://b2share.eudat.eu/records/93ab120efdaa4662baec6adee8e7585f)
+
+ 3. [OpLexicon v2.1 & v3.0](http://ontolp.inf.pucrs.br/Recursos/downloads-OpLexicon.php)
  
  > OpLexicon é um léxico de sentimento para a língua portuguesa.
 
@@ -97,10 +101,6 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
  5. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
  
  > Chamamos de "Floresta Sintáctica" um conjunto de frases (corpus) analisadas (morfo)sintaticamente. Como, além da indicação das funções sintácticas, a análise também explicita hierarquicamente informação relativa à estrutura de constituintes, dizemos que uma frase sintaticamente analisada se parece com uma árvore, donde um conjunto de árvores constitui uma floresta sintáctica (em inglês, treebank).
-
- 6. ***rever?*** [CETEMPúblico](https://www.linguateca.pt/acesso/corpus.php?corpus=CETEMPUBLICO)
- 
- > O CETEMPúblico (Corpus de Extractos de Textos Electrónicos MCT/Público) é um corpus de aproximadamente 180 milhões de palavras em português europeu, criado pelo projecto Processamento computacional do português (projecto que deu origem à Linguateca) após a assinatura de um protocolo entre o Ministério da Ciência e da Tecnologia (MCT) português e o jornal PÚBLICO em Abril de 2000.
 
  #### Referências
  
