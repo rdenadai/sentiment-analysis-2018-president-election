@@ -67,9 +67,17 @@ class YouTubeClient:
                 except Exception as e:
                     print(f'ERROR: Like / dislike not found in tag : {e}')
 
-            pause = driver.find_element_by_class_name('ytp-play-button')
-            if pause:
-                pause.click()
+            # Let's try to pause the youtube video... trying 5 times!
+            cpause = 5
+            while cpause > 0:
+                try:
+                    pause = driver.find_element_by_class_name('ytp-play-button')
+                    if pause:
+                        cpause = 0
+                        pause.click()
+                except Exception as e:
+                    cpause -= 1
+                    time.sleep(1)
 
             i = 1
             driver.execute_script(f"window.scrollTo(0, 500)")
