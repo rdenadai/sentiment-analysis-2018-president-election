@@ -79,7 +79,7 @@ if __name__ == '__main__':
         list(executorProcess.map(run_save_hashtag, contents, chunksize=5))
 
     # Executa o selenium para coletar os dados, usamos ProcessPool para abrir 4 janelas ao mesmo tempo
-    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executorProcess:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=2) as executorProcess:
         for client in clients:
             contents = list(executorProcess.map(functools.partial(run_client, client=client[1]), client[0]))
             # Depois de todos os dados coletados, esta na hora de salvar na base de dados
