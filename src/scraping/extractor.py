@@ -67,16 +67,16 @@ if __name__ == '__main__':
     np_comments = 5
 
     clients = [
-        # (facebook_names, FacebookClient(np_posts=np_posts, np_comments=np_comments)),
-        # (twitter_names, TwitterClient(np_posts=np_posts, np_comments=np_comments)),
-        # (instagram_names, InstagramClient(np_posts=np_posts, np_comments=np_comments)),
+        (facebook_names, FacebookClient(np_posts=np_posts, np_comments=np_comments)),
+        (twitter_names, TwitterClient(np_posts=np_posts, np_comments=np_comments)),
+        (instagram_names, InstagramClient(np_posts=np_posts, np_comments=np_comments)),
         (youtube_names, YouTubeClient(np_posts=np_posts, np_comments=np_comments)),
     ]
 
-    # with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executorProcess:
-    #     tw = TwitterTagsClient(np_posts=25)
-    #     contents = list(executorProcess.map(functools.partial(run_hashtag, client=tw), hashtags))
-    #     list(executorProcess.map(run_save_hashtag, contents, chunksize=5))
+    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executorProcess:
+        tw = TwitterTagsClient(np_posts=25)
+        contents = list(executorProcess.map(functools.partial(run_hashtag, client=tw), hashtags))
+        list(executorProcess.map(run_save_hashtag, contents, chunksize=5))
 
     # Executa o selenium para coletar os dados, usamos ProcessPool para abrir 4 janelas ao mesmo tempo
     with concurrent.futures.ProcessPoolExecutor(max_workers=2) as executorProcess:
