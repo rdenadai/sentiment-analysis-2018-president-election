@@ -22,13 +22,13 @@ if __name__ == '__main__':
     ]
 
     with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executorProcess:
-        tw = TwitterTagsClient(np_posts=25)
+        tw = TwitterTagsClient(np_posts=35)
         contents = list(executorProcess.map(functools.partial(run_hashtag, client=tw), hashtags))
-        list(executorProcess.map(run_save_hashtag, contents, chunksize=5))
+        list(executorProcess.map(run_save_hashtag, contents, chunksize=10))
 
     # Executa o selenium para coletar os dados, usamos ProcessPool para abrir 4 janelas ao mesmo tempo
     with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executorProcess:
         for client in clients:
             contents = list(executorProcess.map(functools.partial(run_client, client=client[1]), client[0]))
             # Depois de todos os dados coletados, esta na hora de salvar na base de dados
-            list(executorProcess.map(run_contents, contents, chunksize=5))
+            list(executorProcess.map(run_contents, contents, chunksize=10))

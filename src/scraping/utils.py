@@ -3,6 +3,14 @@ sys.path.append("..")  # Adds higher directory to python modules path.
 
 from peewee import DoesNotExist
 from database.models import RawFacebookComments, RawTwitterComments, RawInstagramComments, RawYouTubeComments, RawHashtagComments
+from selenium import webdriver
+
+
+def get_profile():
+    browser_profile = webdriver.FirefoxProfile()
+    browser_profile.set_preference("dom.webnotifications.enabled", False)
+    browser_profile.set_preference("intl.accept_languages", "pt-br")
+    return browser_profile
 
 
 def run_client(candidate, client):

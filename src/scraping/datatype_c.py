@@ -38,4 +38,6 @@ hashtags = [
     'Eleição2018',
     'DebateNaBand',
     'DebateRedeTv',
+    'CiroNoJornalNacional',
+    'CiroNaGloboNews',
 ]

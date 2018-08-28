@@ -1,6 +1,7 @@
 import time
 import hashlib
 from selenium import webdriver
+from utils import get_profile
 
 
 class TwitterClient:
@@ -14,7 +15,7 @@ class TwitterClient:
         }
 
     def start(self, name):
-        driver = webdriver.Firefox()
+        driver = webdriver.Firefox(firefox_profile=get_profile())
         driver.get(f"https://twitter.com/{name.uuid}")
 
         for _ in range(self.np_posts):
