@@ -76,6 +76,9 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [DebateRedeTv](https://twitter.com/hashtag/debateRedetv)
     - [CiroNoJornalNacional](https://twitter.com/hashtag/CiroNoJornalNacional)
     - [CiroNaGloboNews](https://twitter.com/hashtag/CiroNaGloboNews)
+    - [gneleicoes2018](https://twitter.com/hashtag/gneleicoes2018)
+    - [BolsonaroNoJornalNacional](https://twitter.com/hashtag/BolsonaroNoJornalNacional)
+    - [bolsonaronaglobonews](https://twitter.com/hashtag/bolsonaronaglobonews)
 
  #### Datasets
  
