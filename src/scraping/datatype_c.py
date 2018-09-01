@@ -42,5 +42,11 @@ hashtags = [
     'CiroNoJornalNacional',
     'CiroNaGloboNews',
     'BolsonaroNoJornalNacional',
-    'bolsonaronaglobonews'
+    'bolsonaronaglobonews',
+    'GeraldoNoJN',
+    'AlckminNoJornalNacional',
+    'GERALDONAGLOBONEWS',
+    'MarinaNoJornalNacional',
+    'Marinanaglobonews',
+    'HaddadPresidente',
 ]
