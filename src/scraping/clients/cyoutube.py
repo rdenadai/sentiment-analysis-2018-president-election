@@ -1,6 +1,7 @@
 import time
 import hashlib
 from selenium import webdriver
+from utils import get_profile
 
 
 class YouTubeClient:
@@ -14,7 +15,7 @@ class YouTubeClient:
         }
 
     def start(self, name):
-        driver = webdriver.Firefox()
+        driver = webdriver.Firefox(firefox_profile=get_profile())
         driver.get(name.uuid)
 
         i = 1
@@ -49,7 +50,7 @@ class YouTubeClient:
 
             try:
                 views = driver.find_element_by_class_name('view-count').text
-                feed_data['feed_views_views'] = int(views.split()[0].replace(',', ''))
+                feed_data['feed_views_views'] = int(views.split()[0].replace(',', '').replace('.', ''))
             except Exception as e:
                 print(f'ERROR: view count not found in tag : {e}')
 

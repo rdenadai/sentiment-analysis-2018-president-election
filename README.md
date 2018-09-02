@@ -74,6 +74,17 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [Eleição2018](https://twitter.com/hashtag/Eleição2018)
     - [DebateNaBand](https://twitter.com/hashtag/DebateNaBand)
     - [DebateRedeTv](https://twitter.com/hashtag/debateRedetv)
+    - [CiroNoJornalNacional](https://twitter.com/hashtag/CiroNoJornalNacional)
+    - [CiroNaGloboNews](https://twitter.com/hashtag/CiroNaGloboNews)
+    - [gneleicoes2018](https://twitter.com/hashtag/gneleicoes2018)
+    - [BolsonaroNoJornalNacional](https://twitter.com/hashtag/BolsonaroNoJornalNacional)
+    - [bolsonaronaglobonews](https://twitter.com/hashtag/bolsonaronaglobonews)
+    - [GeraldoNoJN](https://twitter.com/hashtag/GeraldoNoJN)
+    - [AlckminNoJornalNacional](https://twitter.com/hashtag/AlckminNoJornalNacional)
+    - [GERALDONAGLOBONEWS](https://twitter.com/hashtag/GERALDONAGLOBONEWS)
+    - [MarinaNoJornalNacional](https://twitter.com/hashtag/MarinaNoJornalNacional)
+    - [Marinanaglobonews](https://twitter.com/hashtag/Marinanaglobonews)
+    - [HaddadPresidente](https://twitter.com/hashtag/HaddadPresidente)
 
  #### Datasets
  

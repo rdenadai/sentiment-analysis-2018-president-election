@@ -1,6 +1,7 @@
 import time
 import hashlib
 from selenium import webdriver
+from utils import get_profile
 
 
 class InstagramClient:
@@ -14,7 +15,7 @@ class InstagramClient:
         }
 
     def start(self, name):
-        driver = webdriver.Firefox()
+        driver = webdriver.Firefox(firefox_profile=get_profile())
         driver.get(f"https://www.instagram.com/{name.uuid}/?hl=pt-br")
 
         for _ in range(self.np_posts):
@@ -41,9 +42,12 @@ class InstagramClient:
 
             driver.get(feed)
 
-            like = driver.find_element_by_xpath(
-                "/html/body/span/section/main/div/div/article/div[2]/section[2]/div/span/span")
-            feed_data['feed_views_likes'] = int(like.text.replace(',', ''))
+            try:
+                like = driver.find_element_by_xpath(
+                    "/html/body/span/section/main/div/div/article/div[2]/section[2]/div/span/span")
+                feed_data['feed_views_likes'] = int(like.text.replace(',', '').replace('.', ''))
+            except Exception as e:
+                print(f'ERROR: likes element not found : {e}')
 
             try:
                 btn = driver.find_element_by_xpath("//button[contains(text(),'Load more comments')]")

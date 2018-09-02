@@ -2,6 +2,7 @@ import time
 import hashlib
 from decouple import config
 from selenium import webdriver
+from utils import get_profile
 
 
 class FacebookClient:
@@ -18,10 +19,7 @@ class FacebookClient:
         username = config('FACEBOOK_USER', default='')
         password = config('FACEBOOK_PASSWORD', default='')
 
-        browser_profile = webdriver.FirefoxProfile()
-        browser_profile.set_preference("dom.webnotifications.enabled", False)
-
-        driver = webdriver.Firefox(firefox_profile=browser_profile)
+        driver = webdriver.Firefox(firefox_profile=get_profile())
         driver.get('https://www.facebook.com/')
         driver.execute_script(f'document.getElementById("email").value = "{username}"')
         driver.execute_script(f'document.getElementById("pass").value = "{password}"')
