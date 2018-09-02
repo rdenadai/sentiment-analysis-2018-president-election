@@ -43,10 +43,13 @@ class TwitterClient:
 
             driver.get(feed)
 
-            retweets = driver.find_element_by_class_name('request-retweeted-popup').text
-            feed_data['feed_views_retweets'] = int(retweets.replace('Retweets', '').replace(',', ''))
-            likes = driver.find_element_by_class_name('request-favorited-popup').text
-            feed_data['feed_views_likes'] = int(likes.replace('Likes', '').replace(',', ''))
+            try:
+                retweets = driver.find_element_by_class_name('request-retweeted-popup').text
+                feed_data['feed_views_retweets'] = int(retweets.replace('Retweets', '').replace(',', '').replace('.', ''))
+                likes = driver.find_element_by_class_name('request-favorited-popup').text
+                feed_data['feed_views_likes'] = int(likes.replace('Likes', '').replace(',', '').replace('.', ''))
+            except Exception as e:
+                print(f'ERROR: likes element not found : {e}')
 
             i = 1
             for _ in range(self.np_comments):

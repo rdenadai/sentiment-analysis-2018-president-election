@@ -42,9 +42,12 @@ class InstagramClient:
 
             driver.get(feed)
 
-            like = driver.find_element_by_xpath(
-                "/html/body/span/section/main/div/div/article/div[2]/section[2]/div/span/span")
-            feed_data['feed_views_likes'] = int(like.text.replace(',', ''))
+            try:
+                like = driver.find_element_by_xpath(
+                    "/html/body/span/section/main/div/div/article/div[2]/section[2]/div/span/span")
+                feed_data['feed_views_likes'] = int(like.text.replace(',', '').replace('.', ''))
+            except Exception as e:
+                print(f'ERROR: likes element not found : {e}')
 
             try:
                 btn = driver.find_element_by_xpath("//button[contains(text(),'Load more comments')]")

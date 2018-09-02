@@ -11,13 +11,15 @@ from utils import *
 
 
 if __name__ == '__main__':
-    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executorProcess:
-        tw = TwitterTagsClient(np_posts=35)
-        contents = list(executorProcess.map(functools.partial(run_hashtag, client=tw), hashtags))
-        list(executorProcess.map(run_save_hashtag, contents, chunksize=10))
+    with concurrent.futures.ProcessPoolExecutor(max_workers=2) as executorProcess:
+        tw = TwitterTagsClient(np_posts=25)
+        hashtags = [hashtags[i:i+5] for i in range(0, len(hashtags), 5)]
+        for hashtag in hashtags:
+            contents = list(executorProcess.map(functools.partial(run_hashtag, client=tw), hashtag, chunksize=5))
+            list(executorProcess.map(run_save_hashtag, contents, chunksize=5))
 
-    np_posts = 7
-    np_comments = 5
+    np_posts = 4
+    np_comments = 4
 
     clients = [
         (facebook_names, FacebookClient(np_posts=np_posts, np_comments=np_comments)),
@@ -26,7 +28,6 @@ if __name__ == '__main__':
         (youtube_names, YouTubeClient(np_posts=2, np_comments=2)),
     ]
 
-    # Executa o selenium para coletar os dados, usamos ProcessPool para abrir 4 janelas ao mesmo tempo
     with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executorProcess:
         for client in clients:
             contents = list(executorProcess.map(functools.partial(run_client, client=client[1]), client[0]))
