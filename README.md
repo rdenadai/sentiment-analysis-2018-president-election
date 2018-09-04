@@ -74,6 +74,7 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [Eleição2018](https://twitter.com/hashtag/Eleição2018)
     - [DebateNaBand](https://twitter.com/hashtag/DebateNaBand)
     - [DebateRedeTv](https://twitter.com/hashtag/debateRedetv)
+    - [GNEleicoes2018](https://twitter.com/hashtag/GNEleicoes2018)
     - [CiroNoJornalNacional](https://twitter.com/hashtag/CiroNoJornalNacional)
     - [CiroNaGloboNews](https://twitter.com/hashtag/CiroNaGloboNews)
     - [gneleicoes2018](https://twitter.com/hashtag/gneleicoes2018)
