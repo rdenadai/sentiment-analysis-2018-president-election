@@ -49,4 +49,18 @@ hashtags = [
     'MarinaNoJornalNacional',
     'Marinanaglobonews',
     'HaddadPresidente',
+    'HaddadÉLulaNoJN',
+    'QuemMandouMatarBolsonaro',
+    'Bolsonaro17',
+    'Geraldo45',
+    'Marina18',
+    'Haddad13',
+    'Ciro12',
+    'CiroGomes'
+    'GeraldoAlckmin',
+    'MarinaSilvaeEduardoJorge18',
+    'HaddadELula',
+    'JairBolsonaro17',
+    'EleSim',
+    'EleNão'
 ]

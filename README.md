@@ -85,6 +85,20 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [MarinaNoJornalNacional](https://twitter.com/hashtag/MarinaNoJornalNacional)
     - [Marinanaglobonews](https://twitter.com/hashtag/Marinanaglobonews)
     - [HaddadPresidente](https://twitter.com/hashtag/HaddadPresidente)
+    - [HaddadÉLulaNoJN](https://twitter.com/hashtag/HaddadÉLulaNoJN)
+    - [QuemMandouMatarBolsonaro](https://twitter.com/hashtag/QuemMandouMatarBolsonaro)
+    - [Bolsonaro17](https://twitter.com/hashtag/Bolsonaro17)
+    - [Geraldo45](https://twitter.com/hashtag/Geraldo45)
+    - [Marina18](https://twitter.com/hashtag/Marina18)
+    - [Haddad13](https://twitter.com/hashtag/Haddad13)
+    - [Ciro12](https://twitter.com/hashtag/Ciro12)
+    - [CiroGomes](https://twitter.com/hashtag/CiroGomes)
+    - [GeraldoAlckmin](https://twitter.com/hashtag/GeraldoAlckmin)
+    - [MarinaSilvaeEduardoJorge18](https://twitter.com/hashtag/MarinaSilvaeEduardoJorge18)
+    - [HaddadELula](https://twitter.com/hashtag/HaddadELula)
+    - [JairBolsonaro17](https://twitter.com/hashtag/JairBolsonaro17)
+    - [EleSim](https://twitter.com/hashtag/EleSim)
+    - [EleNão](https://twitter.com/hashtag/EleNão)
 
  #### Datasets
  
