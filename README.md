@@ -10,3 +10,5 @@ Análise de sentimentos relacionados aos candidatos a Eleição para a presidên
 #Eleições2018
 #eleicao2018
 #eleicoes2018
+
+- Inclusão do dataset de Tweets em Português "tweets_mg.csv" coletado em https://www.kaggle.com/leandrodoze/sentiment-analysis-in-portuguese
