@@ -99,6 +99,17 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [JairBolsonaro17](https://twitter.com/hashtag/JairBolsonaro17)
     - [EleSim](https://twitter.com/hashtag/EleSim)
     - [EleNão](https://twitter.com/hashtag/EleNão)
+    - [BolsonaroNaJovemPan](https://twitter.com/hashtag/BolsonaroNaJovemPan)
+    - [AlckminELula](https://twitter.com/hashtag/AlckminELula)
+    - [Vote13](https://twitter.com/hashtag/Vote13)
+    - [RuanetNÃO](https://twitter.com/hashtag/RuanetNÃO)
+    - [DebateSBT](https://twitter.com/hashtag/DebateSBT)
+    - [bolsonaroladrão](https://twitter.com/hashtag/bolsonaroladrão)
+    - [bolsonaronacadeia](https://twitter.com/hashtag/bolsonaronacadeia)
+    - [veja600milhoes](https://twitter.com/hashtag/veja600milhoes)
+    - [elesimeno1turno](https://twitter.com/hashtag/elesimeno1turno)
+    - [ÉPelaVidadasMulheres](https://twitter.com/hashtag/ÉPelaVidadasMulheres)
+    - [mudabrasilcombolsonaro](https://twitter.com/hashtag/mudabrasilcombolsonaro)
 
  #### Datasets
  

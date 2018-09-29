@@ -62,5 +62,16 @@ hashtags = [
     'HaddadELula',
     'JairBolsonaro17',
     'EleSim',
-    'EleNão'
+    'EleNão',
+    'BolsonaroNaJovemPan',
+    'AlckminELula',
+    'Vote13',
+    'RuanetNÃO',
+    'DebateSBT',
+    'bolsonaroladrão',
+    'bolsonaronacadeia',
+    'veja600milhoes',
+    'elesimeno1turno',
+    'ÉPelaVidadasMulheres',
+    'mudabrasilcombolsonaro',
 ]
