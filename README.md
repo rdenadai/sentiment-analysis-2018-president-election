@@ -110,6 +110,9 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [elesimeno1turno](https://twitter.com/hashtag/elesimeno1turno)
     - [ÉPelaVidadasMulheres](https://twitter.com/hashtag/ÉPelaVidadasMulheres)
     - [mudabrasilcombolsonaro](https://twitter.com/hashtag/mudabrasilcombolsonaro)
+    - [OVotoNaRecord](https://twitter.com/hashtag/OVotoNaRecord)
+    - [OVotoNaRecordNews](https://twitter.com/hashtag/OVotoNaRecordNews)
+    - [DebateNaRecord](https://twitter.com/hashtag/DebateNaRecord)
 
  #### Datasets
  

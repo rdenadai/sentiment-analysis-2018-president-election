@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="06c932da-3eab-4694-8abb-27245ad823f1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scraping/datatype_c.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/scraping/datatype_c.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scraping/extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/scraping/extractor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sentiment_analysis.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/sentiment_analysis.db" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-844100323">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="12" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.21" value="1" />
+          <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.26" value="1" />
+          <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.32" value="1" />
+          <entry key="project.open.time.46" value="1" />
+          <entry key="project.open.time.60" value="1" />
+          <entry key="project.open.time.71" value="1" />
+          <entry key="project.open.time.79" value="1" />
+          <entry key="project.open.time.80" value="1" />
+          <entry key="project.opened" value="12" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="env" value="3" />
+          <entry key="md" value="9" />
+          <entry key="py" value="66" />
+          <entry key="txt" value="7" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Markdown" value="9" />
+          <entry key="PLAIN_TEXT" value="10" />
+          <entry key="Python" value="66" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="7" />
+          <entry key="env" value="59" />
+          <entry key="md" value="1796" />
+          <entry key="py" value="5794" />
+          <entry key="txt" value="3242" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Bash" value="3" />
+          <entry key="Markdown" value="1793" />
+          <entry key="PLAIN_TEXT" value="3308" />
+          <entry key="Python" value="5794" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/scraping/extractor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#16#0" expanded="true" />
+                <marker date="1538357975232" expanded="true" signature="384:387" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scraping/datatype_c.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="72" column="23" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="164">
+                <caret line="114" column="66" selection-start-line="114" selection-start-column="66" selection-end-line="114" selection-end-column="66" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>name</find>
+      <find>uuid</find>
+      <find>view cou</find>
+      <find>](</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>',</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/clients/twitter_client.py" />
+        <option value="$PROJECT_DIR$/clients/facebook_client.py" />
+        <option value="$PROJECT_DIR$/collector.py" />
+        <option value="$PROJECT_DIR$/venv/lib/python3.5/site-packages/tapioca/adapters.py" />
+        <option value="$PROJECT_DIR$/venv/lib/python3.5/site-packages/tapioca/tapioca.py" />
+        <option value="$PROJECT_DIR$/clients/cinstagram.py" />
+        <option value="$PROJECT_DIR$/clients/ctwitter.py" />
+        <option value="$PROJECT_DIR$/clients/cyoutube.py" />
+        <option value="$PROJECT_DIR$/extractor.py" />
+        <option value="$PROJECT_DIR$/clients/cfacebook.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/src/database/conn.py" />
+        <option value="$PROJECT_DIR$/src/start_db.py" />
+        <option value="$PROJECT_DIR$/src/database/models.py" />
+        <option value="$PROJECT_DIR$/src/scraping/clients/default.py" />
+        <option value="$PROJECT_DIR$/src/scraping/clients/utils.py" />
+        <option value="$PROJECT_DIR$/src/scraping/utils.py" />
+        <option value="$PROJECT_DIR$/src/scraping/clients/cfacebook.py" />
+        <option value="$PROJECT_DIR$/src/scraping/clients/cyoutube.py" />
+        <option value="$PROJECT_DIR$/src/scraping/tags/twitter_tags.py" />
+        <option value="$PROJECT_DIR$/src/scraping/clients/cinstagram.py" />
+        <option value="$PROJECT_DIR$/src/scraping/clients/ctwitter.py" />
+        <option value="$PROJECT_DIR$/src/scraping/datatype_c.py" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/scraping/extractor.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="27" />
+    <option name="width" value="1366" />
+    <option name="height" value="741" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="sentiment-analysis-2018-president-election" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sentiment-analysis-2018-president-election" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sentiment-analysis-2018-president-election" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sentiment-analysis-2018-president-election" type="462c0819:PsiDirectoryNode" />
+              <item name="selenium_driver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sentiment-analysis-2018-president-election" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sentiment-analysis-2018-president-election" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sentiment-analysis-2018-president-election" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sentiment-analysis-2018-president-election" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sentiment-analysis-2018-president-election" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sentiment-analysis-2018-president-election" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="scraping" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sentiment-analysis-2018-president-election" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sentiment-analysis-2018-president-election" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="scraping" type="462c0819:PsiDirectoryNode" />
+              <item name="clients" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sentiment-analysis-2018-president-election" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sentiment-analysis-2018-president-election" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="scraping" type="462c0819:PsiDirectoryNode" />
+              <item name="tags" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$USER_HOME$/.pyenv/versions/3.6.1/bin" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings is-module-sdk="true" working-directory="$USER_HOME$/.pyenv/versions/3.6.1/bin">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myWorkingDirectory" value="$USER_HOME$/.pyenv/versions/3.6.1/bin" />
+      </console-settings>
+    </option>
+    <option name="myShowDebugConsoleByDefault" value="true" />
+  </component>
+  <component name="PyDebuggerOptionsProvider">
+    <option name="mySupportGeventDebugging" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/scraping" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="extractor" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="sentiment-analysis-2018-president-election" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extractor.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.extractor" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="06c932da-3eab-4694-8abb-27245ad823f1" name="Default Changelist" comment="" />
+      <created>1534545619567</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1534545619567</updated>
+    </task>
+    <task id="LOCAL-00001" summary=" - Alterado README.md com a referência das páginas dos candidatos;&#10; - Criado webDriver de exemplo (usando o Instagram) para navegar na página dos candidatos e extrair features (view/likes e comments);&#10; - Criada todas as classes clientes... ainda necessário implementar extrator do twitter, facebook e youtube;&#10; - Necessário criar extrator para as tredding topics do Twitter;&#10; - Necessário escolher páginas de onde extrair mais conteúdo, portais de notícias? (uol, terra, g1, r7);&#10; - Adicionado arquivo contendo o selenium webdriver do Firefox.">
+      <created>1534702247292</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1534702247293</updated>
+    </task>
+    <task id="LOCAL-00002" summary=" - Descomentado uso do InstagramClient.">
+      <created>1534702382401</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1534702382401</updated>
+    </task>
+    <task id="LOCAL-00003" summary="  - Criado módulo cliente do Youtube para coletar dados da plataforma;&#10;  - Ainda necessário criar o coletor do facebook, entretanto os comentários só são carregados quando se esta logado em uma conta, portanto será necessário criar uma conta no facebook;&#10;  - Pequenos ajustes na estrutura dos dados a serem posteriormente gravados, coletados em cada cliente;&#10;  - Adicionado como dependência a lib NLTK e Textblob para uso nas análises textuais;&#10;  - Adicionado no README.md dois datasets para uso, o SentiLex que parece conter definições iniciais de sentimentos de palavras, e o Floresta, com lista de centenas de palavras.">
+      <created>1534900195468</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1534900195468</updated>
+    </task>
+    <task id="LOCAL-00004" summary="  - Adicionados +2 arquivos de datasets que parecem ser interessantes;&#10;  - Adicionadas mais informações no README.md.">
+      <created>1534901197959</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1534901197959</updated>
+    </task>
+    <task id="LOCAL-00005" summary="  - Pequenas correções gerais;&#10;  - Removido arquivo client.py do pacote de database, desnecessário;&#10;  - Alterado o nome dos modelos, para representar que eles contém os comentários sem nenhum tratamento;&#10;  - Adicionado novo datatype no scraping: hashtags;&#10;  - Alterado o modo de salvamento dos comentários;&#10;  - Dividido a carga na hora de salvar os comentários, usando multiprocess com chunksize=20;&#10;  - Adicionado no README.md explicação das bibliotecas utilizadas até o momento.&#10;  - Adicionado o driver do Chrome para uso no selenium, como uma segunda opção... ainda não tem código para selecionar o driver a usar.">
+      <created>1535198944564</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1535198944564</updated>
+    </task>
+    <task id="LOCAL-00006" summary="  - Removido comentário não usado.">
+      <created>1535206274556</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1535206274556</updated>
+    </task>
+    <task id="LOCAL-00007" summary=" - Alterado o tipo do campo no modelo de UUID para Char... estava gravando um hash e não uuid;&#10; - Alterado o modo como roda cada extrator de cliente, ao invés de abrir uma janela para cada tipo de rede, abre uma para cada candidato;&#10; - Ajustes na hora de salvar os comentários no banco.">
+      <created>1535219780104</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1535219780104</updated>
+    </task>
+    <task id="LOCAL-00008" summary=" - Criado modelo que irá armazenar os tweets relacionados as hashtags;&#10; - Adicionado ao extrator operação para carregar os tweets das hashtags.">
+      <created>1535251523021</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1535251523021</updated>
+    </task>
+    <task id="LOCAL-00009" summary=" - Extrator concluído... talvez seja necessário executar algumas vezes, devido a lentidões na internet;&#10; - Banco de dados com 12Mb... +20k comentários não tratados.">
+      <created>1535297645536</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1535297645552</updated>
+    </task>
+    <task id="LOCAL-00010" summary=" - Coletadas mais comentários relacionados as hashtags.">
+      <created>1535300601956</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1535300601956</updated>
+    </task>
+    <task id="LOCAL-00011" summary=" - Colocado o profile para fora da classe do facebook e disponível para todos os outros extratores;&#10; - Ajuste no extrator do youtube, apesar de o valor coletado não estar sendo usado;&#10; - Twitter Tags, eventos de cliques para pegar os últimos tweets;&#10; - Duas novas tags adicionadas, relacionadas ao evento do Ciro Gomes ter aparecido na globo;&#10; - Criado o profile do webdriver em separado, passado o parâmetro de lingua (pt-br) para o twitter importa;&#10; - Adições ao readme.md.">
+      <created>1535425566230</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1535425566231</updated>
+    </task>
+    <task id="LOCAL-00012" summary=" - Pequeno ajuste na ordem de execução do extrator;&#10; - Novos dados adicionados ao database.">
+      <created>1535448514822</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1535448514822</updated>
+    </task>
+    <task id="LOCAL-00013" summary=" - Novas hashtags.">
+      <created>1535508522857</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1535508522857</updated>
+    </task>
+    <task id="LOCAL-00014" summary=" - Novas hashtags.">
+      <created>1535534338399</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1535534338399</updated>
+    </task>
+    <task id="LOCAL-00015" summary=" - Novas hashtags.">
+      <created>1535837746671</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1535837746671</updated>
+    </task>
+    <task id="LOCAL-00016" summary=" - Pequenos ajustes e melhorias;&#10; - Mais comentários coletados.">
+      <created>1535857491884</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1535857491884</updated>
+    </task>
+    <task id="LOCAL-00017" summary=" - Mais hashtags e comentários coletados.">
+      <created>1537354701672</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1537354701672</updated>
+    </task>
+    <task id="LOCAL-00018" summary=" - Mais hashtags.">
+      <created>1538264161819</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1538264161820</updated>
+    </task>
+    <task id="LOCAL-00019" summary=" - Mais hashtags e comentários coletados.">
+      <created>1538304740553</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1538304740553</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="27" width="1368" height="742" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2300819" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32901135" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32901135" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32901135" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.40842786" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=" - Alterado README.md com a referência das páginas dos candidatos;&#10; - Criado webDriver de exemplo (usando o Instagram) para navegar na página dos candidatos e extrair features (view/likes e comments);&#10; - Criada todas as classes clientes... ainda necessário implementar extrator do twitter, facebook e youtube;&#10; - Necessário criar extrator para as tredding topics do Twitter;&#10; - Necessário escolher páginas de onde extrair mais conteúdo, portais de notícias? (uol, terra, g1, r7);&#10; - Adicionado arquivo contendo o selenium webdriver do Firefox." />
+    <MESSAGE value=" - Descomentado uso do InstagramClient." />
+    <MESSAGE value="  - Criado módulo cliente do Youtube para coletar dados da plataforma;&#10;  - Ainda necessário criar o coletor do facebook, entretanto os comentários só são carregados quando se esta logado em uma conta, portanto será necessário criar uma conta no facebook;&#10;  - Pequenos ajustes na estrutura dos dados a serem posteriormente gravados, coletados em cada cliente;&#10;  - Adicionado como dependência a lib NLTK e Textblob para uso nas análises textuais;&#10;  - Adicionado no README.md dois datasets para uso, o SentiLex que parece conter definições iniciais de sentimentos de palavras, e o Floresta, com lista de centenas de palavras." />
+    <MESSAGE value="  - Adicionados +2 arquivos de datasets que parecem ser interessantes;&#10;  - Adicionadas mais informações no README.md." />
+    <MESSAGE value="  - Pequenas correções gerais;&#10;  - Removido arquivo client.py do pacote de database, desnecessário;&#10;  - Alterado o nome dos modelos, para representar que eles contém os comentários sem nenhum tratamento;&#10;  - Adicionado novo datatype no scraping: hashtags;&#10;  - Alterado o modo de salvamento dos comentários;&#10;  - Dividido a carga na hora de salvar os comentários, usando multiprocess com chunksize=20;&#10;  - Adicionado no README.md explicação das bibliotecas utilizadas até o momento.&#10;  - Adicionado o driver do Chrome para uso no selenium, como uma segunda opção... ainda não tem código para selecionar o driver a usar." />
+    <MESSAGE value="  - Removido comentário não usado." />
+    <MESSAGE value=" - Alterado o tipo do campo no modelo de UUID para Char... estava gravando um hash e não uuid;&#10; - Alterado o modo como roda cada extrator de cliente, ao invés de abrir uma janela para cada tipo de rede, abre uma para cada candidato;&#10; - Ajustes na hora de salvar os comentários no banco." />
+    <MESSAGE value=" - Criado modelo que irá armazenar os tweets relacionados as hashtags;&#10; - Adicionado ao extrator operação para carregar os tweets das hashtags." />
+    <MESSAGE value=" - Extrator concluído... talvez seja necessário executar algumas vezes, devido a lentidões na internet;&#10; - Banco de dados com 12Mb... +20k comentários não tratados." />
+    <MESSAGE value=" - Coletadas mais comentários relacionados as hashtags." />
+    <MESSAGE value=" - Colocado o profile para fora da classe do facebook e disponível para todos os outros extratores;&#10; - Ajuste no extrator do youtube, apesar de o valor coletado não estar sendo usado;&#10; - Twitter Tags, eventos de cliques para pegar os últimos tweets;&#10; - Duas novas tags adicionadas, relacionadas ao evento do Ciro Gomes ter aparecido na globo;&#10; - Criado o profile do webdriver em separado, passado o parâmetro de lingua (pt-br) para o twitter importa;&#10; - Adições ao readme.md." />
+    <MESSAGE value=" - Pequeno ajuste na ordem de execução do extrator;&#10; - Novos dados adicionados ao database." />
+    <MESSAGE value=" - Novas hashtags." />
+    <MESSAGE value=" - Pequenos ajustes e melhorias;&#10; - Mais comentários coletados." />
+    <MESSAGE value=" - Mais hashtags." />
+    <MESSAGE value=" - Mais hashtags e comentários coletados." />
+    <option name="LAST_COMMIT_MESSAGE" value=" - Mais hashtags e comentários coletados." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/scraping/clients/cinstagram.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/runtime.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/3.6.5/lib/python3.6/json/decoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="356" selection-start-line="356" selection-end-line="356" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/3.6.5/lib/python3.6/json/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="353" selection-start-line="353" selection-end-line="353" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/requests/models.py" />
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/tapioca/adapters.py" />
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.5/site-packages/requests/models.py" />
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.5/site-packages/tapioca/adapters.py" />
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.5/site-packages/tapioca/tapioca.py" />
+    <entry file="file://$PROJECT_DIR$/collector.py" />
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/selenium/webdriver/remote/errorhandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="241" selection-start-line="241" selection-end-line="241" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clients/cyoutube.py" />
+    <entry file="file://$PROJECT_DIR$/clients/ctwitter.py" />
+    <entry file="file://$PROJECT_DIR$/clients/cfacebook.py" />
+    <entry file="file://$PROJECT_DIR$/clients/cinstagram.py" />
+    <entry file="file://$PROJECT_DIR$/extractor.py" />
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="9" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/database/client.py" />
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="34" lean-forward="true" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/database/conn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/start_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/database/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="51" column="35" lean-forward="true" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scraping/clients/utils.py" />
+    <entry file="file://$PROJECT_DIR$/src/scraping/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scraping/clients/cfacebook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scraping/clients/cyoutube.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="52" column="48" selection-start-line="52" selection-start-column="48" selection-end-line="52" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scraping/clients/cinstagram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="49" column="62" selection-start-line="49" selection-start-column="62" selection-end-line="49" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scraping/clients/ctwitter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="47" column="115" selection-start-line="47" selection-start-column="115" selection-end-line="47" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scraping/tags/twitter_tags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="164">
+            <caret line="114" column="66" selection-start-line="114" selection-start-column="66" selection-end-line="114" selection-end-column="66" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scraping/datatype_c.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="72" column="23" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scraping/extractor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+            <marker date="1538357975232" expanded="true" signature="384:387" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
