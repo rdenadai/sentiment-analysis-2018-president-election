@@ -74,4 +74,7 @@ hashtags = [
     'elesimeno1turno',
     'ÉPelaVidadasMulheres',
     'mudabrasilcombolsonaro',
+    'OVotoNaRecord',
+    'OVotoNaRecordNews',
+    'DebateNaRecord',
 ]
