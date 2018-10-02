@@ -12,11 +12,11 @@ from utils import *
 
 if __name__ == '__main__':
     with concurrent.futures.ProcessPoolExecutor(max_workers=2) as executorProcess:
-        tw = TwitterTagsClient(np_posts=25)
+        tw = TwitterTagsClient(np_posts=30)
         hashtags = [hashtags[i:i+5] for i in range(0, len(hashtags), 5)]
         for hashtag in hashtags:
             contents = list(executorProcess.map(functools.partial(run_hashtag, client=tw), hashtag, chunksize=5))
-            list(executorProcess.map(run_save_hashtag, contents, chunksize=5))
+            list(executorProcess.map(run_save_hashtag, contents, chunksize=25))
 
     np_posts = 4
     np_comments = 4
@@ -25,7 +25,7 @@ if __name__ == '__main__':
         (facebook_names, FacebookClient(np_posts=np_posts, np_comments=np_comments)),
         (twitter_names, TwitterClient(np_posts=np_posts, np_comments=np_comments)),
         (instagram_names, InstagramClient(np_posts=np_posts, np_comments=np_comments)),
-        (youtube_names, YouTubeClient(np_posts=2, np_comments=2)),
+        (youtube_names, YouTubeClient(np_posts=1, np_comments=1)),
     ]
 
     with concurrent.futures.ProcessPoolExecutor(max_workers=4) as executorProcess:
