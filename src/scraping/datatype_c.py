@@ -77,4 +77,13 @@ hashtags = [
     'OVotoNaRecord',
     'OVotoNaRecordNews',
     'DebateNaRecord',
+    'DebateNaGlobo',
+    'ViraViraCiro',
+    'BolsonaroNaRecord',
+    'Dia7é17',
+    'EuVotoBolsonaro',
+    'ManuNoJaburu',
+    'haddadé13',
+    'geraldopresidente',
+    'FicaTemer'
 ]

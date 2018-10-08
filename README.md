@@ -113,6 +113,16 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [OVotoNaRecord](https://twitter.com/hashtag/OVotoNaRecord)
     - [OVotoNaRecordNews](https://twitter.com/hashtag/OVotoNaRecordNews)
     - [DebateNaRecord](https://twitter.com/hashtag/DebateNaRecord)
+    - [DebateNaGlobo](https://twitter.com/hashtag/DebateNaGlobo)
+    - [ViraViraCiro](https://twitter.com/hashtag/ViraViraCiro)
+    - [BolsonaroNaRecord](https://twitter.com/hashtag/BolsonaroNaRecord)
+    - [Dia7é17](https://twitter.com/hashtag/Dia7é17)
+    - [EuVotoBolsonaro](https://twitter.com/hashtag/EuVotoBolsonaro)
+    - [ManuNoJaburu](https://twitter.com/hashtag/ManuNoJaburu)
+    - [Haddadé13](https://twitter.com/hashtag/haddadé13)
+    - [GeraldoPresidente](https://twitter.com/hashtag/geraldopresidente)
+    - [17Neles](https://twitter.com/hashtag/17Neles)
+    - [FraudeNasUrnasEletronicas](https://twitter.com/hashtag/FraudeNasUrnasEletronicas)
 
  #### Datasets
  
