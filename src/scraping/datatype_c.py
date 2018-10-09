@@ -85,5 +85,9 @@ hashtags = [
     'ManuNoJaburu',
     'haddadé13',
     'geraldopresidente',
-    'FicaTemer'
+    '17Neles',
+    'FraudeNasUrnasEletronicas',
+    'FicaTemer',
+    'AgoraÉHaddad',
+    'Nordeste17'
 ]

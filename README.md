@@ -123,6 +123,9 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [GeraldoPresidente](https://twitter.com/hashtag/geraldopresidente)
     - [17Neles](https://twitter.com/hashtag/17Neles)
     - [FraudeNasUrnasEletronicas](https://twitter.com/hashtag/FraudeNasUrnasEletronicas)
+    - [FicaTemer](https://twitter.com/hashtag/FicaTemer)
+    - [AgoraÉHaddad](https://twitter.com/hashtag/AgoraÉHaddad)
+    - [Nordeste17](https://twitter.com/hashtag/Nordeste17)
 
  #### Datasets
  
