@@ -37,7 +37,7 @@ if __name__ == '__main__':
         '/home/rdenadai/programas/vagrant_img/vagrant.machine.puphpet/projetos/github/sentiment-analysis-2018-president-election/dataset/emocoes/SentiLex-PT02/SentiLex-flex-PT02.txt')
 
     print('Starting EmotionalLSA model...')
-    model = EmotionalLSA(debug=True)
+    model = EmotionalLSA(use_tfidf=True, debug=True)
     print('fit and transform...')
     predicted = model.fit_transform(phrases, emotion_words)
 

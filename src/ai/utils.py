@@ -15,21 +15,22 @@ def remover_acentos(txt):
     return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
 
 
-def load_emotion_file_content(emotion, path='dataset/emocoes'):
+def _load_emotion_file_content(emotion, path='dataset/emocoes'):
     with open(f'{path}/{emotion}', 'r') as h:
         words = h.readlines()
     return words
 
 
+@lru_cache(maxsize=256)
 def load_six_emotions(filepath):
     """Ekman, Friesen, and Ellsworth 	Anger, disgust, fear, joy, sadness, surprise"""
     emotion_words = {
-        'ALEGRIA': load_emotion_file_content('alegria', filepath),
-        'DESGOSTO': load_emotion_file_content('desgosto', filepath),
-        'MEDO': load_emotion_file_content('medo', filepath),
-        'RAIVA': load_emotion_file_content('raiva', filepath),
-        'SURPRESA': load_emotion_file_content('surpresa', filepath),
-        'TRISTEZA': load_emotion_file_content('tristeza', filepath),
+        'ALEGRIA': _load_emotion_file_content('alegria', filepath),
+        'DESGOSTO': _load_emotion_file_content('desgosto', filepath),
+        'MEDO': _load_emotion_file_content('medo', filepath),
+        'RAIVA': _load_emotion_file_content('raiva', filepath),
+        'SURPRESA': _load_emotion_file_content('surpresa', filepath),
+        'TRISTEZA': _load_emotion_file_content('tristeza', filepath),
     }
     for key, values in emotion_words.items():
         for i, word in enumerate(values):
@@ -38,6 +39,7 @@ def load_six_emotions(filepath):
     return emotion_words
 
 
+@lru_cache(maxsize=256)
 def load_valence_emotions_from_oplexicon(filename):
     """NEUTRAL | POSITIVE | NEGATIVE."""
     spacy_conv = {
@@ -77,6 +79,7 @@ def load_valence_emotions_from_oplexicon(filename):
     return data
 
 
+@lru_cache(maxsize=256)
 def load_valence_emotions_from_sentilex(filename):
     """NEUTRAL | POSITIVE | NEGATIVE."""
     data = {
@@ -109,9 +112,8 @@ def load_valence_emotions_from_sentilex(filename):
     return data
 
 
-
 @lru_cache(maxsize=256)
-def get_stopwords():
+def _get_stopwords():
     stpwords = stopwords.words('portuguese') + list(punctuation)
     rms = ['um', 'não', 'mais', 'muito']
     for rm in rms:
@@ -151,4 +153,4 @@ def rm_stop_words_tokenized(phrase):
 
 # GLOBALS
 NLP = spacy.load('pt')
-STOPWORDS = get_stopwords()
+STOPWORDS = _get_stopwords()

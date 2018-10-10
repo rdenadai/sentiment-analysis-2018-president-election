@@ -1,10 +1,49 @@
 import numpy as np
-from scipy.linalg import svd
 import pandas as pd
 import spacy
+from numba import jit
 
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
+
+@jit(parallel=True)
+def _normalization(x, a, b):
+    return (2 * b) * (x - np.min(x)) / np.ptp(x) + a
+
+
+@jit(parallel=True)
+def _transform(wv, V, emotion_words, _ldocs):
+    dtframe = np.zeros((_ldocs, len(emotion_words.keys())))
+    for i in range(0, _ldocs):
+        for k, it in enumerate(emotion_words.items()):
+            a = [wv[:, k]]
+            b = [V.T[i]]
+            dtframe[i][k] = cosine_similarity(a, b)
+    return np.round(_normalization(dtframe, -100, 100), 2)
+
+
+def _calculate_emotional_state(U, emotion_words, idx, weights, _ldocs, _SIMPLE):
+    wv = np.zeros((_ldocs, len(emotion_words.keys())))
+    for i in range(0, _ldocs):
+        for k, item in enumerate(emotion_words.items()):
+            key, values = item
+            for value in values:
+                try:
+                    if _SIMPLE:
+                        index = weights.index.get_loc(value)
+                        idx_val = U[index]
+                        wv[i][k] += idx_val[i] * weights.iloc[index].values[i]
+                    else:
+                        weight_sum = []
+                        indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
+                        for index in indexes:
+                            idx_val = U[index]
+                            weight_sum.append(idx_val[i] * weights.iloc[index].values[i])
+                        wv[i][k] += np.sum(weight_sum)
+                except:
+                    pass
+    return wv / _ldocs
 
 
 class EmotionalLSA:
@@ -36,43 +75,13 @@ class EmotionalLSA:
     def transform(self, emotion_words):
         U, S, V = np.linalg.svd(self.X.toarray().T, full_matrices=False)
         wv = self._emotional_state(U, emotion_words)
-
-        dtframe = np.zeros((self._ldocs, len(emotion_words.keys())))
-        for i in range(0, self._ldocs):
-            for k, it in enumerate(emotion_words.items()):
-                a = [wv[:, k]]
-                b = [V.T[i]]
-                dtframe[i][k] = cosine_similarity(a, b)
-        return np.round(self._normalization(dtframe, -100, 100), 2)
+        return _transform(wv, V, emotion_words, self._ldocs)
 
     def fit_transform(self, documents, emotion_words, ngrams=(1, 2)):
         self.fit(documents, ngrams)
         return self.transform(emotion_words)
 
-    def _normalization(self, x, a, b):
-        return (2 * b) * (x - np.min(x)) / np.ptp(x) + a
-
     def _emotional_state(self, U, emotion_words):
         print('Processing emotional state... this may take a while...')
-        wv = np.zeros((self._ldocs, len(emotion_words.keys())))
         idx = {w: i for i, w in enumerate(self.weights.index.get_values())}
-
-        for i in range(0, self._ldocs):
-            for k, item in enumerate(emotion_words.items()):
-                key, values = item
-                for value in values:
-                    try:
-                        if self._SIMPLE:
-                            index = self.weights.index.get_loc(value)
-                            idx_val = U[index]
-                            wv[i][k] += idx_val[i] * self.weights.iloc[index].values[i]
-                        else:
-                            weight_sum = []
-                            indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
-                            for index in indexes:
-                                idx_val = U[index]
-                                weight_sum.append(idx_val[i] * self.weights.iloc[index].values[i])
-                            wv[i][k] += np.sum(weight_sum)
-                    except:
-                        pass
-        return wv / self._ldocs
+        return _calculate_emotional_state(U, emotion_words, idx, self.weights, self._ldocs, self._SIMPLE)
