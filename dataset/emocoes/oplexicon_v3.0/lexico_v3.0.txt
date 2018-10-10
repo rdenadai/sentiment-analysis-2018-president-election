@@ -31026,6 +31026,7 @@ tripudiar,vb,0,A
 triscar,vb,0,A
 triste,adj,-1,M
 tristes,adj,-1,M
+tristeza,adj,-1,M
 tristonha,adj,-1,M
 tristonhas,adj,-1,M
 tristonho,adj,-1,M

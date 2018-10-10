@@ -18,6 +18,14 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     $> virtualenv venv
     $> pip install -r requirements.txt
     $> source venv/bin/activate
+    $> python -m nltk.downloader floresta
+    $> python -m nltk.downloader mac_morpho
+    $> python -m nltk.downloader machado
+    $> python -m nltk.downloader stopwords
+    $> python -m nltk.downloader rslp
+    $> python -m spacy download en
+    $> python -m spacy download pt
+
     ```
  3.
     ```bash
@@ -74,6 +82,7 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [Eleição2018](https://twitter.com/hashtag/Eleição2018)
     - [DebateNaBand](https://twitter.com/hashtag/DebateNaBand)
     - [DebateRedeTv](https://twitter.com/hashtag/debateRedetv)
+    - [GNEleicoes2018](https://twitter.com/hashtag/GNEleicoes2018)
     - [CiroNoJornalNacional](https://twitter.com/hashtag/CiroNoJornalNacional)
     - [CiroNaGloboNews](https://twitter.com/hashtag/CiroNaGloboNews)
     - [gneleicoes2018](https://twitter.com/hashtag/gneleicoes2018)
