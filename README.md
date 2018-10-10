@@ -127,6 +127,7 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [FicaTemer](https://twitter.com/hashtag/FicaTemer)
     - [AgoraÉHaddad](https://twitter.com/hashtag/AgoraÉHaddad)
     - [Nordeste17](https://twitter.com/hashtag/Nordeste17)
+    - [HaddadSim](https://twitter.com/hashtag/HaddadSim)
 
  #### Datasets
  
