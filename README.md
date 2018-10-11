@@ -12,3 +12,5 @@ Análise de sentimentos relacionados aos candidatos a Eleição para a presidên
 #eleicoes2018
 
 - Inclusão do dataset de Tweets em Português "tweets_mg.csv" coletado em https://www.kaggle.com/leandrodoze/sentiment-analysis-in-portuguese
+- Inclusão de artigo da IEEE sobre método de criação de nova dimensão na análise de texto com LSA + Word2Vec.
+- Criação do diretório src para inclusão de scripts usados no projeto final.
