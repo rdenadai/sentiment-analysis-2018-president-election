@@ -1,7 +1,18 @@
 # Sentiment Analysis for 2018 Presidential Election
 
-Análise de sentimentos relacionados aos candidatos a Eleição para a presidência de 2018
+Análise de sentimentos relacionados aos candidatos a Eleição para a presidência de 2018.
 
+### Descrição
+
+Este é o projeto realizado para a conclusão da disciplina [IA369-Y Computação Afetiva](http://www.dca.fee.unicamp.br/~paula/teaching.html) realizada na Unicamp durante o 
+2°Semestre 2018, oferecidade pela Prof. Paula Dornhofer Paro Costa ([mais informações](http://www.dca.fee.unicamp.br/~paula/)).
+
+O principal objetivo principal do projeto é coletar, analisar e detectar as emoções das pessoas com relação aos candidatos das eleições
+a presidenciáveis no Brasil para o ano de 2018.
+
+Os integrantes do projeto são:
+ - Edgar Lopes Banhesse
+ - [Rodolfo De Nadai](http://www.rdenadai.com.br)
 
 ### Instalação
 
@@ -25,6 +36,7 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     $> python -m nltk.downloader rslp
     $> python -m spacy download en
     $> python -m spacy download pt
+    $> cythonize -i src/ai/unsupervised/emotional_lsa_utils.pyx
 
     ```
  3.
@@ -166,6 +178,35 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
 
  #### Referências
  
- 1. [TweetSentBR](https://bitbucket.org/HBrum/tweetsentbr/overview)
+ 1 . [TweetSentBR](https://bitbucket.org/HBrum/tweetsentbr/overview)
  
  > TweetSentBR is a corpus of Tweets in Brazilian Portuguese. It was labeled by several annotators following steps stablished on the literature for improving reliability on the task of Sentiment Analysis. Each Tweet was annotated in one of the three following classes: Positive - tweets where a user meant a positive reaction or evaluation about the main topic on the post; Negative - tweets where a user meant a negative reaction or evaluation about the main topic on the post; * Neutral - tweets not belonging to any of the last classes, usually not making a point, out of topic, irrelevant, confusing or containing only objective data.
+
+ 2 . Bibliotecas:
+  - [NLTK](http://www.nltk.org/howto/portuguese_en.html)
+  - [spaCy](https://spacy.io/usage/spacy-101)
+ 
+ 3 . Dados:
+  - [Frases para Face](https://www.frasesparaface.com.br/outras-frases/)
+ 
+ 4 . Tutoriais
+  - [Utilizando processamento de linguagem natural para criar uma sumarização automática de textos](https://medium.com/@viniljf/utilizando-processamento-de-linguagem-natural-para-criar-um-sumariza%C3%A7%C3%A3o-autom%C3%A1tica-de-textos-775cb428c84e)
+  - [Latent Semantic Analysis (LSA) for Text Classification Tutorial](http://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/)
+  - [Machine Learning :: Cosine Similarity for Vector Space Models (Part III)](http://blog.christianperone.com/2013/09/machine-learning-cosine-similarity-for-vector-space-models-part-iii/)
+  - [My Notes for Singular Value Decomposition with Interactive Code ](https://towardsdatascience.com/my-notes-for-singular-value-decomposition-with-interactive-code-feat-peter-mills-7584f4f2930a)
+  - [https://plot.ly/ipython-notebooks/principal-component-analysis/](https://plot.ly/ipython-notebooks/principal-component-analysis/)
+ 
+ 5 . Topic Modelling
+  - [Topic Modeling with LSA, PLSA, LDA & lda2Vec](https://medium.com/nanonets/topic-modeling-with-lsa-psla-lda-and-lda2vec-555ff65b0b05)
+  - [Integrating Topics and Syntax (HHM-LDA)](http://psiexp.ss.uci.edu/research/papers/composite.pdf)
+ 
+ 6 . Others
+  - [PANAS-t: A Pychometric Scale for Measuring Sentiments on Twitter](https://arxiv.org/abs/1308.1857)
+  - [Um Método de Identificação de Emoções em Textos Curtos para o Português do Brasil](http://www.ppgia.pucpr.br/~paraiso/Projects/Emocoes/Emocoes.html)
+  - [An Introduction to Latent Semantic Analysis](http://lsa.colorado.edu/papers/dp1.LSAintro.pdf)
+  - [Unsupervised Emotion Detection from Text using Semantic and Syntactic Relations](http://www.cse.yorku.ca/~aan/research/paper/Emo_WI10.pdf)
+  - [An Efficient Method for Document Categorization Based on Word2vec and Latent Semantic Analysis](https://ieeexplore.ieee.org/document/7363382)
+  - [Sentiment Classification of Documents Based on Latent Semantic Analysis](https://link.springer.com/chapter/10.1007/978-3-642-21802-6_57)
+  - [Applying latent semantic analysis to classify emotions in Thai text](https://ieeexplore.ieee.org/document/5486137)
+  - [Text Emotion Classification Research Based on Improved Latent Semantic Analysis Algorithm](https://www.researchgate.net/publication/266651993_Text_Emotion_Classification_Research_Based_on_Improved_Latent_Semantic_Analysis_Algorithm)
+

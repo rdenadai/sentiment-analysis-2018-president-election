@@ -33,8 +33,11 @@ if __name__ == '__main__':
     # emotion_words = load_six_emotions('/home/rdenadai/programas/vagrant_img/vagrant.machine.puphpet/projetos/github/sentiment-analysis-2018-president-election/dataset/emocoes')
     # emotion_words = load_valence_emotions_from_oplexicon(
     #     '/home/rdenadai/programas/vagrant_img/vagrant.machine.puphpet/projetos/github/sentiment-analysis-2018-president-election/dataset/emocoes/oplexicon_v3.0/lexico_v3.0.txt')
-    emotion_words = load_valence_emotions_from_sentilex(
+    emotion_words = load_six_emotions(
+        '/home/rdenadai/programas/vagrant_img/vagrant.machine.puphpet/projetos/github/sentiment-analysis-2018-president-election/dataset/emocoes')
+    emotion_words_n = load_valence_emotions_from_sentilex(
         '/home/rdenadai/programas/vagrant_img/vagrant.machine.puphpet/projetos/github/sentiment-analysis-2018-president-election/dataset/emocoes/SentiLex-PT02/SentiLex-flex-PT02.txt')
+    emotion_words['NEUTRO'] = emotion_words_n['NEUTRO']
 
     print('Starting EmotionalLSA model...')
     model = EmotionalLSA(use_tfidf=True, debug=True)

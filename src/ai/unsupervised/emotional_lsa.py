@@ -1,49 +1,8 @@
 import numpy as np
 import pandas as pd
 import spacy
-from numba import jit
-
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-
-
-@jit(parallel=True)
-def _normalization(x, a, b):
-    return (2 * b) * (x - np.min(x)) / np.ptp(x) + a
-
-
-@jit(parallel=True)
-def _transform(wv, V, emotion_words, _ldocs):
-    dtframe = np.zeros((_ldocs, len(emotion_words.keys())))
-    for i in range(0, _ldocs):
-        for k, it in enumerate(emotion_words.items()):
-            a = [wv[:, k]]
-            b = [V.T[i]]
-            dtframe[i][k] = cosine_similarity(a, b)
-    return np.round(_normalization(dtframe, -100, 100), 2)
-
-
-def _calculate_emotional_state(U, emotion_words, idx, weights, _ldocs, _SIMPLE):
-    wv = np.zeros((_ldocs, len(emotion_words.keys())))
-    for i in range(0, _ldocs):
-        for k, item in enumerate(emotion_words.items()):
-            key, values = item
-            for value in values:
-                try:
-                    if _SIMPLE:
-                        index = weights.index.get_loc(value)
-                        idx_val = U[index]
-                        wv[i][k] += idx_val[i] * weights.iloc[index].values[i]
-                    else:
-                        weight_sum = []
-                        indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
-                        for index in indexes:
-                            idx_val = U[index]
-                            weight_sum.append(idx_val[i] * weights.iloc[index].values[i])
-                        wv[i][k] += np.sum(weight_sum)
-                except:
-                    pass
-    return wv / _ldocs
+from .emotional_lsa_utils import _transform, _calculate_emotional_state
 
 
 class EmotionalLSA:
