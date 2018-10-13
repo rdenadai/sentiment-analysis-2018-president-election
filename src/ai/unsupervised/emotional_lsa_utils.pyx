@@ -23,18 +23,11 @@ def _transform(wv, V, dict emotion_words, int _ldocs):
 def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs, _SIMPLE):
     cdef int i
     cdef int k
-    cdef int word_e
 
     wv = np.zeros((_ldocs, len(emotion_words.keys())))
-    for k, item in enumerate(emotion_words.items()):
-        key, values = item
+    for k, values in enumerate(emotion_words.values()):
         for value in values:
-            index = idx.get(value, None)
-            if index:
-                for i in range(_ldocs):
-                    if _SIMPLE:
-                        wv[i][k] += U[index][i] * weights.iloc[index].values[i]
-                    else:
-                        indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
-                        wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes]) / 2 # ngrams
+            for i in range(_ldocs):
+                indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
+                wv[i][k] += sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
     return wv / _ldocs

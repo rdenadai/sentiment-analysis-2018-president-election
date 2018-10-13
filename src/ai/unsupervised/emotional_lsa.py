@@ -47,7 +47,6 @@ class EmotionalLSA:
         for key, values in emotion_words.items():
             words = []
             for value in values:
-                if idx.get(value, None):
-                    words += [value]
+                words += list(filter(None, [inx if value in inx else None for e, inx in enumerate(idx.keys())]))
             emotion_words[key] = words
         return _calculate_emotional_state(U, emotion_words, idx, self.weights, self._ldocs, self._SIMPLE)

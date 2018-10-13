@@ -1,4 +1,5 @@
 import codecs
+import re
 import concurrent.futures
 from unicodedata import normalize
 import concurrent.futures
@@ -164,7 +165,7 @@ def tokenize_frases(phrase):
 
 
 def rm_stop_words_tokenized(phrase):
-    phrase = NLP(remover_acentos(phrase.lower()))
+    phrase = NLP(re.sub(r'["\'@#%\(\)]', '', remover_acentos(phrase.lower())))
     clean_frase = []
     for token in phrase:
         if token.pos_ != 'PUNCT':

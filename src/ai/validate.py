@@ -24,7 +24,7 @@ if __name__ == '__main__':
     emotion_words['NEUTRO'] = emotion_words_n['NEUTRO']
 
     print('Starting EmotionalLSA model...')
-    model = EmotionalLSA(use_tfidf=True, debug=True)
+    model = EmotionalLSA(use_tfidf=False, debug=True)
     print('fit and transform...')
     predicted = model.fit_transform(phrases, emotion_words)
 
