@@ -20,7 +20,7 @@ def _transform(wv, V, dict emotion_words, int _ldocs):
     return np.round(_normalization(dtframe, -100, 100), 2)
 
 
-def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs, _SIMPLE):
+def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs):
     cdef int i
     cdef int k
 

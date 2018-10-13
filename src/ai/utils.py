@@ -25,7 +25,7 @@ def _load_emotion_file_content(emotion, path='dataset/emocoes'):
 
 @lru_cache(maxsize=256)
 def load_six_emotions(filepath):
-    """Ekman, Friesen, and Ellsworth 	Anger, disgust, fear, joy, sadness, surprise"""
+    """Ekman, Friesen, and Ellsworth : anger, disgust, fear, joy, sadness, surprise."""
     emotion_words = {
         'ALEGRIA': _load_emotion_file_content('alegria', filepath),
         'DESGOSTO': _load_emotion_file_content('desgosto', filepath),
@@ -36,14 +36,8 @@ def load_six_emotions(filepath):
     }
     for key, values in emotion_words.items():
         for i, word in enumerate(values):
-            word = word.lower()
-            lemma = LOOKUP.get(word, None)
-            if lemma:
-                word = lemma
-            else:
-                word = STEMMER.stem(word)
-            emotion_words[key][i] = ''.join(
-                [remover_acentos(p.strip()) for p in word])
+            word = remover_acentos(word.lower()).strip()
+            emotion_words[key][i] = LOOKUP.get(word, word)
     return emotion_words
 
 
@@ -72,12 +66,8 @@ def load_valence_emotions_from_oplexicon(filename):
                 info[1] = [spacy_conv.get(tag) for tag in info[1].split()]
                 word, tags, sent = info[:3]
                 if 'HTAG' not in tags and 'EMOT' not in tags:
-                    word = remover_acentos(word.replace('-se', '')).strip()
-                    lemma = LOOKUP.get(word, None)
-                    if lemma:
-                        word = lemma
-                    else:
-                        word = STEMMER.stem(word)
+                    word = remover_acentos(word.lower()).strip()
+                    word = LOOKUP.get(word, word)
                     sent = int(sent)
                     if sent == 1:
                         data['POSITIVO'] += [word]
@@ -105,11 +95,8 @@ def load_valence_emotions_from_sentilex(filename):
             info = line.lower().split('.')
             words = [remover_acentos(word.strip()) for word in info[0].split(',')]
             for word in words:
-                lemma = LOOKUP.get(word, None)
-                if lemma:
-                   word = lemma
-                else:
-                    word = STEMMER.stem(word)
+                word = remover_acentos(word.lower()).strip()
+                word = LOOKUP.get(word, word)
                 cdata = info[1].split(';')
                 if len(cdata) > 0:
                     sent = [int(k.replace('pol:n0=', '')) if 'pol:n0=' in k else None for k in cdata]
@@ -167,16 +154,11 @@ def tokenize_frases(phrase):
 def rm_stop_words_tokenized(phrase):
     phrase = NLP(re.sub(r'["\'@#%\(\)]', '', remover_acentos(phrase.lower())))
     clean_frase = []
-    for token in phrase:
-        if token.pos_ != 'PUNCT':
-            palavra = token.text
-            if not is_number(palavra):
-                if token.pos_ == 'VERB':
-                    palavra = token.lemma_
-                else:
-                    palavra = STEMMER.stem(palavra)
-                if palavra not in STOPWORDS:
-                    clean_frase.append(palavra)
+    for palavra in phrase:
+        if palavra.pos_ != 'PUNCT':
+            word = palavra.text.strip()
+            if not is_number(word) and word not in STOPWORDS:
+                clean_frase.append(palavra.lemma_)
     return ' '.join(clean_frase)
 
 

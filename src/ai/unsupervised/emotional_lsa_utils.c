@@ -1157,7 +1157,6 @@ static const char __pyx_k_range[] = "range";
 static const char __pyx_k_round[] = "round";
 static const char __pyx_k_value[] = "value";
 static const char __pyx_k_zeros[] = "zeros";
-static const char __pyx_k_SIMPLE[] = "_SIMPLE";
 static const char __pyx_k_filter[] = "filter";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_values[] = "values";
@@ -1174,7 +1173,6 @@ static const char __pyx_k_emotional_lsa_utils_pyx[] = "emotional_lsa_utils.pyx";
 static const char __pyx_k_sklearn_metrics_pairwise[] = "sklearn.metrics.pairwise";
 static const char __pyx_k_calculate_emotional_state[] = "_calculate_emotional_state";
 static const char __pyx_k_src_ai_unsupervised_emotional_ls[] = "src.ai.unsupervised.emotional_lsa_utils";
-static PyObject *__pyx_n_s_SIMPLE;
 static PyObject *__pyx_n_s_T;
 static PyObject *__pyx_n_s_U;
 static PyObject *__pyx_n_s_V;
@@ -1222,7 +1220,7 @@ static PyObject *__pyx_n_s_x;
 static PyObject *__pyx_n_s_zeros;
 static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils__normalization(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_x, int __pyx_v_a, int __pyx_v_b); /* proto */
 static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_2_transform(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_wv, PyObject *__pyx_v_V, PyObject *__pyx_v_emotion_words, int __pyx_v__ldocs); /* proto */
-static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calculate_emotional_state(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_U, PyObject *__pyx_v_emotion_words, PyObject *__pyx_v_idx, PyObject *__pyx_v_weights, int __pyx_v__ldocs, CYTHON_UNUSED PyObject *__pyx_v__SIMPLE); /* proto */
+static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calculate_emotional_state(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_U, PyObject *__pyx_v_emotion_words, PyObject *__pyx_v_idx, PyObject *__pyx_v_weights, int __pyx_v__ldocs); /* proto */
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_items = {0, &__pyx_n_s_items, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_keys = {0, &__pyx_n_s_keys, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values = {0, &__pyx_n_s_values, 0, 0, 0};
@@ -2018,7 +2016,7 @@ static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_2_transf
 /* "src/ai/unsupervised/emotional_lsa_utils.pyx":23
  * 
  * 
- * def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs, _SIMPLE):             # <<<<<<<<<<<<<<
+ * def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs):             # <<<<<<<<<<<<<<
  *     cdef int i
  *     cdef int k
  */
@@ -2032,19 +2030,16 @@ static PyObject *__pyx_pw_3src_2ai_12unsupervised_19emotional_lsa_utils_5_calcul
   PyObject *__pyx_v_idx = 0;
   PyObject *__pyx_v_weights = 0;
   int __pyx_v__ldocs;
-  CYTHON_UNUSED PyObject *__pyx_v__SIMPLE = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("_calculate_emotional_state (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_U,&__pyx_n_s_emotion_words,&__pyx_n_s_idx,&__pyx_n_s_weights,&__pyx_n_s_ldocs,&__pyx_n_s_SIMPLE,0};
-    PyObject* values[6] = {0,0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_U,&__pyx_n_s_emotion_words,&__pyx_n_s_idx,&__pyx_n_s_weights,&__pyx_n_s_ldocs,0};
+    PyObject* values[5] = {0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
-        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
-        CYTHON_FALLTHROUGH;
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
         CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
@@ -2067,37 +2062,31 @@ static PyObject *__pyx_pw_3src_2ai_12unsupervised_19emotional_lsa_utils_5_calcul
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_emotion_words)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 6, 6, 1); __PYX_ERR(0, 23, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 5, 5, 1); __PYX_ERR(0, 23, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_idx)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 6, 6, 2); __PYX_ERR(0, 23, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 5, 5, 2); __PYX_ERR(0, 23, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_weights)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 6, 6, 3); __PYX_ERR(0, 23, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 5, 5, 3); __PYX_ERR(0, 23, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_ldocs)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 6, 6, 4); __PYX_ERR(0, 23, __pyx_L3_error)
-        }
-        CYTHON_FALLTHROUGH;
-        case  5:
-        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_SIMPLE)) != 0)) kw_args--;
-        else {
-          __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 6, 6, 5); __PYX_ERR(0, 23, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 5, 5, 4); __PYX_ERR(0, 23, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_calculate_emotional_state") < 0)) __PYX_ERR(0, 23, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -2105,18 +2094,16 @@ static PyObject *__pyx_pw_3src_2ai_12unsupervised_19emotional_lsa_utils_5_calcul
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
-      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
     }
     __pyx_v_U = values[0];
     __pyx_v_emotion_words = ((PyObject*)values[1]);
     __pyx_v_idx = ((PyObject*)values[2]);
     __pyx_v_weights = values[3];
     __pyx_v__ldocs = __Pyx_PyInt_As_int(values[4]); if (unlikely((__pyx_v__ldocs == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L3_error)
-    __pyx_v__SIMPLE = values[5];
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 23, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_calculate_emotional_state", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 23, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("src.ai.unsupervised.emotional_lsa_utils._calculate_emotional_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -2124,7 +2111,7 @@ static PyObject *__pyx_pw_3src_2ai_12unsupervised_19emotional_lsa_utils_5_calcul
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_emotion_words), (&PyDict_Type), 1, "emotion_words", 1))) __PYX_ERR(0, 23, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_idx), (&PyDict_Type), 1, "idx", 1))) __PYX_ERR(0, 23, __pyx_L1_error)
-  __pyx_r = __pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calculate_emotional_state(__pyx_self, __pyx_v_U, __pyx_v_emotion_words, __pyx_v_idx, __pyx_v_weights, __pyx_v__ldocs, __pyx_v__SIMPLE);
+  __pyx_r = __pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calculate_emotional_state(__pyx_self, __pyx_v_U, __pyx_v_emotion_words, __pyx_v_idx, __pyx_v_weights, __pyx_v__ldocs);
 
   /* function exit code */
   goto __pyx_L0;
@@ -2135,7 +2122,7 @@ static PyObject *__pyx_pw_3src_2ai_12unsupervised_19emotional_lsa_utils_5_calcul
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calculate_emotional_state(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_U, PyObject *__pyx_v_emotion_words, PyObject *__pyx_v_idx, PyObject *__pyx_v_weights, int __pyx_v__ldocs, CYTHON_UNUSED PyObject *__pyx_v__SIMPLE) {
+static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calculate_emotional_state(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_U, PyObject *__pyx_v_emotion_words, PyObject *__pyx_v_idx, PyObject *__pyx_v_weights, int __pyx_v__ldocs) {
   int __pyx_v_i;
   int __pyx_v_k;
   PyObject *__pyx_v_wv = NULL;
@@ -2565,7 +2552,7 @@ static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calcul
   /* "src/ai/unsupervised/emotional_lsa_utils.pyx":23
  * 
  * 
- * def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs, _SIMPLE):             # <<<<<<<<<<<<<<
+ * def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs):             # <<<<<<<<<<<<<<
  *     cdef int i
  *     cdef int k
  */
@@ -2633,7 +2620,6 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_n_s_SIMPLE, __pyx_k_SIMPLE, sizeof(__pyx_k_SIMPLE), 0, 0, 1, 1},
   {&__pyx_n_s_T, __pyx_k_T, sizeof(__pyx_k_T), 0, 0, 1, 1},
   {&__pyx_n_s_U, __pyx_k_U, sizeof(__pyx_k_U), 0, 0, 1, 1},
   {&__pyx_n_s_V, __pyx_k_V, sizeof(__pyx_k_V), 0, 0, 1, 1},
@@ -2733,14 +2719,14 @@ static int __Pyx_InitCachedConstants(void) {
   /* "src/ai/unsupervised/emotional_lsa_utils.pyx":23
  * 
  * 
- * def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs, _SIMPLE):             # <<<<<<<<<<<<<<
+ * def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs):             # <<<<<<<<<<<<<<
  *     cdef int i
  *     cdef int k
  */
-  __pyx_tuple__6 = PyTuple_Pack(15, __pyx_n_s_U, __pyx_n_s_emotion_words, __pyx_n_s_idx, __pyx_n_s_weights, __pyx_n_s_ldocs, __pyx_n_s_SIMPLE, __pyx_n_s_i, __pyx_n_s_k, __pyx_n_s_wv, __pyx_n_s_values, __pyx_n_s_value, __pyx_n_s_indexes, __pyx_n_s_e, __pyx_n_s_inx, __pyx_n_s_index); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(14, __pyx_n_s_U, __pyx_n_s_emotion_words, __pyx_n_s_idx, __pyx_n_s_weights, __pyx_n_s_ldocs, __pyx_n_s_i, __pyx_n_s_k, __pyx_n_s_wv, __pyx_n_s_values, __pyx_n_s_value, __pyx_n_s_indexes, __pyx_n_s_e, __pyx_n_s_inx, __pyx_n_s_index); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(6, 0, 15, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_emotional_lsa_utils_pyx, __pyx_n_s_calculate_emotional_state, 23, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(5, 0, 14, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_emotional_lsa_utils_pyx, __pyx_n_s_calculate_emotional_state, 23, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -3065,7 +3051,7 @@ if (!__Pyx_RefNanny) {
   /* "src/ai/unsupervised/emotional_lsa_utils.pyx":23
  * 
  * 
- * def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs, _SIMPLE):             # <<<<<<<<<<<<<<
+ * def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ldocs):             # <<<<<<<<<<<<<<
  *     cdef int i
  *     cdef int k
  */
