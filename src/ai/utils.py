@@ -5,6 +5,7 @@ import concurrent.futures
 from string import punctuation
 from functools import lru_cache
 
+import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import spacy
@@ -34,8 +35,14 @@ def load_six_emotions(filepath):
     }
     for key, values in emotion_words.items():
         for i, word in enumerate(values):
+            word = word.lower()
+            lemma = LOOKUP.get(word, None)
+            if lemma:
+                word = lemma
+            else:
+                word = STEMMER.stem(word)
             emotion_words[key][i] = ''.join(
-                [remover_acentos(p.strip()) for p in LOOKUP.get(word.lower(), word.lower())])
+                [remover_acentos(p.strip()) for p in word])
     return emotion_words
 
 
@@ -65,7 +72,11 @@ def load_valence_emotions_from_oplexicon(filename):
                 word, tags, sent = info[:3]
                 if 'HTAG' not in tags and 'EMOT' not in tags:
                     word = remover_acentos(word.replace('-se', '')).strip()
-                    word = LOOKUP.get(word, word)
+                    lemma = LOOKUP.get(word, None)
+                    if lemma:
+                        word = lemma
+                    else:
+                        word = STEMMER.stem(word)
                     sent = int(sent)
                     if sent == 1:
                         data['POSITIVO'] += [word]
@@ -93,7 +104,11 @@ def load_valence_emotions_from_sentilex(filename):
             info = line.lower().split('.')
             words = [remover_acentos(word.strip()) for word in info[0].split(',')]
             for word in words:
-                word = LOOKUP.get(word, word)
+                lemma = LOOKUP.get(word, None)
+                if lemma:
+                   word = lemma
+                else:
+                    word = STEMMER.stem(word)
                 cdata = info[1].split(';')
                 if len(cdata) > 0:
                     sent = [int(k.replace('pol:n0=', '')) if 'pol:n0=' in k else None for k in cdata]
@@ -110,6 +125,14 @@ def load_valence_emotions_from_sentilex(filename):
     data['NEGATIVO'] = sorted(list(set(data['NEGATIVO'])))
     data['NEUTRO'] = sorted(list(set(data['NEUTRO'])))
     return data
+
+
+def is_number(s):
+    try:
+        complex(s) # for int, long, float and complex
+    except ValueError:
+        return False
+    return True
 
 
 @lru_cache(maxsize=256)
@@ -143,14 +166,20 @@ def tokenize_frases(phrase):
 def rm_stop_words_tokenized(phrase):
     phrase = NLP(remover_acentos(phrase.lower()))
     clean_frase = []
-    for palavra in phrase:
-        if palavra.pos_ != 'PUNCT':
-            palavra = palavra.lemma_
-            if palavra not in STOPWORDS and not palavra.isdigit():
-                clean_frase.append(palavra)
+    for token in phrase:
+        if token.pos_ != 'PUNCT':
+            palavra = token.text
+            if not is_number(palavra):
+                if token.pos_ == 'VERB':
+                    palavra = token.lemma_
+                else:
+                    palavra = STEMMER.stem(palavra)
+                if palavra not in STOPWORDS:
+                    clean_frase.append(palavra)
     return ' '.join(clean_frase)
 
 
 # GLOBALS
 NLP = spacy.load('pt')
+STEMMER = nltk.stem.RSLPStemmer()
 STOPWORDS = _get_stopwords()

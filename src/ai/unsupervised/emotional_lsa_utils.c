@@ -5,7 +5,7 @@
     "distutils": {
         "name": "src.ai.unsupervised.emotional_lsa_utils",
         "sources": [
-            "/home/rdenadai/programas/vagrant_img/vagrant.machine.puphpet/projetos/github/sentiment-analysis-2018-president-election/src/ai/unsupervised/emotional_lsa_utils.pyx"
+            "/home/rdenadai/vagrant/python-dev/sentiment-analysis-2018-president-election/src/ai/unsupervised/emotional_lsa_utils.pyx"
         ]
     },
     "module_name": "src.ai.unsupervised.emotional_lsa_utils"
@@ -1193,7 +1193,6 @@ static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_values[] = "values";
 static const char __pyx_k_word_e[] = "word_e";
 static const char __pyx_k_dtframe[] = "dtframe";
-static const char __pyx_k_idx_val[] = "idx_val";
 static const char __pyx_k_indexes[] = "indexes";
 static const char __pyx_k_weights[] = "weights";
 static const char __pyx_k_enumerate[] = "enumerate";
@@ -1224,7 +1223,6 @@ static PyObject *__pyx_n_s_filter;
 static PyObject *__pyx_n_s_get;
 static PyObject *__pyx_n_s_i;
 static PyObject *__pyx_n_s_idx;
-static PyObject *__pyx_n_s_idx_val;
 static PyObject *__pyx_n_s_iloc;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_index;
@@ -2175,14 +2173,12 @@ static PyObject *__pyx_pw_3src_2ai_12unsupervised_19emotional_lsa_utils_5_calcul
 static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calculate_emotional_state(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_U, PyObject *__pyx_v_emotion_words, PyObject *__pyx_v_idx, PyObject *__pyx_v_weights, int __pyx_v__ldocs, PyObject *__pyx_v__SIMPLE) {
   int __pyx_v_i;
   int __pyx_v_k;
-  int __pyx_v_word_e;
   PyObject *__pyx_v_wv = NULL;
   PyObject *__pyx_v_item = NULL;
   CYTHON_UNUSED PyObject *__pyx_v_key = NULL;
   PyObject *__pyx_v_values = NULL;
   PyObject *__pyx_v_value = NULL;
   PyObject *__pyx_v_index = NULL;
-  PyObject *__pyx_v_idx_val = NULL;
   PyObject *__pyx_v_indexes = NULL;
   PyObject *__pyx_v_e = NULL;
   PyObject *__pyx_v_inx = NULL;
@@ -2359,7 +2355,7 @@ static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calcul
  *     for k, item in enumerate(emotion_words.items()):
  *         key, values = item             # <<<<<<<<<<<<<<
  *         for value in values:
- *             word_e = 1 # critrio de parada... performance muito melhor
+ *             index = idx.get(value, None)
  */
     if ((likely(PyTuple_CheckExact(__pyx_v_item))) || (PyList_CheckExact(__pyx_v_item))) {
       PyObject* sequence = __pyx_v_item;
@@ -2414,8 +2410,8 @@ static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calcul
  *     for k, item in enumerate(emotion_words.items()):
  *         key, values = item
  *         for value in values:             # <<<<<<<<<<<<<<
- *             word_e = 1 # critrio de parada... performance muito melhor
- *             for i in range(_ldocs):
+ *             index = idx.get(value, None)
+ *             if index:
  */
     if (likely(PyList_CheckExact(__pyx_v_values)) || PyTuple_CheckExact(__pyx_v_values)) {
       __pyx_t_2 = __pyx_v_values; __Pyx_INCREF(__pyx_t_2); __pyx_t_10 = 0;
@@ -2462,416 +2458,326 @@ static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calcul
       /* "src/ai/unsupervised/emotional_lsa_utils.pyx":32
  *         key, values = item
  *         for value in values:
- *             word_e = 1 # critrio de parada... performance muito melhor             # <<<<<<<<<<<<<<
- *             for i in range(_ldocs):
- *                 if word_e == 0: # se a palavra no foi encontra para 1 documento no ser para nenhum
+ *             index = idx.get(value, None)             # <<<<<<<<<<<<<<
+ *             if index:
+ *                 for i in range(_ldocs):
  */
-      __pyx_v_word_e = 1;
+      if (unlikely(__pyx_v_idx == Py_None)) {
+        PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "get");
+        __PYX_ERR(0, 32, __pyx_L1_error)
+      }
+      __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_idx, __pyx_v_value, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_XDECREF_SET(__pyx_v_index, __pyx_t_1);
+      __pyx_t_1 = 0;
 
       /* "src/ai/unsupervised/emotional_lsa_utils.pyx":33
  *         for value in values:
- *             word_e = 1 # critrio de parada... performance muito melhor
- *             for i in range(_ldocs):             # <<<<<<<<<<<<<<
- *                 if word_e == 0: # se a palavra no foi encontra para 1 documento no ser para nenhum
- *                     break
+ *             index = idx.get(value, None)
+ *             if index:             # <<<<<<<<<<<<<<
+ *                 for i in range(_ldocs):
+ *                     if _SIMPLE:
  */
-      __pyx_t_12 = __pyx_v__ldocs;
-      __pyx_t_13 = __pyx_t_12;
-      for (__pyx_t_14 = 0; __pyx_t_14 < __pyx_t_13; __pyx_t_14+=1) {
-        __pyx_v_i = __pyx_t_14;
+      __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_v_index); if (unlikely(__pyx_t_12 < 0)) __PYX_ERR(0, 33, __pyx_L1_error)
+      if (__pyx_t_12) {
 
         /* "src/ai/unsupervised/emotional_lsa_utils.pyx":34
- *             word_e = 1 # critrio de parada... performance muito melhor
- *             for i in range(_ldocs):
- *                 if word_e == 0: # se a palavra no foi encontra para 1 documento no ser para nenhum             # <<<<<<<<<<<<<<
- *                     break
- *                 if _SIMPLE:
+ *             index = idx.get(value, None)
+ *             if index:
+ *                 for i in range(_ldocs):             # <<<<<<<<<<<<<<
+ *                     if _SIMPLE:
+ *                         wv[i][k] += U[index][i] * weights.iloc[index].values[i]
  */
-        __pyx_t_15 = ((__pyx_v_word_e == 0) != 0);
-        if (__pyx_t_15) {
+        __pyx_t_13 = __pyx_v__ldocs;
+        __pyx_t_14 = __pyx_t_13;
+        for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
+          __pyx_v_i = __pyx_t_15;
 
           /* "src/ai/unsupervised/emotional_lsa_utils.pyx":35
- *             for i in range(_ldocs):
- *                 if word_e == 0: # se a palavra no foi encontra para 1 documento no ser para nenhum
- *                     break             # <<<<<<<<<<<<<<
- *                 if _SIMPLE:
- *                     index = idx.get(value, None)
- */
-          goto __pyx_L10_break;
-
-          /* "src/ai/unsupervised/emotional_lsa_utils.pyx":34
- *             word_e = 1 # critrio de parada... performance muito melhor
- *             for i in range(_ldocs):
- *                 if word_e == 0: # se a palavra no foi encontra para 1 documento no ser para nenhum             # <<<<<<<<<<<<<<
- *                     break
- *                 if _SIMPLE:
- */
-        }
-
-        /* "src/ai/unsupervised/emotional_lsa_utils.pyx":36
- *                 if word_e == 0: # se a palavra no foi encontra para 1 documento no ser para nenhum
- *                     break
- *                 if _SIMPLE:             # <<<<<<<<<<<<<<
- *                     index = idx.get(value, None)
- *                     if index:
- */
-        __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_v__SIMPLE); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 36, __pyx_L1_error)
-        if (__pyx_t_15) {
-
-          /* "src/ai/unsupervised/emotional_lsa_utils.pyx":37
- *                     break
- *                 if _SIMPLE:
- *                     index = idx.get(value, None)             # <<<<<<<<<<<<<<
- *                     if index:
- *                         idx_val = U[index]
- */
-          if (unlikely(__pyx_v_idx == Py_None)) {
-            PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "get");
-            __PYX_ERR(0, 37, __pyx_L1_error)
-          }
-          __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_v_idx, __pyx_v_value, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
-          __Pyx_XDECREF_SET(__pyx_v_index, __pyx_t_1);
-          __pyx_t_1 = 0;
-
-          /* "src/ai/unsupervised/emotional_lsa_utils.pyx":38
- *                 if _SIMPLE:
- *                     index = idx.get(value, None)
- *                     if index:             # <<<<<<<<<<<<<<
- *                         idx_val = U[index]
- *                         wv[i][k] += idx_val[i] * weights.iloc[index].values[i]
- */
-          __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_v_index); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 38, __pyx_L1_error)
-          if (__pyx_t_15) {
-
-            /* "src/ai/unsupervised/emotional_lsa_utils.pyx":39
- *                     index = idx.get(value, None)
- *                     if index:
- *                         idx_val = U[index]             # <<<<<<<<<<<<<<
- *                         wv[i][k] += idx_val[i] * weights.iloc[index].values[i]
+ *             if index:
+ *                 for i in range(_ldocs):
+ *                     if _SIMPLE:             # <<<<<<<<<<<<<<
+ *                         wv[i][k] += U[index][i] * weights.iloc[index].values[i]
  *                     else:
  */
-            __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_U, __pyx_v_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_1);
-            __Pyx_XDECREF_SET(__pyx_v_idx_val, __pyx_t_1);
-            __pyx_t_1 = 0;
+          __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_v__SIMPLE); if (unlikely(__pyx_t_12 < 0)) __PYX_ERR(0, 35, __pyx_L1_error)
+          if (__pyx_t_12) {
 
-            /* "src/ai/unsupervised/emotional_lsa_utils.pyx":40
- *                     if index:
- *                         idx_val = U[index]
- *                         wv[i][k] += idx_val[i] * weights.iloc[index].values[i]             # <<<<<<<<<<<<<<
+            /* "src/ai/unsupervised/emotional_lsa_utils.pyx":36
+ *                 for i in range(_ldocs):
+ *                     if _SIMPLE:
+ *                         wv[i][k] += U[index][i] * weights.iloc[index].values[i]             # <<<<<<<<<<<<<<
  *                     else:
- *                         word_e = 0
+ *                         indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
  */
-            __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_wv, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_wv, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
             __pyx_t_16 = __pyx_v_k;
-            __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_1, __pyx_t_16, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 40, __pyx_L1_error)
+            __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_1, __pyx_t_16, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 36, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_6);
-            __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_idx_val, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
+            __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_v_U, __pyx_v_index); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 36, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_4);
-            __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_v_weights, __pyx_n_s_iloc); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 40, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_17);
-            __pyx_t_18 = __Pyx_PyObject_GetItem(__pyx_t_17, __pyx_v_index); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 40, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_18);
-            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-            __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_18, __pyx_n_s_values); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 40, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_17);
-            __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-            __pyx_t_18 = __Pyx_GetItemInt(__pyx_t_17, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 40, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_18);
-            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-            __pyx_t_17 = PyNumber_Multiply(__pyx_t_4, __pyx_t_18); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 40, __pyx_L1_error)
+            __pyx_t_17 = __Pyx_GetItemInt(__pyx_t_4, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 36, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_17);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_weights, __pyx_n_s_iloc); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 36, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_4);
+            __pyx_t_18 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_index); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 36, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_18);
+            __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_18, __pyx_n_s_values); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 36, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-            __pyx_t_18 = PyNumber_InPlaceAdd(__pyx_t_6, __pyx_t_17); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 40, __pyx_L1_error)
+            __pyx_t_18 = __Pyx_GetItemInt(__pyx_t_4, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 36, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_18);
+            __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+            __pyx_t_4 = PyNumber_Multiply(__pyx_t_17, __pyx_t_18); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 36, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_4);
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+            __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
+            __pyx_t_18 = PyNumber_InPlaceAdd(__pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 36, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_18);
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-            if (unlikely(__Pyx_SetItemInt(__pyx_t_1, __pyx_t_16, __pyx_t_18, int, 1, __Pyx_PyInt_From_int, 0, 1, 1) < 0)) __PYX_ERR(0, 40, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+            if (unlikely(__Pyx_SetItemInt(__pyx_t_1, __pyx_t_16, __pyx_t_18, int, 1, __Pyx_PyInt_From_int, 0, 1, 1) < 0)) __PYX_ERR(0, 36, __pyx_L1_error)
             __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "src/ai/unsupervised/emotional_lsa_utils.pyx":38
- *                 if _SIMPLE:
- *                     index = idx.get(value, None)
- *                     if index:             # <<<<<<<<<<<<<<
- *                         idx_val = U[index]
- *                         wv[i][k] += idx_val[i] * weights.iloc[index].values[i]
+            /* "src/ai/unsupervised/emotional_lsa_utils.pyx":35
+ *             if index:
+ *                 for i in range(_ldocs):
+ *                     if _SIMPLE:             # <<<<<<<<<<<<<<
+ *                         wv[i][k] += U[index][i] * weights.iloc[index].values[i]
+ *                     else:
  */
-            goto __pyx_L13;
+            goto __pyx_L12;
           }
 
-          /* "src/ai/unsupervised/emotional_lsa_utils.pyx":42
- *                         wv[i][k] += idx_val[i] * weights.iloc[index].values[i]
+          /* "src/ai/unsupervised/emotional_lsa_utils.pyx":38
+ *                         wv[i][k] += U[index][i] * weights.iloc[index].values[i]
  *                     else:
- *                         word_e = 0             # <<<<<<<<<<<<<<
- *                 else:
- *                     indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
+ *                         indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))             # <<<<<<<<<<<<<<
+ *                         wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes]) / 2 # ngrams
+ *     return wv / _ldocs
  */
           /*else*/ {
-            __pyx_v_word_e = 0;
-          }
-          __pyx_L13:;
-
-          /* "src/ai/unsupervised/emotional_lsa_utils.pyx":36
- *                 if word_e == 0: # se a palavra no foi encontra para 1 documento no ser para nenhum
- *                     break
- *                 if _SIMPLE:             # <<<<<<<<<<<<<<
- *                     index = idx.get(value, None)
- *                     if index:
- */
-          goto __pyx_L12;
-        }
-
-        /* "src/ai/unsupervised/emotional_lsa_utils.pyx":44
- *                         word_e = 0
- *                 else:
- *                     indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))             # <<<<<<<<<<<<<<
- *                     if len(indexes) > 0:
- *                         wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
- */
-        /*else*/ {
-          __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
-          __Pyx_INCREF(__pyx_int_0);
-          __pyx_t_18 = __pyx_int_0;
-          if (unlikely(__pyx_v_idx == Py_None)) {
-            PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "keys");
-            __PYX_ERR(0, 44, __pyx_L1_error)
-          }
-          __pyx_t_17 = __Pyx_PyDict_Keys(__pyx_v_idx); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 44, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_17);
-          if (likely(PyList_CheckExact(__pyx_t_17)) || PyTuple_CheckExact(__pyx_t_17)) {
-            __pyx_t_6 = __pyx_t_17; __Pyx_INCREF(__pyx_t_6); __pyx_t_19 = 0;
-            __pyx_t_20 = NULL;
-          } else {
-            __pyx_t_19 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_t_17); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 44, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_6);
-            __pyx_t_20 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 44, __pyx_L1_error)
-          }
-          __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-          for (;;) {
-            if (likely(!__pyx_t_20)) {
-              if (likely(PyList_CheckExact(__pyx_t_6))) {
-                if (__pyx_t_19 >= PyList_GET_SIZE(__pyx_t_6)) break;
-                #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                __pyx_t_17 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_19); __Pyx_INCREF(__pyx_t_17); __pyx_t_19++; if (unlikely(0 < 0)) __PYX_ERR(0, 44, __pyx_L1_error)
-                #else
-                __pyx_t_17 = PySequence_ITEM(__pyx_t_6, __pyx_t_19); __pyx_t_19++; if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 44, __pyx_L1_error)
-                __Pyx_GOTREF(__pyx_t_17);
-                #endif
-              } else {
-                if (__pyx_t_19 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
-                #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                __pyx_t_17 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_19); __Pyx_INCREF(__pyx_t_17); __pyx_t_19++; if (unlikely(0 < 0)) __PYX_ERR(0, 44, __pyx_L1_error)
-                #else
-                __pyx_t_17 = PySequence_ITEM(__pyx_t_6, __pyx_t_19); __pyx_t_19++; if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 44, __pyx_L1_error)
-                __Pyx_GOTREF(__pyx_t_17);
-                #endif
-              }
+            __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_1);
+            __Pyx_INCREF(__pyx_int_0);
+            __pyx_t_18 = __pyx_int_0;
+            if (unlikely(__pyx_v_idx == Py_None)) {
+              PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "keys");
+              __PYX_ERR(0, 38, __pyx_L1_error)
+            }
+            __pyx_t_4 = __Pyx_PyDict_Keys(__pyx_v_idx); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_4);
+            if (likely(PyList_CheckExact(__pyx_t_4)) || PyTuple_CheckExact(__pyx_t_4)) {
+              __pyx_t_6 = __pyx_t_4; __Pyx_INCREF(__pyx_t_6); __pyx_t_19 = 0;
+              __pyx_t_20 = NULL;
             } else {
-              __pyx_t_17 = __pyx_t_20(__pyx_t_6);
-              if (unlikely(!__pyx_t_17)) {
-                PyObject* exc_type = PyErr_Occurred();
-                if (exc_type) {
-                  if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                  else __PYX_ERR(0, 44, __pyx_L1_error)
+              __pyx_t_19 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 38, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_6);
+              __pyx_t_20 = Py_TYPE(__pyx_t_6)->tp_iternext; if (unlikely(!__pyx_t_20)) __PYX_ERR(0, 38, __pyx_L1_error)
+            }
+            __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+            for (;;) {
+              if (likely(!__pyx_t_20)) {
+                if (likely(PyList_CheckExact(__pyx_t_6))) {
+                  if (__pyx_t_19 >= PyList_GET_SIZE(__pyx_t_6)) break;
+                  #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+                  __pyx_t_4 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_19); __Pyx_INCREF(__pyx_t_4); __pyx_t_19++; if (unlikely(0 < 0)) __PYX_ERR(0, 38, __pyx_L1_error)
+                  #else
+                  __pyx_t_4 = PySequence_ITEM(__pyx_t_6, __pyx_t_19); __pyx_t_19++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+                  __Pyx_GOTREF(__pyx_t_4);
+                  #endif
+                } else {
+                  if (__pyx_t_19 >= PyTuple_GET_SIZE(__pyx_t_6)) break;
+                  #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+                  __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_19); __Pyx_INCREF(__pyx_t_4); __pyx_t_19++; if (unlikely(0 < 0)) __PYX_ERR(0, 38, __pyx_L1_error)
+                  #else
+                  __pyx_t_4 = PySequence_ITEM(__pyx_t_6, __pyx_t_19); __pyx_t_19++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+                  __Pyx_GOTREF(__pyx_t_4);
+                  #endif
                 }
-                break;
+              } else {
+                __pyx_t_4 = __pyx_t_20(__pyx_t_6);
+                if (unlikely(!__pyx_t_4)) {
+                  PyObject* exc_type = PyErr_Occurred();
+                  if (exc_type) {
+                    if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+                    else __PYX_ERR(0, 38, __pyx_L1_error)
+                  }
+                  break;
+                }
+                __Pyx_GOTREF(__pyx_t_4);
               }
-              __Pyx_GOTREF(__pyx_t_17);
+              __Pyx_XDECREF_SET(__pyx_v_inx, __pyx_t_4);
+              __pyx_t_4 = 0;
+              __Pyx_INCREF(__pyx_t_18);
+              __Pyx_XDECREF_SET(__pyx_v_e, __pyx_t_18);
+              __pyx_t_4 = __Pyx_PyInt_AddObjC(__pyx_t_18, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+              __Pyx_GOTREF(__pyx_t_4);
+              __Pyx_DECREF(__pyx_t_18);
+              __pyx_t_18 = __pyx_t_4;
+              __pyx_t_4 = 0;
+              __pyx_t_12 = (__Pyx_PySequence_ContainsTF(__pyx_v_value, __pyx_v_inx, Py_EQ)); if (unlikely(__pyx_t_12 < 0)) __PYX_ERR(0, 38, __pyx_L1_error)
+              if ((__pyx_t_12 != 0)) {
+                __Pyx_INCREF(__pyx_v_e);
+                __pyx_t_4 = __pyx_v_e;
+              } else {
+                __Pyx_INCREF(Py_None);
+                __pyx_t_4 = Py_None;
+              }
+              if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 38, __pyx_L1_error)
+              __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             }
-            __Pyx_XDECREF_SET(__pyx_v_inx, __pyx_t_17);
-            __pyx_t_17 = 0;
-            __Pyx_INCREF(__pyx_t_18);
-            __Pyx_XDECREF_SET(__pyx_v_e, __pyx_t_18);
-            __pyx_t_17 = __Pyx_PyInt_AddObjC(__pyx_t_18, __pyx_int_1, 1, 0); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 44, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_17);
-            __Pyx_DECREF(__pyx_t_18);
-            __pyx_t_18 = __pyx_t_17;
-            __pyx_t_17 = 0;
-            __pyx_t_15 = (__Pyx_PySequence_ContainsTF(__pyx_v_value, __pyx_v_inx, Py_EQ)); if (unlikely(__pyx_t_15 < 0)) __PYX_ERR(0, 44, __pyx_L1_error)
-            if ((__pyx_t_15 != 0)) {
-              __Pyx_INCREF(__pyx_v_e);
-              __pyx_t_17 = __pyx_v_e;
-            } else {
-              __Pyx_INCREF(Py_None);
-              __pyx_t_17 = Py_None;
-            }
-            if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_17))) __PYX_ERR(0, 44, __pyx_L1_error)
-            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-          }
-          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-          __pyx_t_18 = PyTuple_New(2); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 44, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_18);
-          __Pyx_INCREF(Py_None);
-          __Pyx_GIVEREF(Py_None);
-          PyTuple_SET_ITEM(__pyx_t_18, 0, Py_None);
-          __Pyx_GIVEREF(__pyx_t_1);
-          PyTuple_SET_ITEM(__pyx_t_18, 1, __pyx_t_1);
-          __pyx_t_1 = 0;
-          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_filter, __pyx_t_18, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
-          __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-          __pyx_t_18 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 44, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_18);
-          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __Pyx_XDECREF_SET(__pyx_v_indexes, ((PyObject*)__pyx_t_18));
-          __pyx_t_18 = 0;
+            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+            __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
+            __pyx_t_18 = PyTuple_New(2); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 38, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_18);
+            __Pyx_INCREF(Py_None);
+            __Pyx_GIVEREF(Py_None);
+            PyTuple_SET_ITEM(__pyx_t_18, 0, Py_None);
+            __Pyx_GIVEREF(__pyx_t_1);
+            PyTuple_SET_ITEM(__pyx_t_18, 1, __pyx_t_1);
+            __pyx_t_1 = 0;
+            __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_filter, __pyx_t_18, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_1);
+            __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
+            __pyx_t_18 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 38, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_18);
+            __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+            __Pyx_XDECREF_SET(__pyx_v_indexes, ((PyObject*)__pyx_t_18));
+            __pyx_t_18 = 0;
 
-          /* "src/ai/unsupervised/emotional_lsa_utils.pyx":45
- *                 else:
- *                     indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
- *                     if len(indexes) > 0:             # <<<<<<<<<<<<<<
- *                         wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
+            /* "src/ai/unsupervised/emotional_lsa_utils.pyx":39
  *                     else:
+ *                         indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
+ *                         wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes]) / 2 # ngrams             # <<<<<<<<<<<<<<
+ *     return wv / _ldocs
  */
-          __pyx_t_19 = PyList_GET_SIZE(__pyx_v_indexes); if (unlikely(__pyx_t_19 == ((Py_ssize_t)-1))) __PYX_ERR(0, 45, __pyx_L1_error)
-          __pyx_t_15 = ((__pyx_t_19 > 0) != 0);
-          if (__pyx_t_15) {
-
-            /* "src/ai/unsupervised/emotional_lsa_utils.pyx":46
- *                     indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
- *                     if len(indexes) > 0:
- *                         wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])             # <<<<<<<<<<<<<<
- *                     else:
- *                         word_e = 0
- */
-            __pyx_t_18 = __Pyx_GetItemInt(__pyx_v_wv, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 46, __pyx_L1_error)
+            __pyx_t_18 = __Pyx_GetItemInt(__pyx_v_wv, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 39, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_18);
             __pyx_t_16 = __pyx_v_k;
-            __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_18, __pyx_t_16, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+            __pyx_t_1 = __Pyx_GetItemInt(__pyx_t_18, __pyx_t_16, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_17 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 46, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_17);
-            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_17, __pyx_n_s_sum); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 46, __pyx_L1_error)
+            __pyx_t_4 = __Pyx_GetModuleGlobalName(__pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_4);
-            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-            __pyx_t_17 = PyList_New(0); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 46, __pyx_L1_error)
+            __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_sum); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 39, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_17);
+            __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+            __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_4);
             __pyx_t_21 = __pyx_v_indexes; __Pyx_INCREF(__pyx_t_21); __pyx_t_19 = 0;
             for (;;) {
               if (__pyx_t_19 >= PyList_GET_SIZE(__pyx_t_21)) break;
               #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-              __pyx_t_22 = PyList_GET_ITEM(__pyx_t_21, __pyx_t_19); __Pyx_INCREF(__pyx_t_22); __pyx_t_19++; if (unlikely(0 < 0)) __PYX_ERR(0, 46, __pyx_L1_error)
+              __pyx_t_22 = PyList_GET_ITEM(__pyx_t_21, __pyx_t_19); __Pyx_INCREF(__pyx_t_22); __pyx_t_19++; if (unlikely(0 < 0)) __PYX_ERR(0, 39, __pyx_L1_error)
               #else
-              __pyx_t_22 = PySequence_ITEM(__pyx_t_21, __pyx_t_19); __pyx_t_19++; if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 46, __pyx_L1_error)
+              __pyx_t_22 = PySequence_ITEM(__pyx_t_21, __pyx_t_19); __pyx_t_19++; if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 39, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_22);
               #endif
-              __Pyx_XDECREF_SET(__pyx_v_index, __pyx_t_22);
+              __Pyx_DECREF_SET(__pyx_v_index, __pyx_t_22);
               __pyx_t_22 = 0;
-              __pyx_t_22 = __Pyx_PyObject_GetItem(__pyx_v_U, __pyx_v_index); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 46, __pyx_L1_error)
+              __pyx_t_22 = __Pyx_PyObject_GetItem(__pyx_v_U, __pyx_v_index); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 39, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_22);
-              __pyx_t_23 = __Pyx_GetItemInt(__pyx_t_22, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_23)) __PYX_ERR(0, 46, __pyx_L1_error)
+              __pyx_t_23 = __Pyx_GetItemInt(__pyx_t_22, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_23)) __PYX_ERR(0, 39, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_23);
               __Pyx_DECREF(__pyx_t_22); __pyx_t_22 = 0;
-              __pyx_t_22 = __Pyx_PyObject_GetAttrStr(__pyx_v_weights, __pyx_n_s_iloc); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 46, __pyx_L1_error)
+              __pyx_t_22 = __Pyx_PyObject_GetAttrStr(__pyx_v_weights, __pyx_n_s_iloc); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 39, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_22);
-              __pyx_t_24 = __Pyx_PyObject_GetItem(__pyx_t_22, __pyx_v_index); if (unlikely(!__pyx_t_24)) __PYX_ERR(0, 46, __pyx_L1_error)
+              __pyx_t_24 = __Pyx_PyObject_GetItem(__pyx_t_22, __pyx_v_index); if (unlikely(!__pyx_t_24)) __PYX_ERR(0, 39, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_24);
               __Pyx_DECREF(__pyx_t_22); __pyx_t_22 = 0;
-              __pyx_t_22 = __Pyx_PyObject_GetAttrStr(__pyx_t_24, __pyx_n_s_values); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 46, __pyx_L1_error)
+              __pyx_t_22 = __Pyx_PyObject_GetAttrStr(__pyx_t_24, __pyx_n_s_values); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 39, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_22);
               __Pyx_DECREF(__pyx_t_24); __pyx_t_24 = 0;
-              __pyx_t_24 = __Pyx_GetItemInt(__pyx_t_22, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_24)) __PYX_ERR(0, 46, __pyx_L1_error)
+              __pyx_t_24 = __Pyx_GetItemInt(__pyx_t_22, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_24)) __PYX_ERR(0, 39, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_24);
               __Pyx_DECREF(__pyx_t_22); __pyx_t_22 = 0;
-              __pyx_t_22 = PyNumber_Multiply(__pyx_t_23, __pyx_t_24); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 46, __pyx_L1_error)
+              __pyx_t_22 = PyNumber_Multiply(__pyx_t_23, __pyx_t_24); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 39, __pyx_L1_error)
               __Pyx_GOTREF(__pyx_t_22);
               __Pyx_DECREF(__pyx_t_23); __pyx_t_23 = 0;
               __Pyx_DECREF(__pyx_t_24); __pyx_t_24 = 0;
-              if (unlikely(__Pyx_ListComp_Append(__pyx_t_17, (PyObject*)__pyx_t_22))) __PYX_ERR(0, 46, __pyx_L1_error)
+              if (unlikely(__Pyx_ListComp_Append(__pyx_t_4, (PyObject*)__pyx_t_22))) __PYX_ERR(0, 39, __pyx_L1_error)
               __Pyx_DECREF(__pyx_t_22); __pyx_t_22 = 0;
             }
             __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
             __pyx_t_21 = NULL;
-            if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
-              __pyx_t_21 = PyMethod_GET_SELF(__pyx_t_4);
+            if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_17))) {
+              __pyx_t_21 = PyMethod_GET_SELF(__pyx_t_17);
               if (likely(__pyx_t_21)) {
-                PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+                PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_17);
                 __Pyx_INCREF(__pyx_t_21);
                 __Pyx_INCREF(function);
-                __Pyx_DECREF_SET(__pyx_t_4, function);
+                __Pyx_DECREF_SET(__pyx_t_17, function);
               }
             }
             if (!__pyx_t_21) {
-              __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_17); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 46, __pyx_L1_error)
-              __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+              __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_t_17, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
+              __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               __Pyx_GOTREF(__pyx_t_6);
             } else {
               #if CYTHON_FAST_PYCALL
-              if (PyFunction_Check(__pyx_t_4)) {
-                PyObject *__pyx_temp[2] = {__pyx_t_21, __pyx_t_17};
-                __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 46, __pyx_L1_error)
+              if (PyFunction_Check(__pyx_t_17)) {
+                PyObject *__pyx_temp[2] = {__pyx_t_21, __pyx_t_4};
+                __pyx_t_6 = __Pyx_PyFunction_FastCall(__pyx_t_17, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
                 __Pyx_XDECREF(__pyx_t_21); __pyx_t_21 = 0;
                 __Pyx_GOTREF(__pyx_t_6);
-                __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+                __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               } else
               #endif
               #if CYTHON_FAST_PYCCALL
-              if (__Pyx_PyFastCFunction_Check(__pyx_t_4)) {
-                PyObject *__pyx_temp[2] = {__pyx_t_21, __pyx_t_17};
-                __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_4, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 46, __pyx_L1_error)
+              if (__Pyx_PyFastCFunction_Check(__pyx_t_17)) {
+                PyObject *__pyx_temp[2] = {__pyx_t_21, __pyx_t_4};
+                __pyx_t_6 = __Pyx_PyCFunction_FastCall(__pyx_t_17, __pyx_temp+1-1, 1+1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
                 __Pyx_XDECREF(__pyx_t_21); __pyx_t_21 = 0;
                 __Pyx_GOTREF(__pyx_t_6);
-                __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+                __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               } else
               #endif
               {
-                __pyx_t_22 = PyTuple_New(1+1); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 46, __pyx_L1_error)
+                __pyx_t_22 = PyTuple_New(1+1); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 39, __pyx_L1_error)
                 __Pyx_GOTREF(__pyx_t_22);
                 __Pyx_GIVEREF(__pyx_t_21); PyTuple_SET_ITEM(__pyx_t_22, 0, __pyx_t_21); __pyx_t_21 = NULL;
-                __Pyx_GIVEREF(__pyx_t_17);
-                PyTuple_SET_ITEM(__pyx_t_22, 0+1, __pyx_t_17);
-                __pyx_t_17 = 0;
-                __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_t_22, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 46, __pyx_L1_error)
+                __Pyx_GIVEREF(__pyx_t_4);
+                PyTuple_SET_ITEM(__pyx_t_22, 0+1, __pyx_t_4);
+                __pyx_t_4 = 0;
+                __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_17, __pyx_t_22, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
                 __Pyx_GOTREF(__pyx_t_6);
                 __Pyx_DECREF(__pyx_t_22); __pyx_t_22 = 0;
               }
             }
-            __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 46, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_4);
-            __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+            __pyx_t_17 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_int_2); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 39, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_17);
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-            if (unlikely(__Pyx_SetItemInt(__pyx_t_18, __pyx_t_16, __pyx_t_4, int, 1, __Pyx_PyInt_From_int, 0, 1, 1) < 0)) __PYX_ERR(0, 46, __pyx_L1_error)
-            __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+            __pyx_t_6 = PyNumber_InPlaceAdd(__pyx_t_1, __pyx_t_17); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_6);
+            __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+            __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+            if (unlikely(__Pyx_SetItemInt(__pyx_t_18, __pyx_t_16, __pyx_t_6, int, 1, __Pyx_PyInt_From_int, 0, 1, 1) < 0)) __PYX_ERR(0, 39, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
             __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-
-            /* "src/ai/unsupervised/emotional_lsa_utils.pyx":45
- *                 else:
- *                     indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
- *                     if len(indexes) > 0:             # <<<<<<<<<<<<<<
- *                         wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
- *                     else:
- */
-            goto __pyx_L16;
           }
-
-          /* "src/ai/unsupervised/emotional_lsa_utils.pyx":48
- *                         wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
- *                     else:
- *                         word_e = 0             # <<<<<<<<<<<<<<
- *     return wv / _ldocs
- */
-          /*else*/ {
-            __pyx_v_word_e = 0;
-          }
-          __pyx_L16:;
+          __pyx_L12:;
         }
-        __pyx_L12:;
+
+        /* "src/ai/unsupervised/emotional_lsa_utils.pyx":33
+ *         for value in values:
+ *             index = idx.get(value, None)
+ *             if index:             # <<<<<<<<<<<<<<
+ *                 for i in range(_ldocs):
+ *                     if _SIMPLE:
+ */
       }
-      __pyx_L10_break:;
 
       /* "src/ai/unsupervised/emotional_lsa_utils.pyx":31
  *     for k, item in enumerate(emotion_words.items()):
  *         key, values = item
  *         for value in values:             # <<<<<<<<<<<<<<
- *             word_e = 1 # critrio de parada... performance muito melhor
- *             for i in range(_ldocs):
+ *             index = idx.get(value, None)
+ *             if index:
  */
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -2886,15 +2792,15 @@ static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calcul
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "src/ai/unsupervised/emotional_lsa_utils.pyx":49
- *                     else:
- *                         word_e = 0
+  /* "src/ai/unsupervised/emotional_lsa_utils.pyx":40
+ *                         indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
+ *                         wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes]) / 2 # ngrams
  *     return wv / _ldocs             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v__ldocs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v__ldocs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_v_wv, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_v_wv, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_2;
@@ -2931,7 +2837,6 @@ static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_4_calcul
   __Pyx_XDECREF(__pyx_v_values);
   __Pyx_XDECREF(__pyx_v_value);
   __Pyx_XDECREF(__pyx_v_index);
-  __Pyx_XDECREF(__pyx_v_idx_val);
   __Pyx_XDECREF(__pyx_v_indexes);
   __Pyx_XDECREF(__pyx_v_e);
   __Pyx_XDECREF(__pyx_v_inx);
@@ -2995,7 +2900,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_get, __pyx_k_get, sizeof(__pyx_k_get), 0, 0, 1, 1},
   {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
   {&__pyx_n_s_idx, __pyx_k_idx, sizeof(__pyx_k_idx), 0, 0, 1, 1},
-  {&__pyx_n_s_idx_val, __pyx_k_idx_val, sizeof(__pyx_k_idx_val), 0, 0, 1, 1},
   {&__pyx_n_s_iloc, __pyx_k_iloc, sizeof(__pyx_k_iloc), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_index, __pyx_k_index, sizeof(__pyx_k_index), 0, 0, 1, 1},
@@ -3033,7 +2937,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 15, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_n_s_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(0, 16, __pyx_L1_error)
-  __pyx_builtin_filter = __Pyx_GetBuiltinName(__pyx_n_s_filter); if (!__pyx_builtin_filter) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_builtin_filter = __Pyx_GetBuiltinName(__pyx_n_s_filter); if (!__pyx_builtin_filter) __PYX_ERR(0, 38, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -3085,10 +2989,10 @@ static int __Pyx_InitCachedConstants(void) {
  *     cdef int i
  *     cdef int k
  */
-  __pyx_tuple__6 = PyTuple_Pack(19, __pyx_n_s_U, __pyx_n_s_emotion_words, __pyx_n_s_idx, __pyx_n_s_weights, __pyx_n_s_ldocs, __pyx_n_s_SIMPLE, __pyx_n_s_i, __pyx_n_s_k, __pyx_n_s_word_e, __pyx_n_s_wv, __pyx_n_s_item, __pyx_n_s_key, __pyx_n_s_values, __pyx_n_s_value, __pyx_n_s_index, __pyx_n_s_idx_val, __pyx_n_s_indexes, __pyx_n_s_e, __pyx_n_s_inx); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(18, __pyx_n_s_U, __pyx_n_s_emotion_words, __pyx_n_s_idx, __pyx_n_s_weights, __pyx_n_s_ldocs, __pyx_n_s_SIMPLE, __pyx_n_s_i, __pyx_n_s_k, __pyx_n_s_word_e, __pyx_n_s_wv, __pyx_n_s_item, __pyx_n_s_key, __pyx_n_s_values, __pyx_n_s_value, __pyx_n_s_index, __pyx_n_s_indexes, __pyx_n_s_e, __pyx_n_s_inx); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(6, 0, 19, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_emotional_lsa_utils_pyx, __pyx_n_s_calculate_emotional_state, 23, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(6, 0, 18, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_emotional_lsa_utils_pyx, __pyx_n_s_calculate_emotional_state, 23, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;

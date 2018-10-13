@@ -29,21 +29,12 @@ def _calculate_emotional_state(U, dict emotion_words, dict idx, weights, int _ld
     for k, item in enumerate(emotion_words.items()):
         key, values = item
         for value in values:
-            word_e = 1 # critério de parada... performance muito melhor
-            for i in range(_ldocs):
-                if word_e == 0: # se a palavra não foi encontra para 1 documento não será para nenhum
-                    break
-                if _SIMPLE:
-                    index = idx.get(value, None)
-                    if index:
-                        idx_val = U[index]
-                        wv[i][k] += idx_val[i] * weights.iloc[index].values[i]
+            index = idx.get(value, None)
+            if index:
+                for i in range(_ldocs):
+                    if _SIMPLE:
+                        wv[i][k] += U[index][i] * weights.iloc[index].values[i]
                     else:
-                        word_e = 0
-                else:
-                    indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
-                    if len(indexes) > 0:
-                        wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
-                    else:
-                        word_e = 0
+                        indexes = list(filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())]))
+                        wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes]) / 2 # ngrams
     return wv / _ldocs

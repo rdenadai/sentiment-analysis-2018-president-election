@@ -43,4 +43,11 @@ class EmotionalLSA:
     def _emotional_state(self, U, emotion_words):
         print('Processing emotional state... this may take a while...')
         idx = {w: i for i, w in enumerate(self.weights.index.get_values())}
+        # Vamos processar apenas as palavras que refletem sentimentos que realmente existem em nosso corpus
+        for key, values in emotion_words.items():
+            words = []
+            for value in values:
+                if idx.get(value, None):
+                    words += [value]
+            emotion_words[key] = words
         return _calculate_emotional_state(U, emotion_words, idx, self.weights, self._ldocs, self._SIMPLE)
