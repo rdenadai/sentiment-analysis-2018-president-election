@@ -1,10 +1,12 @@
 import codecs
+import re
 import concurrent.futures
 from unicodedata import normalize
 import concurrent.futures
 from string import punctuation
 from functools import lru_cache
 
+import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import spacy
@@ -23,7 +25,7 @@ def _load_emotion_file_content(emotion, path='dataset/emocoes'):
 
 @lru_cache(maxsize=256)
 def load_six_emotions(filepath):
-    """Ekman, Friesen, and Ellsworth 	Anger, disgust, fear, joy, sadness, surprise"""
+    """Ekman, Friesen, and Ellsworth : anger, disgust, fear, joy, sadness, surprise."""
     emotion_words = {
         'ALEGRIA': _load_emotion_file_content('alegria', filepath),
         'DESGOSTO': _load_emotion_file_content('desgosto', filepath),
@@ -34,8 +36,8 @@ def load_six_emotions(filepath):
     }
     for key, values in emotion_words.items():
         for i, word in enumerate(values):
-            emotion_words[key][i] = ''.join(
-                [remover_acentos(p.strip()) for p in LOOKUP.get(word.lower(), word.lower())])
+            word = remover_acentos(word.lower()).strip()
+            emotion_words[key][i] = LOOKUP.get(word, word)
     return emotion_words
 
 
@@ -64,7 +66,7 @@ def load_valence_emotions_from_oplexicon(filename):
                 info[1] = [spacy_conv.get(tag) for tag in info[1].split()]
                 word, tags, sent = info[:3]
                 if 'HTAG' not in tags and 'EMOT' not in tags:
-                    word = remover_acentos(word.replace('-se', '')).strip()
+                    word = remover_acentos(word.lower()).strip()
                     word = LOOKUP.get(word, word)
                     sent = int(sent)
                     if sent == 1:
@@ -93,6 +95,7 @@ def load_valence_emotions_from_sentilex(filename):
             info = line.lower().split('.')
             words = [remover_acentos(word.strip()) for word in info[0].split(',')]
             for word in words:
+                word = remover_acentos(word.lower()).strip()
                 word = LOOKUP.get(word, word)
                 cdata = info[1].split(';')
                 if len(cdata) > 0:
@@ -110,6 +113,14 @@ def load_valence_emotions_from_sentilex(filename):
     data['NEGATIVO'] = sorted(list(set(data['NEGATIVO'])))
     data['NEUTRO'] = sorted(list(set(data['NEUTRO'])))
     return data
+
+
+def is_number(s):
+    try:
+        complex(s) # for int, long, float and complex
+    except ValueError:
+        return False
+    return True
 
 
 @lru_cache(maxsize=256)
@@ -141,16 +152,17 @@ def tokenize_frases(phrase):
 
 
 def rm_stop_words_tokenized(phrase):
-    phrase = NLP(remover_acentos(phrase.lower()))
+    phrase = NLP(re.sub(r'["\'@#%\(\)]', '', remover_acentos(phrase.lower())))
     clean_frase = []
     for palavra in phrase:
         if palavra.pos_ != 'PUNCT':
-            palavra = palavra.lemma_
-            if palavra not in STOPWORDS and not palavra.isdigit():
-                clean_frase.append(palavra)
+            word = palavra.text.strip()
+            if not is_number(word) and word not in STOPWORDS:
+                clean_frase.append(palavra.lemma_)
     return ' '.join(clean_frase)
 
 
 # GLOBALS
 NLP = spacy.load('pt')
+STEMMER = nltk.stem.RSLPStemmer()
 STOPWORDS = _get_stopwords()
