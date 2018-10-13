@@ -38,7 +38,12 @@ class EmotionalLSA:
 
     def fit_transform(self, documents, emotion_words, ngrams=(1, 2)):
         self.fit(documents, ngrams)
-        return self.transform(emotion_words)
+        predicted = self.transform(emotion_words)
+        for i, pred_line in enumerate(predicted):
+            mmax, mmin = np.max(pred_line), np.min(pred_line)
+            if np.abs(mmin) > mmax:
+                predicted[i] = -predicted[i]
+        return predicted
 
     def _emotional_state(self, U, emotion_words):
         print('Processing emotional state... this may take a while...')
