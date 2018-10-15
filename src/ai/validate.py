@@ -10,6 +10,7 @@ if __name__ == '__main__':
 
     with open('/home/rdenadai/vagrant/python-dev/sentiment-analysis-2018-president-election/dataset/frases.txt') as h:
         original_phrases = h.readlines()
+    original_phrases = original_phrases
     phrases = generate_corpus(original_phrases)
 
     ldocs = [f'D{i}' for i in range(len(phrases))]
@@ -24,7 +25,7 @@ if __name__ == '__main__':
     emotion_words['NEUTRO'] = emotion_words_n['NEUTRO']
 
     print('Starting EmotionalLSA model...')
-    model = EmotionalLSA(use_tfidf=False, debug=True)
+    model = EmotionalLSA(use_tfidf=True, debug=True)
     print('fit and transform...')
     predicted = model.fit_transform(phrases, emotion_words)
 

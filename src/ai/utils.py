@@ -2,7 +2,6 @@ import codecs
 import re
 import concurrent.futures
 from unicodedata import normalize
-import concurrent.futures
 from string import punctuation
 from functools import lru_cache
 
@@ -36,9 +35,29 @@ def load_six_emotions(filepath):
     }
     for key, values in emotion_words.items():
         for i, word in enumerate(values):
-            word = remover_acentos(word.lower()).strip()
+            word = word.lower().strip()
             emotion_words[key][i] = LOOKUP.get(word, word)
+        emotion_words[key] = sorted(list(set(emotion_words[key])))
     return emotion_words
+
+@lru_cache(maxsize=256)
+def load_valence_emotions(filename_oplexicon, filename_sentilex):
+    data = {
+        'POSITIVO': [],
+        'NEGATIVO': [],
+        'NEUTRO': [],
+    }
+
+    oplexicon = load_valence_emotions_from_oplexicon(filename_oplexicon)
+    sentilex = load_valence_emotions_from_sentilex(filename_sentilex)
+
+    data['POSITIVO'] = oplexicon['POSITIVO'] + sentilex['POSITIVO']
+    data['NEGATIVO'] = oplexicon['NEGATIVO'] + sentilex['NEGATIVO']
+    data['NEUTRO'] = oplexicon['NEUTRO'] + sentilex['NEUTRO']
+    data['POSITIVO'] = sorted(list(set(data['POSITIVO'])))
+    data['NEGATIVO'] = sorted(list(set(data['NEGATIVO'])))
+    data['NEUTRO'] = sorted(list(set(data['NEUTRO'])))
+    return data
 
 
 @lru_cache(maxsize=256)
@@ -66,7 +85,7 @@ def load_valence_emotions_from_oplexicon(filename):
                 info[1] = [spacy_conv.get(tag) for tag in info[1].split()]
                 word, tags, sent = info[:3]
                 if 'HTAG' not in tags and 'EMOT' not in tags:
-                    word = remover_acentos(word.lower()).strip()
+                    word = word.lower().strip()
                     word = LOOKUP.get(word, word)
                     sent = int(sent)
                     if sent == 1:
@@ -95,14 +114,16 @@ def load_valence_emotions_from_sentilex(filename):
             info = line.lower().split('.')
             words = [remover_acentos(word.strip()) for word in info[0].split(',')]
             for word in words:
-                word = remover_acentos(word.lower()).strip()
+                word = word.lower().strip()
                 word = LOOKUP.get(word, word)
                 cdata = info[1].split(';')
                 if len(cdata) > 0:
-                    sent = [int(k.replace('pol:n0=', '')) if 'pol:n0=' in k else None for k in cdata]
-                    sent = list(filter(None.__ne__, sent))
-                    if len(sent) >= 1:
-                        sent = sent[0]
+                    sent0 = [int(k.replace('pol:n0=', '')) if 'pol:n0=' in k else None for k in cdata]
+                    sent1 = [int(k.replace('pol:n1=', '')) if 'pol:n1=' in k else None for k in cdata]
+                    sent0 = list(filter(None.__ne__, sent0))
+                    sent1 = list(filter(None.__ne__, sent1))
+                    if len(sent0) >= 1 and len(sent1) <= 0:
+                        sent = sent0[0]
                         if sent == 1:
                             data['POSITIVO'] += [word]
                         elif sent == -1:
@@ -157,12 +178,12 @@ def rm_stop_words_tokenized(phrase):
     for palavra in phrase:
         if palavra.pos_ != 'PUNCT':
             word = palavra.text.strip()
-            if not is_number(word) and word not in STOPWORDS:
+            if not is_number(word) and word not in STOPWORDS and len(word) > 1:
                 clean_frase.append(palavra.lemma_)
     return ' '.join(clean_frase)
 
 
 # GLOBALS
 NLP = spacy.load('pt')
-STEMMER = nltk.stem.RSLPStemmer()
+# STEMMER = nltk.stem.RSLPStemmer()
 STOPWORDS = _get_stopwords()
