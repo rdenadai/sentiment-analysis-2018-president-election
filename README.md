@@ -2,17 +2,30 @@
 
 Análise de sentimentos relacionados aos candidatos a Eleição para a presidência de 2018.
 
-### Descrição
+### Objetivo
 
 Este é o projeto realizado para a conclusão da disciplina [IA369-Y Computação Afetiva](http://www.dca.fee.unicamp.br/~paula/teaching.html) realizada na Unicamp durante o 
 2°Semestre 2018, oferecidade pela Prof. Paula Dornhofer Paro Costa ([mais informações](http://www.dca.fee.unicamp.br/~paula/)).
 
-O principal objetivo principal do projeto é coletar, analisar e detectar as emoções das pessoas com relação aos candidatos das eleições
-a presidenciáveis no Brasil para o ano de 2018.
+O principal objetivo do projeto é coletar, analisar e detectar as emoções das pessoas com relação aos candidatos às eleições
+a presidência no Brasil para o ano de 2018.
 
 Os integrantes do projeto são:
  - Edgar Lopes Banhesse
  - [Rodolfo De Nadai](http://www.rdenadai.com.br)
+
+### Descrição
+
+Utilizando-se do algoritmo proposto pela mestranda [Barbara Martinazzo](https://www.ppgia.pucpr.br/pt/arquivos/mestrado/dissertacoes/2010/barbara_martinazzo_versaofinal.pdf), foi aplicado
+o procedimento descrito para validação e análise de sentimentos em mensagens coletadas pela internet e em uma base de tweets coletados, os quais foram amostrados e definidos sentimentos prévios no trabalho
+do mestrando [Henrico Brum](https://bitbucket.org/HBrum/tweetsentbr/overview).
+
+Os resultados preliminares do proposto acima podem ser observado neste [jupyter notebook](https://github.com/rdenadai/sentiment-analysis-2018-president-election/blob/master/src/ai/validate.ipynb). 
+
+Expandimos o trabalho realizado pela Barbara Martinazzo, levando em consideração também uma emoção de neutralidade, algo que é mencionado em seu trabalho, mas não fora abordado.
+
+Além, disso, esse algoritmo implementado, não aborda a questão discutida por ela, com relação a usar essa implementação para novas mensagens. A abordagem utilizada por ela, leva em consideração o uso de contagem de palavras apenas,
+mas no algoritmo é possível optar pelo uso do [TF-IDF](https://pt.wikipedia.org/wiki/Tf%E2%80%93idf) para o cálculo das emoções.
 
 ### Instalação
 
@@ -51,17 +64,11 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     $> python extractor.py
     ```
 
-#### Python libs
-
-Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
-
- - selenium
-    > Utlizada para realizar a raspagem dos comentários e outros dados das páginas apresentadas abaixo.
-      Infelizmente as api's das redes sociais são bem mais restritivas agora, ou mesmo tem um tempo moroso para habilitação de uso.
- - peewee
-    > ORM em python para realizar a conexão com a base de dados. No caso estamos utilizando sqlite como base de dados.
- 
 #### Páginas extraídas
+
+Para a validação final sobre o sentimentos dos eleitores com relação aos candidatos a eleição do Brasil para 2018, 
+foi realizado a raspagem de comentários das seguintes páginas de redes sociais. 
+
 1. Instagram
     - [Jair Bolsonaro](https://www.instagram.com/jairmessiasbolsonaro/?hl=pt-br)
     - [Geraldo Alckmin](https://www.instagram.com/geraldoalckmin_/?hl=pt-br)
@@ -86,7 +93,7 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [Fernando Haddad](???)
     - [Marina Silva](https://www.youtube.com/user/msilvaonline/videos)
     - [Ciro Gomes](https://www.youtube.com/channel/UCHFO37KCJlMNUXNK21MV8SQ/videos)
-5. Twitter treding
+5. Twitter treding hashtags
     - [eleicoes2018](https://twitter.com/hashtag/eleicoes2018)
     - [eleições2018](https://twitter.com/hashtag/eleições2018)
     - [Eleições2018](https://twitter.com/hashtag/Eleições2018)
@@ -149,9 +156,14 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [Nordeste17](https://twitter.com/hashtag/Nordeste17)
     - [HaddadSim](https://twitter.com/hashtag/HaddadSim)
     - [VemProDebate](https://twitter.com/hashtag/VemProDebate)
-    - [HaddadSim](https://twitter.com/hashtag/BolsonaroCagao)
+    - [BolsonaroCagao](https://twitter.com/hashtag/BolsonaroCagao)
  
- #### Datasets
+ #### Léxicos
+ 
+ Coletamos e analisamos o uso dos seguintes possíveis léxicos para a língua portuguesa.
+ 
+ Por fim, o trabalho atual se baseia na união do [SentiLex + OpLexicon + Conjuntos de palavras por sentimentos](https://github.com/rdenadai/sentiment-analysis-2018-president-election/tree/master/dataset/emocoes).
+ 
  
  1. [WordNetAffectBR](http://www.inf.pucrs.br/linatural/wordpress/index.php/recursos-e-ferramentas/wordnetaffectbr/)
 
@@ -170,11 +182,13 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
  
  > OpLexicon é um léxico de sentimento para a língua portuguesa.
 
- 4. [ViesNoticias](http://www.each.usp.br/norton/viesnoticias/index_ing.html) 
+ ### Datasets
+
+ 1. [ViesNoticias](http://www.each.usp.br/norton/viesnoticias/index_ing.html) 
 
  > Este repositório conta com um corpus de notícias sobre política obtido de alguns produtores de notícias no Brasil.
 
- 5. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
+ 2. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
  
  > Chamamos de "Floresta Sintáctica" um conjunto de frases (corpus) analisadas (morfo)sintaticamente. Como, além da indicação das funções sintácticas, a análise também explicita hierarquicamente informação relativa à estrutura de constituintes, dizemos que uma frase sintaticamente analisada se parece com uma árvore, donde um conjunto de árvores constitui uma floresta sintáctica (em inglês, treebank).
 
@@ -183,27 +197,51 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
  1 . [TweetSentBR](https://bitbucket.org/HBrum/tweetsentbr/overview)
  
  > TweetSentBR is a corpus of Tweets in Brazilian Portuguese. It was labeled by several annotators following steps stablished on the literature for improving reliability on the task of Sentiment Analysis. Each Tweet was annotated in one of the three following classes: Positive - tweets where a user meant a positive reaction or evaluation about the main topic on the post; Negative - tweets where a user meant a negative reaction or evaluation about the main topic on the post; * Neutral - tweets not belonging to any of the last classes, usually not making a point, out of topic, irrelevant, confusing or containing only objective data.
+ 
+ ##### Python libs
 
- 2 . Bibliotecas:
-  - [NLTK](http://www.nltk.org/howto/portuguese_en.html)
-  - [spaCy](https://spacy.io/usage/spacy-101)
+ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
+
+ - [selenium](https://selenium-python.readthedocs.io/)
+    > Utlizada para realizar a raspagem dos comentários e outros dados das páginas apresentadas abaixo.
+      Infelizmente as api's das redes sociais são bem mais restritivas agora, ou mesmo tem um tempo moroso para habilitação de uso.
+ - [peewee](http://docs.peewee-orm.com/en/latest/)
+    > ORM em python para realizar a conexão com a base de dados. No caso estamos utilizando sqlite como base de dados.
+ - [NLTK](http://www.nltk.org/howto/portuguese_en.html)
+    > Natural Language Toolkit em python, foi utilizada em alguns pontos específicos para realizar o tratamento e análise de textos. 
+ - [spaCy](https://spacy.io/usage/spacy-101)
+    > É uma exceleten biblioteca para NLP, adiciona várioas algoritmos e ferramental para análise de textos.
+ - [scikit-learn](http://scikit-learn.org)
+    > Excelente ferramenta para Machine Learning, mas possui diversas funções matemáticas prontas. Usamos suas operações para trabalhar com texto.
+ - [Cython](https://cython.org/)
+    > Converte código python para C, permitindo melhorias na performance de execução.
+ - [numba](http://numba.pydata.org/)
+    > Compilador JIT que converte código python para C, permitindo melhorias na performance de execução.
+ - [numpy](http://www.numpy.org/)
+ - [scipy](https://www.scipy.org/)
+ - [matplotlib](https://matplotlib.org/)
+ - [pandas](https://pandas.pydata.org/)
+    > Ferramentas padrão e essenciais para projetos de data science e machine learning.
+ 
  
  3 . Dados:
   - [Frases para Face](https://www.frasesparaface.com.br/outras-frases/)
+  - [Dicionário Criativo](https://dicionariocriativo.com.br/)
+  
  
  4 . Tutoriais
   - [Utilizando processamento de linguagem natural para criar uma sumarização automática de textos](https://medium.com/@viniljf/utilizando-processamento-de-linguagem-natural-para-criar-um-sumariza%C3%A7%C3%A3o-autom%C3%A1tica-de-textos-775cb428c84e)
   - [Latent Semantic Analysis (LSA) for Text Classification Tutorial](http://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/)
   - [Machine Learning :: Cosine Similarity for Vector Space Models (Part III)](http://blog.christianperone.com/2013/09/machine-learning-cosine-similarity-for-vector-space-models-part-iii/)
   - [My Notes for Singular Value Decomposition with Interactive Code ](https://towardsdatascience.com/my-notes-for-singular-value-decomposition-with-interactive-code-feat-peter-mills-7584f4f2930a)
-  - [https://plot.ly/ipython-notebooks/principal-component-analysis/](https://plot.ly/ipython-notebooks/principal-component-analysis/)
+  - [Principal Component Analysis in Python](https://plot.ly/ipython-notebooks/principal-component-analysis/)
+  - [Euclidean vs. Cosine Distance](https://cmry.github.io/notes/euclidean-v-cosine)
  
  5 . Topic Modelling
   - [Topic Modeling with LSA, PLSA, LDA & lda2Vec](https://medium.com/nanonets/topic-modeling-with-lsa-psla-lda-and-lda2vec-555ff65b0b05)
   - [Integrating Topics and Syntax (HHM-LDA)](http://psiexp.ss.uci.edu/research/papers/composite.pdf)
  
- 6 . Others
-  - [PANAS-t: A Pychometric Scale for Measuring Sentiments on Twitter](https://arxiv.org/abs/1308.1857)
+ 6 . LSA + Others
   - [Um Método de Identificação de Emoções em Textos Curtos para o Português do Brasil](http://www.ppgia.pucpr.br/~paraiso/Projects/Emocoes/Emocoes.html)
   - [An Introduction to Latent Semantic Analysis](http://lsa.colorado.edu/papers/dp1.LSAintro.pdf)
   - [Unsupervised Emotion Detection from Text using Semantic and Syntactic Relations](http://www.cse.yorku.ca/~aan/research/paper/Emo_WI10.pdf)
@@ -211,4 +249,5 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
   - [Sentiment Classification of Documents Based on Latent Semantic Analysis](https://link.springer.com/chapter/10.1007/978-3-642-21802-6_57)
   - [Applying latent semantic analysis to classify emotions in Thai text](https://ieeexplore.ieee.org/document/5486137)
   - [Text Emotion Classification Research Based on Improved Latent Semantic Analysis Algorithm](https://www.researchgate.net/publication/266651993_Text_Emotion_Classification_Research_Based_on_Improved_Latent_Semantic_Analysis_Algorithm)
+  - [PANAS-t: A Pychometric Scale for Measuring Sentiments on Twitter](https://arxiv.org/abs/1308.1857)
 

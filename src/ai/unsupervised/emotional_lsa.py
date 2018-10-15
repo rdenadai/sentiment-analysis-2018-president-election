@@ -7,19 +7,19 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from .emotional_lsa_utils import _transform
 
 
-def calculate_sentiment_weights(words, rank, u, weights, idx):
-    wv = np.zeros((rank))
+def calculate_sentiment_weights(words, dims, u, weights, idx):
+    wv = np.zeros((dims))
     for value in words:
-        for i in range(rank):
+        for i in range(dims):
             indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
             wv[i] += sum([sum(u[index][i] * weights.iloc[index].values) for index in indexes])
-    return wv / rank
+    return wv / dims
 
 
-def _calculate_emotional_state(u, idx, emotion_words, weights, rank):
+def _calculate_emotional_state(u, idx, emotion_words, weights, dims):
     wv = np.zeros((1, 1))
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as procs:
-        f = partial(calculate_sentiment_weights, rank=rank, u=u, weights=weights, idx=idx)
+        f = partial(calculate_sentiment_weights, dims=dims, u=u, weights=weights, idx=idx)
         calc_weights = procs.map(f, list(emotion_words.values()), chunksize=25)
         wv = np.array(list(calc_weights))
     return wv.T
@@ -27,10 +27,10 @@ def _calculate_emotional_state(u, idx, emotion_words, weights, rank):
 
 class EmotionalLSA:
 
-    def __init__(self, use_tfidf=False, rank=100, language='pt', debug=False):
+    def __init__(self, use_tfidf=False, dims=100, language='pt', debug=False):
         self.debug = debug
         self.use_tfidf = use_tfidf
-        self.rank = rank
+        self.dims = dims
         self.nlp = spacy.load(language)
         self.X = None
         self.weights = None
@@ -54,8 +54,8 @@ class EmotionalLSA:
         np.random.seed(12345)
         print('Calculating SVD...')
         U, S, V = np.linalg.svd(self.X.toarray().T, full_matrices=False)
-        U, S, V = U[:, :self.rank], np.diag(S)[:self.rank, :self.rank], V[:self.rank, :]
-        self.rank = U.shape[1]
+        U, S, V = U[:, :self.dims], np.diag(S)[:self.dims, :self.dims], V[:self.dims, :]
+        self.dims = U.shape[1]
         wv = self._emotional_state(U, emotion_words)
         print('Calculating final emotional matrix...')
         return _transform(wv, V, emotion_words, self._ldocs)
@@ -71,4 +71,4 @@ class EmotionalLSA:
         lista_palavras = idx.keys()
         for key, values in emotion_words.items():
             emotion_words[key] = list(filter(None, [value if value in lista_palavras else None for value in values]))
-        return _calculate_emotional_state(U, idx, emotion_words, self.weights, self.rank)
+        return _calculate_emotional_state(U, idx, emotion_words, self.weights, self.dims)
