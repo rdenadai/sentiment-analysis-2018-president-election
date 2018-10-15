@@ -148,7 +148,9 @@ Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
     - [AgoraÉHaddad](https://twitter.com/hashtag/AgoraÉHaddad)
     - [Nordeste17](https://twitter.com/hashtag/Nordeste17)
     - [HaddadSim](https://twitter.com/hashtag/HaddadSim)
-
+    - [VemProDebate](https://twitter.com/hashtag/VemProDebate)
+    - [HaddadSim](https://twitter.com/hashtag/BolsonaroCagao)
+ 
  #### Datasets
  
  1. [WordNetAffectBR](http://www.inf.pucrs.br/linatural/wordpress/index.php/recursos-e-ferramentas/wordnetaffectbr/)
