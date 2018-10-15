@@ -90,5 +90,7 @@ hashtags = [
     'FicaTemer',
     'AgoraÉHaddad',
     'Nordeste17',
-    'HaddadSim'
+    'HaddadSim',
+    'VemProDebate',
+    'BolsonaroCagao',
 ]

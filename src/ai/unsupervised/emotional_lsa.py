@@ -12,7 +12,7 @@ def calculate_sentiment_weights(words, rank, u, weights, idx):
     for value in words:
         for i in range(rank):
             indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
-            wv[i] += np.sum([u[index][i] * weights.iloc[index].values for index in indexes])
+            wv[i] += sum([sum(u[index][i] * weights.iloc[index].values) for index in indexes])
     return wv / rank
 
 
