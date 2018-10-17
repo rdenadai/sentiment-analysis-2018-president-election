@@ -1,4 +1,5 @@
 import numpy as np
+cimport numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from cython.parallel import parallel, prange
 
@@ -28,15 +29,29 @@ def _transform(wv, V, dict emotion_words, int _ldocs):
     return np.round(_normalization(dtframe, -100, 100), 2)[:size-2, :]
 
 
-def _calculate_emotional_state(u, dict idx, dict emotion_words, weights, int dims):
+cdef np.ndarray _calculate_sentiment_weights(list words, int dims, np.ndarray u, np.ndarray weights, dict idx):
+    cdef int i
+    cdef char* value
+    cdef np.ndarray[np.int_t, ndim=1] wv = np.zeros((dims))
+
+    for value in words:
+        for i in range(dims):
+            indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
+            wv[i] += sum([sum(u[index][i] * weights.iloc[index].values) for index in indexes])
+    return wv / dims
+
+
+cdef np.ndarray _calculate_emotional_state(np.ndarray u, dict idx, dict emotion_words, np.ndarray weights, int dims):
     cdef int k
     cdef int i
     cdef list values
+    cdef char* value
+    cdef np.ndarray[np.int_t, ndim=2] wv = np.zeros((dims, len(emotion_words.keys())))
 
-    wv = np.zeros((dims, len(emotion_words.keys())))
     for k, values in enumerate(emotion_words.values()):
         for value in values:
             for i in range(dims):
                 indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
                 wv[i][k] += np.sum([u[index][i] * weights.iloc[index].values for index in indexes])
     return wv / dims
+

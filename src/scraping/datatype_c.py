@@ -93,4 +93,6 @@ hashtags = [
     'HaddadSim',
     'VemProDebate',
     'BolsonaroCagao',
+    'LulaTaPresoBabaca',
+    'DitaduraNuncaMais',
 ]

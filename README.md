@@ -49,7 +49,8 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     $> python -m nltk.downloader rslp
     $> python -m spacy download en
     $> python -m spacy download pt
-    $> cythonize -i src/ai/unsupervised/emotional_lsa_utils.pyx
+    $> cd src/ai/unsupervised/
+    $> python setup.py build_ext --inplace
 
     ```
  3.
@@ -157,6 +158,8 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     - [HaddadSim](https://twitter.com/hashtag/HaddadSim)
     - [VemProDebate](https://twitter.com/hashtag/VemProDebate)
     - [BolsonaroCagao](https://twitter.com/hashtag/BolsonaroCagao)
+    - [LulaTaPresoBabaca](https://twitter.com/hashtag/LulaTaPresoBabaca)
+    - [DitaduraNuncaMais](https://twitter.com/hashtag/DitaduraNuncaMais)
  
  #### Léxicos
  
