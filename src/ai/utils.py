@@ -1,5 +1,6 @@
 import codecs
 import re
+import time
 import concurrent.futures
 from unicodedata import normalize
 from string import punctuation
@@ -136,6 +137,7 @@ def load_valence_emotions_from_sentilex(filename):
     return data
 
 
+@lru_cache(maxsize=256)
 def is_number(s):
     try:
         complex(s) # for int, long, float and complex
@@ -153,18 +155,17 @@ def _get_stopwords():
     return stpwords
 
 
-def generate_corpus(documents=None, tokenize=False):
+def generate_corpus(documents=None, tokenize=False, debug=False):
     assert len(documents) > 0
-    print('Iniciando processamento...')
+    if debug: print('Iniciando processamento...')
     tokenized_docs = documents
-    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as procs:
+    with concurrent.futures.ProcessPoolExecutor() as procs:
         if tokenize:
-            print('Executando processo de tokenização das frases...')
-            tokenized_docs = procs.map(tokenize_frases, documents, chunksize=25)
-            print('Executando processo de remoção das stopwords...')
-        tokenized_frases = procs.map(rm_stop_words_tokenized, tokenized_docs, chunksize=25)
-        print('Filtro e finalização...')
-    print('Finalizado...')
+            if debug: print('Executando processo de tokenização das frases...')
+            tokenized_docs = procs.map(tokenize_frases, documents, chunksize=10)
+        if debug: print('Executando processo de remoção das stopwords...')
+        tokenized_frases = procs.map(rm_stop_words_tokenized, tokenized_docs, chunksize=100)
+    if debug: print('Finalizado...')
     return list(tokenized_frases)
 
 
