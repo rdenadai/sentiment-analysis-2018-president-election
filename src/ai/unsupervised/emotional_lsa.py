@@ -15,12 +15,10 @@ def work(words, dims, u, weights, idx):
 
 
 def _calculate_emotional_state(u, idx, emotion_words, weights, dims):
-    wv = np.zeros((1, 1))
-    with concurrent.futures.ProcessPoolExecutor(max_workers=4) as procs:
+    with concurrent.futures.ProcessPoolExecutor() as procs:
         f = partial(work, dims=dims, u=u, weights=weights, idx=idx)
-        calc_weights = procs.map(f, list(emotion_words.values()))
-        wv = np.array(list(calc_weights))
-    return wv.T
+        wv = procs.map(f, list(emotion_words.values()))
+        return np.asarray(list(wv)).T
 
 
 class EmotionalLSA:
