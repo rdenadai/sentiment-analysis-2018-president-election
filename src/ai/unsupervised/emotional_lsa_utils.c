@@ -2829,12 +2829,12 @@ static PyObject *__pyx_pf_3src_2ai_12unsupervised_19emotional_lsa_utils_2_transf
 /* "src/ai/unsupervised/emotional_lsa_utils.pyx":32
  * 
  * 
- * cdef np.ndarray _calculate_sentiment_weights(list words, int dims, np.ndarray u, np.ndarray weights, dict idx):             # <<<<<<<<<<<<<<
+ * cdef np.ndarray _calculate_sentiment_weights(list words, int dims, np.ndarray U, np.ndarray weights, dict idx):             # <<<<<<<<<<<<<<
  *     cdef int i
  *     cdef char* value
  */
 
-static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__calculate_sentiment_weights(PyObject *__pyx_v_words, int __pyx_v_dims, PyArrayObject *__pyx_v_u, PyArrayObject *__pyx_v_weights, PyObject *__pyx_v_idx) {
+static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__calculate_sentiment_weights(PyObject *__pyx_v_words, int __pyx_v_dims, PyArrayObject *__pyx_v_U, PyArrayObject *__pyx_v_weights, PyObject *__pyx_v_idx) {
   int __pyx_v_i;
   char *__pyx_v_value;
   PyArrayObject *__pyx_v_wv = 0;
@@ -2973,7 +2973,7 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
  *     for value in words:
  *         for i in range(dims):             # <<<<<<<<<<<<<<
  *             indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
- *             wv[i] += sum([sum(u[index][i] * weights.iloc[index].values) for index in indexes])
+ *             wv[i] += sum([sum(U[index][i] * weights.iloc[index].values[i]) for index in indexes])
  */
     __pyx_t_9 = __pyx_v_dims;
     __pyx_t_10 = __pyx_t_9;
@@ -2984,7 +2984,7 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
  *     for value in words:
  *         for i in range(dims):
  *             indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])             # <<<<<<<<<<<<<<
- *             wv[i] += sum([sum(u[index][i] * weights.iloc[index].values) for index in indexes])
+ *             wv[i] += sum([sum(U[index][i] * weights.iloc[index].values[i]) for index in indexes])
  *     return wv / dims
  */
       __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
@@ -3079,7 +3079,7 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
       /* "src/ai/unsupervised/emotional_lsa_utils.pyx":40
  *         for i in range(dims):
  *             indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
- *             wv[i] += sum([sum(u[index][i] * weights.iloc[index].values) for index in indexes])             # <<<<<<<<<<<<<<
+ *             wv[i] += sum([sum(U[index][i] * weights.iloc[index].values[i]) for index in indexes])             # <<<<<<<<<<<<<<
  *     return wv / dims
  * 
  */
@@ -3126,7 +3126,7 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
         }
         __Pyx_XDECREF_SET(__pyx_v_index, __pyx_t_4);
         __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_u), __pyx_v_index); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_U), __pyx_v_index); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_4, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
@@ -3139,15 +3139,18 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
         __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_values); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __pyx_t_14 = PyNumber_Multiply(__pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 40, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_GetItemInt(__pyx_t_4, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 40, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_14);
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_sum, __pyx_t_14); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
+        __pyx_t_4 = PyNumber_Multiply(__pyx_t_2, __pyx_t_14); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
+        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-        if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 40, __pyx_L1_error)
+        __pyx_t_14 = __Pyx_PyObject_CallOneArg(__pyx_builtin_sum, __pyx_t_4); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 40, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_14);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+        if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_t_14))) __PYX_ERR(0, 40, __pyx_L1_error)
+        __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
       }
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_builtin_sum, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
@@ -3180,7 +3183,7 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
 
   /* "src/ai/unsupervised/emotional_lsa_utils.pyx":41
  *             indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
- *             wv[i] += sum([sum(u[index][i] * weights.iloc[index].values) for index in indexes])
+ *             wv[i] += sum([sum(U[index][i] * weights.iloc[index].values[i]) for index in indexes])
  *     return wv / dims             # <<<<<<<<<<<<<<
  * 
  * 
@@ -3199,7 +3202,7 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
   /* "src/ai/unsupervised/emotional_lsa_utils.pyx":32
  * 
  * 
- * cdef np.ndarray _calculate_sentiment_weights(list words, int dims, np.ndarray u, np.ndarray weights, dict idx):             # <<<<<<<<<<<<<<
+ * cdef np.ndarray _calculate_sentiment_weights(list words, int dims, np.ndarray U, np.ndarray weights, dict idx):             # <<<<<<<<<<<<<<
  *     cdef int i
  *     cdef char* value
  */
@@ -3467,7 +3470,7 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
  *         for value in values:
  *             for i in range(dims):             # <<<<<<<<<<<<<<
  *                 indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
- *                 wv[i][k] += np.sum([u[index][i] * weights.iloc[index].values for index in indexes])
+ *                 wv[i][k] += np.sum([u[index][i] * weights.iloc[index].values[i] for index in indexes])
  */
       __pyx_t_12 = __pyx_v_dims;
       __pyx_t_13 = __pyx_t_12;
@@ -3478,7 +3481,7 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
  *         for value in values:
  *             for i in range(dims):
  *                 indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])             # <<<<<<<<<<<<<<
- *                 wv[i][k] += np.sum([u[index][i] * weights.iloc[index].values for index in indexes])
+ *                 wv[i][k] += np.sum([u[index][i] * weights.iloc[index].values[i] for index in indexes])
  *     return wv / dims
  */
         __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
@@ -3573,7 +3576,7 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
         /* "src/ai/unsupervised/emotional_lsa_utils.pyx":55
  *             for i in range(dims):
  *                 indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
- *                 wv[i][k] += np.sum([u[index][i] * weights.iloc[index].values for index in indexes])             # <<<<<<<<<<<<<<
+ *                 wv[i][k] += np.sum([u[index][i] * weights.iloc[index].values[i] for index in indexes])             # <<<<<<<<<<<<<<
  *     return wv / dims
  * 
  */
@@ -3643,12 +3646,15 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
           __pyx_t_22 = __Pyx_PyObject_GetAttrStr(__pyx_t_24, __pyx_n_s_values); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 55, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_22);
           __Pyx_DECREF(__pyx_t_24); __pyx_t_24 = 0;
-          __pyx_t_24 = PyNumber_Multiply(__pyx_t_23, __pyx_t_22); if (unlikely(!__pyx_t_24)) __PYX_ERR(0, 55, __pyx_L1_error)
+          __pyx_t_24 = __Pyx_GetItemInt(__pyx_t_22, __pyx_v_i, int, 1, __Pyx_PyInt_From_int, 0, 1, 1); if (unlikely(!__pyx_t_24)) __PYX_ERR(0, 55, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_24);
-          __Pyx_DECREF(__pyx_t_23); __pyx_t_23 = 0;
           __Pyx_DECREF(__pyx_t_22); __pyx_t_22 = 0;
-          if (unlikely(__Pyx_ListComp_Append(__pyx_t_4, (PyObject*)__pyx_t_24))) __PYX_ERR(0, 55, __pyx_L1_error)
+          __pyx_t_22 = PyNumber_Multiply(__pyx_t_23, __pyx_t_24); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 55, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_22);
+          __Pyx_DECREF(__pyx_t_23); __pyx_t_23 = 0;
           __Pyx_DECREF(__pyx_t_24); __pyx_t_24 = 0;
+          if (unlikely(__Pyx_ListComp_Append(__pyx_t_4, (PyObject*)__pyx_t_22))) __PYX_ERR(0, 55, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_22); __pyx_t_22 = 0;
         }
         __Pyx_DECREF(__pyx_t_21); __pyx_t_21 = 0;
         __pyx_t_21 = NULL;
@@ -3685,15 +3691,15 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
           } else
           #endif
           {
-            __pyx_t_24 = PyTuple_New(1+1); if (unlikely(!__pyx_t_24)) __PYX_ERR(0, 55, __pyx_L1_error)
-            __Pyx_GOTREF(__pyx_t_24);
-            __Pyx_GIVEREF(__pyx_t_21); PyTuple_SET_ITEM(__pyx_t_24, 0, __pyx_t_21); __pyx_t_21 = NULL;
+            __pyx_t_22 = PyTuple_New(1+1); if (unlikely(!__pyx_t_22)) __PYX_ERR(0, 55, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_22);
+            __Pyx_GIVEREF(__pyx_t_21); PyTuple_SET_ITEM(__pyx_t_22, 0, __pyx_t_21); __pyx_t_21 = NULL;
             __Pyx_GIVEREF(__pyx_t_4);
-            PyTuple_SET_ITEM(__pyx_t_24, 0+1, __pyx_t_4);
+            PyTuple_SET_ITEM(__pyx_t_22, 0+1, __pyx_t_4);
             __pyx_t_4 = 0;
-            __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_18, __pyx_t_24, NULL); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 55, __pyx_L1_error)
+            __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_18, __pyx_t_22, NULL); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 55, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_15);
-            __Pyx_DECREF(__pyx_t_24); __pyx_t_24 = 0;
+            __Pyx_DECREF(__pyx_t_22); __pyx_t_22 = 0;
           }
         }
         __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
@@ -3728,7 +3734,7 @@ static PyArrayObject *__pyx_f_3src_2ai_12unsupervised_19emotional_lsa_utils__cal
 
   /* "src/ai/unsupervised/emotional_lsa_utils.pyx":56
  *                 indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
- *                 wv[i][k] += np.sum([u[index][i] * weights.iloc[index].values for index in indexes])
+ *                 wv[i][k] += np.sum([u[index][i] * weights.iloc[index].values[i] for index in indexes])
  *     return wv / dims             # <<<<<<<<<<<<<<
  * 
  */
