@@ -95,4 +95,7 @@ hashtags = [
     'BolsonaroCagao',
     'LulaTaPresoBabaca',
     'DitaduraNuncaMais',
+    'Caixa2doBolsonaro',
+    'MarketeirosDoJair',
+    'Bolsolao',
 ]
