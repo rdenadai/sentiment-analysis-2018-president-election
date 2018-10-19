@@ -53,7 +53,6 @@ class EmotionalLSA:
         start_time = time.time()
         if self.debug: print('Calculating SVD...')
         U, S, V = np.linalg.svd(self.X.toarray().T, full_matrices=False)
-        # U, S, V = U[:, :self.dims], np.diag(S)[:self.dims, :self.dims], V[:self.dims, :]
         U, V = U[:, :self.dims], V[:self.dims, :]
         self.dims = U.shape[1]
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))

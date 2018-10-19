@@ -10,7 +10,6 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import spacy
-from spacy.lang.pt.lemmatizer import LOOKUP
 
 
 def remover_acentos(txt):
@@ -36,10 +35,22 @@ def load_six_emotions(filepath):
     }
     for key, values in emotion_words.items():
         for i, word in enumerate(values):
-            word = word.lower().strip()
-            emotion_words[key][i] = LOOKUP.get(word, word)
+            word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
+            emotion_words[key][i] = word
         emotion_words[key] = sorted(list(set(emotion_words[key])))
     return emotion_words
+
+
+@lru_cache(maxsize=256)
+def load_3_emotions(filepath):
+    """Ekman, Friesen, and Ellsworth : anger, disgust, fear, joy, sadness, surprise."""
+    emotion_words = {
+        'POSITIVO': _load_emotion_file_content('positivo', filepath),
+        'NEGATIVO': _load_emotion_file_content('negativo', filepath),
+        'NEUTRO': _load_emotion_file_content('neutro', filepath),
+    }
+    return emotion_words
+
 
 @lru_cache(maxsize=256)
 def load_valence_emotions(filename_oplexicon, filename_sentilex):
@@ -86,8 +97,7 @@ def load_valence_emotions_from_oplexicon(filename):
                 info[1] = [spacy_conv.get(tag) for tag in info[1].split()]
                 word, tags, sent = info[:3]
                 if 'HTAG' not in tags and 'EMOT' not in tags:
-                    word = word.lower().strip()
-                    word = LOOKUP.get(word, word)
+                    word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
                     sent = int(sent)
                     if sent == 1:
                         data['POSITIVO'] += [word]
@@ -113,10 +123,9 @@ def load_valence_emotions_from_sentilex(filename):
         lines = hf.readlines()
         for line in lines:
             info = line.lower().split('.')
-            words = [remover_acentos(word.strip()) for word in info[0].split(',')]
+            words = [word.strip() for word in info[0].split(',')]
             for word in words:
-                word = word.lower().strip()
-                word = LOOKUP.get(word, word)
+                word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
                 cdata = info[1].split(';')
                 if len(cdata) > 0:
                     sent0 = [int(k.replace('pol:n0=', '')) if 'pol:n0=' in k else None for k in cdata]
@@ -155,32 +164,28 @@ def _get_stopwords():
     return stpwords
 
 
-def generate_corpus(documents=None, tokenize=False, debug=False):
+def generate_corpus(documents=None, debug=False):
     assert len(documents) > 0
     if debug: print('Iniciando processamento...')
     tokenized_docs = documents
     with concurrent.futures.ProcessPoolExecutor() as procs:
-        if tokenize:
-            if debug: print('Executando processo de tokenização das frases...')
-            tokenized_docs = procs.map(tokenize_frases, documents, chunksize=10)
         if debug: print('Executando processo de remoção das stopwords...')
-        tokenized_frases = procs.map(rm_stop_words_tokenized, tokenized_docs, chunksize=100)
+        tokenized_frases = procs.map(tokenizer, tokenized_docs, chunksize=100)
     if debug: print('Finalizado...')
     return list(tokenized_frases)
 
 
-def tokenize_frases(phrase):
-    return word_tokenize(remover_acentos(phrase.lower()))
-
-
-def rm_stop_words_tokenized(phrase):
-    phrase = NLP(re.sub(r'["\'@#%\(\)]', '', remover_acentos(phrase.lower())))
+def tokenizer(phrase):
+    phrase = phrase.lower()
+    for o, r in RM:
+        phrase = re.sub(o, r, phrase, flags=re.MULTILINE)
+    phrase = NLP(re.sub(r'["\'@#%\(\)]', '', phrase), disable=['parser'])
     clean_frase = []
     for palavra in phrase:
         if palavra.pos_ != 'PUNCT':
             word = palavra.text.strip()
             if not is_number(word) and word not in STOPWORDS and len(word) > 1:
-                clean_frase.append(palavra.lemma_)
+                clean_frase += [palavra.lemma_]
     return ' '.join(clean_frase)
 
 
@@ -188,3 +193,7 @@ def rm_stop_words_tokenized(phrase):
 NLP = spacy.load('pt')
 # STEMMER = nltk.stem.RSLPStemmer()
 STOPWORDS = _get_stopwords()
+RM = [
+    ('\n', '. '), ('"', ''), ('@', ''),
+    ('#', ''), ('RT', ''), (r'(http[s]*?:\/\/)+.*[\r\n]*', '')
+]

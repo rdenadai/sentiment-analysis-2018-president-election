@@ -160,6 +160,9 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     - [BolsonaroCagao](https://twitter.com/hashtag/BolsonaroCagao)
     - [LulaTaPresoBabaca](https://twitter.com/hashtag/LulaTaPresoBabaca)
     - [DitaduraNuncaMais](https://twitter.com/hashtag/DitaduraNuncaMais)
+    - [Caixa2doBolsonaro](https://twitter.com/hashtag/Caixa2doBolsonaro)
+    - [MarketeirosDoJair](https://twitter.com/hashtag/MarketeirosDoJair)
+    - [Bolsolao](https://twitter.com/hashtag/Bolsolao)
  
  #### Léxicos
  
