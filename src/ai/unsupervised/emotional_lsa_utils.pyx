@@ -1,26 +1,28 @@
 import numpy as np
 cimport numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-from cython.parallel import parallel, prange
 
 
-def _normalization(x, int a, int b):
+cpdef np.ndarray _normalization(np.ndarray x, int a, int b):
     return (2 * b) * (x - np.min(x)) / np.ptp(x) + a
 
 
-def _transform(wv, V, dict emotion_words, int _ldocs):
+cpdef np.ndarray _transform(np.ndarray wv, np.ndarray V, dict emotion_words, int _ldocs):
     cdef int i
     cdef int k
     cdef int size
     cdef int e_size
+    cdef double mmax
+    cdef double mmin
+    cdef np.ndarray[np.double_t, ndim=2] dtframe
 
     size = _ldocs + 2
     e_size = len(emotion_words.keys())
+
     dtframe = np.ones((size, e_size))
     for i in range(_ldocs):
         for k in range(e_size):
-            a = [wv[:, k]]
-            b = [V.T[i]]
+            a, b = [wv[:, k]], [V.T[i]]
             dtframe[i][k] = cosine_similarity(a, b)
         mmax, mmin = np.max(dtframe[i]), np.min(dtframe[i])
         if abs(mmin) > mmax:
@@ -29,29 +31,30 @@ def _transform(wv, V, dict emotion_words, int _ldocs):
     return np.round(_normalization(dtframe, -100, 100), 2)[:size-2, :]
 
 
-cdef np.ndarray _calculate_sentiment_weights(list words, int dims, np.ndarray U, np.ndarray weights, dict idx):
+cpdef np.ndarray _calculate_sentiment_weights(list words, int rank, np.ndarray U, np.ndarray weights, dict idx):
     cdef int i
     cdef char* value
-    cdef np.ndarray[np.int_t, ndim=1] wv = np.zeros((dims))
+    cdef np.ndarray[np.int_t, ndim=1] wv
 
+    wv = np.zeros((rank))
     for value in words:
-        for i in range(dims):
-            indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
+        for i in range(rank):
+            indexes = [e for e, inx in enumerate(idx.keys()) if value in inx]
             wv[i] += sum([sum(U[index][i] * weights.iloc[index].values[i]) for index in indexes])
-    return wv / dims
+    return wv / rank
 
 
-cdef np.ndarray _calculate_emotional_state(np.ndarray u, dict idx, dict emotion_words, np.ndarray weights, int dims):
+cpdef np.ndarray _calculate_emotional_state(np.ndarray U, dict idx, dict emotion_words, np.ndarray weights, int rank):
     cdef int k
     cdef int i
     cdef list values
     cdef char* value
-    cdef np.ndarray[np.int_t, ndim=2] wv = np.zeros((dims, len(emotion_words.keys())))
+    cdef np.ndarray[np.double_t, ndim=2] wv
 
+    wv = np.zeros((rank, len(emotion_words.keys())))
     for k, values in enumerate(emotion_words.values()):
         for value in values:
-            for i in range(dims):
-                indexes = filter(None, [e if value in inx else None for e, inx in enumerate(idx.keys())])
-                wv[i][k] += np.sum([u[index][i] * weights.iloc[index].values[i] for index in indexes])
-    return wv / dims
-
+            for i in range(rank):
+                indexes = [e for e, inx in enumerate(idx.keys()) if value in inx]
+                wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
+    return wv / rank

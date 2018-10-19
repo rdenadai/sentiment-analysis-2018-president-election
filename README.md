@@ -49,9 +49,7 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     $> python -m nltk.downloader rslp
     $> python -m spacy download en
     $> python -m spacy download pt
-    $> cd src/ai/unsupervised/
-    $> python setup.py build_ext --inplace
-
+    $> python cython_setup.py build_ext --inplace
     ```
  3.
     ```bash

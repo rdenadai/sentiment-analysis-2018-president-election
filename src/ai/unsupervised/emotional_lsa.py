@@ -10,23 +10,23 @@ from .emotional_lsa_utils import _transform, _calculate_sentiment_weights
 
 
 # PERFORMANCE ++
-def work(words, dims, u, weights, idx):
-    return _calculate_sentiment_weights(words, dims, u, weights, idx)
+def work(words, rank, u, weights, idx):
+    return _calculate_sentiment_weights(words, rank, u, weights, idx)
 
 
-def _calculate_emotional_state(u, idx, emotion_words, weights, dims):
+def _calculate_emotional_state(u, idx, emotion_words, weights, rank):
     with concurrent.futures.ProcessPoolExecutor() as procs:
-        f = partial(work, dims=dims, u=u, weights=weights, idx=idx)
+        f = partial(work, rank=rank, u=u, weights=weights, idx=idx)
         wv = procs.map(f, list(emotion_words.values()))
         return np.asarray(list(wv)).T
 
 
 class EmotionalLSA:
 
-    def __init__(self, use_tfidf=False, dims=100, language='pt', debug=False):
+    def __init__(self, use_tfidf=False, rank=100, language='pt', debug=False):
         self.debug = debug
         self.use_tfidf = use_tfidf
-        self.dims = dims
+        self.rank = rank
         self.nlp = spacy.load(language)
         self.X = None
         self.weights = None
@@ -53,8 +53,8 @@ class EmotionalLSA:
         start_time = time.time()
         if self.debug: print('Calculating SVD...')
         U, S, V = np.linalg.svd(self.X.toarray().T, full_matrices=False)
-        U, V = U[:, :self.dims], V[:self.dims, :]
-        self.dims = U.shape[1]
+        U, V = U[:, :self.rank], V[:self.rank, :]
+        self.rank = U.shape[1]
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
         wv = self._emotional_state(U, emotion_words)
         start_time = time.time()
@@ -74,10 +74,10 @@ class EmotionalLSA:
         # Vamos processar apenas as palavras que refletem sentimentos que realmente existem em nosso corpus
         lista_palavras = idx.keys()
         for key, values in emotion_words.items():
-            emotion_words[key] = list(filter(None, [value if value in lista_palavras else None for value in values]))
+            emotion_words[key] = [value for value in values if value in lista_palavras]
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
         start_time = time.time()
         if self.debug: print('Generating emotional state from lexicon...')
-        data = _calculate_emotional_state(U, idx, emotion_words, self.weights, self.dims)
+        data = _calculate_emotional_state(U, idx, emotion_words, self.weights, self.rank)
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
         return data
