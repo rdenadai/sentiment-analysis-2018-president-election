@@ -98,13 +98,14 @@ def load_valence_emotions_from_oplexicon(filename):
                 word, tags, sent = info[:3]
                 if 'HTAG' not in tags and 'EMOT' not in tags:
                     word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
-                    sent = int(sent)
-                    if sent == 1:
-                        data['POSITIVO'] += [word]
-                    elif sent == -1:
-                        data['NEGATIVO'] += [word]
-                    else:
-                        data['NEUTRO'] += [word]
+                    if len(word) > 2:
+                        sent = int(sent)
+                        if sent == 1:
+                            data['POSITIVO'] += [word]
+                        elif sent == -1:
+                            data['NEGATIVO'] += [word]
+                        else:
+                            data['NEUTRO'] += [word]
     data['POSITIVO'] = sorted(list(set(data['POSITIVO'])))
     data['NEGATIVO'] = sorted(list(set(data['NEGATIVO'])))
     data['NEUTRO'] = sorted(list(set(data['NEUTRO'])))
@@ -126,20 +127,21 @@ def load_valence_emotions_from_sentilex(filename):
             words = [word.strip() for word in info[0].split(',')]
             for word in words:
                 word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
-                cdata = info[1].split(';')
-                if len(cdata) > 0:
-                    sent0 = [int(k.replace('pol:n0=', '')) if 'pol:n0=' in k else None for k in cdata]
-                    sent1 = [int(k.replace('pol:n1=', '')) if 'pol:n1=' in k else None for k in cdata]
-                    sent0 = list(filter(None.__ne__, sent0))
-                    sent1 = list(filter(None.__ne__, sent1))
-                    if len(sent0) >= 1 and len(sent1) <= 0:
-                        sent = sent0[0]
-                        if sent == 1:
-                            data['POSITIVO'] += [word]
-                        elif sent == -1:
-                            data['NEGATIVO'] += [word]
-                        else:
-                            data['NEUTRO'] += [word]
+                if len(word) > 2:
+                    cdata = info[1].split(';')
+                    if len(cdata) > 0:
+                        sent0 = [int(k.replace('pol:n0=', '')) if 'pol:n0=' in k else None for k in cdata]
+                        sent1 = [int(k.replace('pol:n1=', '')) if 'pol:n1=' in k else None for k in cdata]
+                        sent0 = list(filter(None.__ne__, sent0))
+                        sent1 = list(filter(None.__ne__, sent1))
+                        if len(sent0) >= 1 and len(sent1) <= 0:
+                            sent = sent0[0]
+                            if sent == 1:
+                                data['POSITIVO'] += [word]
+                            elif sent == -1:
+                                data['NEGATIVO'] += [word]
+                            else:
+                                data['NEUTRO'] += [word]
     data['POSITIVO'] = sorted(list(set(data['POSITIVO'])))
     data['NEGATIVO'] = sorted(list(set(data['NEGATIVO'])))
     data['NEUTRO'] = sorted(list(set(data['NEUTRO'])))
