@@ -161,11 +161,11 @@ def is_number(s):
 
 @lru_cache(maxsize=256)
 def _get_stopwords():
-    stpwords = stopwords.words('portuguese') + list(punctuation)
+    stpwords = stopwords.words('portuguese')
     rms = ['um', 'não', 'mais', 'muito']
     for rm in rms:
         del stpwords[stpwords.index(rm)]
-    return stpwords
+    return stpwords, punctuation
 
 
 def generate_corpus(documents=None, debug=False):
@@ -179,25 +179,46 @@ def generate_corpus(documents=None, debug=False):
     return list(tokenized_frases)
 
 
-def tokenizer(phrase):
-    phrase = phrase.lower()
-    for o, r in RM:
-        phrase = re.sub(o, r, phrase, flags=re.MULTILINE)
-    phrase = NLP(re.sub(r'["\'@#%\(\)]', '', phrase), disable=['parser'])
+def tokenizer(phrase, clean=False):
+    if not clean:
+        phrase = clean_up(phrase)
+    phrase = NLP(phrase, disable=['parser'])
     clean_frase = []
+    clfa = clean_frase.append
     for palavra in phrase:
         if palavra.pos_ != 'PUNCT':
             word = palavra.text.strip()
-            if not is_number(word) and word not in STOPWORDS and len(word) > 1:
-                clean_frase += [palavra.lemma_]
+            if not is_number(word) and len(word) > 1:
+                clfa(STEMMER.stem(palavra.text))
+                # if palavra.pos_ in ['NOUN']:
+                #     clfa(palavra.text)
+                # else:
+                #     clfa(STEMMER.stem(palavra.text))
+                #     clfa(palavra.text)
+                # else:
+                #     clfa(palavra.lemma_)
     return ' '.join(clean_frase)
+
+def clean_up(phrase):
+    STOPWORDS, PUNCT = _get_stopwords()
+    phrase = phrase.lower()
+    for stw in STOPWORDS:
+        phrase = re.sub(r'\b{}\b'.format(stw), '', phrase, flags=re.MULTILINE)
+    for punct in PUNCT:
+        phrase = phrase.replace(punct, ' ')
+    for o, r in RM:
+        phrase = re.sub(o, r, phrase, flags=re.MULTILINE)
+    return phrase
 
 
 # GLOBALS
 NLP = spacy.load('pt')
 # STEMMER = nltk.stem.RSLPStemmer()
-STOPWORDS = _get_stopwords()
+STEMMER = nltk.stem.SnowballStemmer('portuguese')
+STOPWORDS, PUNCT = _get_stopwords()
 RM = [
-    ('\n', '. '), ('"', ''), ('@', ''),
-    ('#', ''), ('RT', ''), (r'(http[s]*?:\/\/)+.*[\r\n]*', '')
+    (r'\n+', r' . '), (r'"', r' '), (r'\'', r' '),  (r'@', r''), (r'[…]', ' . '),
+    (r'#', r''), (r'(RT)', r''), (r'(http[s]*?:\/\/)+.*[\r\n]*', r''),
+    (r'“', r''), (r'”', ''), (r'([aeiouqwtyupdfghjklçzxcvbnm|!@$%&\.\[\]\(\)+-_=<>,;:])\1+', r'\1'),
+    (r'(ñ)', r'não'), (r'(nã)', r'não'), (r'\s+', r' '),
 ]
