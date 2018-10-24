@@ -31,24 +31,22 @@ cpdef np.ndarray _transform(np.ndarray wv, np.ndarray V, dict emotion_words, int
     return np.round(_normalization(dtframe, -100, 100), 2)[:size-2, :]
 
 
-cpdef np.ndarray _calculate_sentiment_weights(list words, int rank, np.ndarray U, np.ndarray weights, dict idx):
+cpdef np.ndarray _calculate_sentiment_weights(list words, int rank, np.ndarray U, weights, dict idx):
     cdef int i
-    cdef char* value
-    cdef np.ndarray[np.int_t, ndim=1] wv
+    cdef np.ndarray[np.double_t, ndim=1] wv
 
     wv = np.zeros((rank))
     for value in words:
         for i in range(rank):
             indexes = [e for e, inx in enumerate(idx.keys()) if value in inx]
-            wv[i] += sum([sum(U[index][i] * weights.iloc[index].values[i]) for index in indexes])
+            wv[i] += sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
     return wv / rank
 
 
-cpdef np.ndarray _calculate_emotional_state(np.ndarray U, dict idx, dict emotion_words, np.ndarray weights, int rank):
+cpdef np.ndarray _calculate_emotional_state(np.ndarray U, dict idx, dict emotion_words, weights, int rank):
     cdef int k
     cdef int i
     cdef list values
-    cdef char* value
     cdef np.ndarray[np.double_t, ndim=2] wv
 
     wv = np.zeros((rank, len(emotion_words.keys())))

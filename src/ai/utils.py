@@ -19,6 +19,8 @@ def remover_acentos(txt):
 def _load_emotion_file_content(emotion, path='dataset/emocoes'):
     with open(f'{path}/{emotion}', 'r') as h:
         words = h.readlines()
+        for i, word in enumerate(words):
+            words[i] = word.replace('\n', '')
     return words
 
 
