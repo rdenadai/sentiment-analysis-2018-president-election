@@ -10,6 +10,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import spacy
+import emoji
 
 
 def remover_acentos(txt):
@@ -37,7 +38,8 @@ def load_six_emotions(filepath):
     }
     for key, values in emotion_words.items():
         for i, word in enumerate(values):
-            word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
+            word = STEMMER.stem(word.lower().strip())
+            # word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
             emotion_words[key][i] = word
         emotion_words[key] = sorted(list(set(emotion_words[key])))
     return emotion_words
@@ -99,7 +101,8 @@ def load_valence_emotions_from_oplexicon(filename):
                 info[1] = [spacy_conv.get(tag) for tag in info[1].split()]
                 word, tags, sent = info[:3]
                 if 'HTAG' not in tags and 'EMOT' not in tags:
-                    word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
+                    word = STEMMER.stem(word.lower().strip())
+                    # word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
                     if len(word) > 2:
                         sent = int(sent)
                         if sent == 1:
@@ -128,7 +131,8 @@ def load_valence_emotions_from_sentilex(filename):
             info = line.lower().split('.')
             words = [word.strip() for word in info[0].split(',')]
             for word in words:
-                word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
+                word = STEMMER.stem(word.lower().strip())
+                # word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
                 if len(word) > 2:
                     cdata = info[1].split(';')
                     if len(cdata) > 0:
@@ -199,9 +203,11 @@ def tokenizer(phrase, clean=False):
                 #     clfa(palavra.lemma_)
     return ' '.join(clean_frase)
 
+
 def clean_up(phrase):
     STOPWORDS, PUNCT = _get_stopwords()
     phrase = phrase.lower()
+    phrase = emoji.get_emoji_regexp().sub(r'', phrase)
     for stw in STOPWORDS:
         phrase = re.sub(r'\b{}\b'.format(stw), '', phrase, flags=re.MULTILINE)
     for punct in PUNCT:
