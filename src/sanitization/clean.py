@@ -4,7 +4,6 @@ sys.path.append("..")  # Adds higher directory to python modules path.
 import asyncio
 import time
 import re
-from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 
 import uvloop
 from peewee import SQL
@@ -16,15 +15,14 @@ from ai.utils import tokenizer, clean_up
 
 async def run_model_update(model):
     from database.conn import db
+    # filter?? .where(SQL('length(sanitized_comment) = 0'))
     N = 25
     total = int(model.select().count() / N) + 1
     print(f'Total pag para {model.__name__}: {total}')
     for tt in range(total):
+        start_time = time.time()
         with db.atomic() as txn:
-            start_time = time.time()
-            # filter?? .where(SQL('length(sanitized_comment) = 0'))
             rows = [(row.hash, row.comment) for row in model.select().paginate(tt, N) if row]
-            # for row in model.select().paginate(tt, N):
             for hashy, comment in rows:
                 clean_comment = clean_up(comment).strip()
                 sanitized_comment = tokenizer(clean_comment, clean=False)
