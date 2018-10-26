@@ -9,18 +9,19 @@ import uvloop
 from peewee import SQL
 from aiomultiprocess import Pool
 
+from database.conn import db
 from database.models import RawFacebookComments, RawTwitterComments, RawInstagramComments, RawYouTubeComments, RawHashtagComments
 from ai.utils import tokenizer, clean_up
 
 
 async def run_model_update(model):
-    from database.conn import db
     # filter?? .where(SQL('length(sanitized_comment) = 0'))
-    N = 25
+    N = 10
     total = int(model.select().count() / N) + 1
     print(f'Total pag para {model.__name__}: {total}')
     for tt in range(total):
         start_time = time.time()
+        # print(f'{model.__name__} pag. {tt} --- starting ---')
         with db.atomic() as txn:
             rows = [(row.hash, row.comment) for row in model.select().paginate(tt, N) if row]
             for hashy, comment in rows:
@@ -29,8 +30,8 @@ async def run_model_update(model):
                 query = model.update(sanitized_comment=sanitized_comment, clean_comment=clean_comment).where(model.hash == hashy)
                 query.execute()
             txn.commit()
-        print(f'{model.__name__} pag. {tt} --- {(time.time() - start_time)} seconds ---')
-        await asyncio.sleep(1)
+        print(f'{model.__name__} pag. {tt} --- {round(time.time() - start_time, 2)} seconds ---')
+        await asyncio.sleep(.05)
 
 
 async def main():
@@ -43,7 +44,8 @@ async def main():
     )
 
     async with Pool() as pool:
-        result = await pool.map(run_model_update, models)
+       await pool.map(run_model_update, models)
+    # run_model_update(RawHashtagComments)
 
 
 if __name__ == '__main__':

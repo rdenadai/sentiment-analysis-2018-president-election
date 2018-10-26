@@ -33,7 +33,7 @@ cpdef np.ndarray _transform(np.ndarray wv, np.ndarray V, dict emotion_words, int
     return np.round(_normalization(dtframe, -100, 100), 2)[:size-2, :]
 
 
-cpdef np.ndarray _calculate_sentiment_weights(list words, int rank, np.ndarray U, weights, dict idx):
+cpdef np.ndarray _calculate_sentiment_weights(list words, int rank, np.ndarray U, weights):
     cdef int i
     cdef np.ndarray[np.double_t, ndim=1] wv
 
@@ -41,12 +41,12 @@ cpdef np.ndarray _calculate_sentiment_weights(list words, int rank, np.ndarray U
     for value in words:
         pattern = re.compile(r'\b({})\b'.format(value))
         for i in range(rank):
-            indexes = [e for e, inx in enumerate(idx.keys()) if pattern.search(inx)]
+            indexes = [e for e, inx in enumerate(weights.index.values) if pattern.search(inx)]
             wv[i] += sum([U[index][i] for index in indexes])
     return wv / rank
 
 
-cpdef np.ndarray _calculate_emotional_state(np.ndarray U, dict idx, dict emotion_words, weights, int rank):
+cpdef np.ndarray _calculate_emotional_state(np.ndarray U, dict emotion_words, weights, int rank):
     cdef int k
     cdef int i
     cdef list values
@@ -56,7 +56,7 @@ cpdef np.ndarray _calculate_emotional_state(np.ndarray U, dict idx, dict emotion
     for k, values in enumerate(emotion_words.values()):
         for value in values:
             for i in range(rank):
-                indexes = [e for e, inx in enumerate(idx.keys()) if re.search(r'\b(%s)\b' % value, inx)]
+                indexes = [e for e, inx in enumerate(weights.index.values) if re.search(r'\b(%s)\b' % value, inx)]
                 wv[i][k] += np.sum([U[index][i] for index in indexes])
                 # wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
     return wv / rank

@@ -3,6 +3,7 @@ from functools import partial
 import concurrent.futures
 from multiprocessing import Pool
 import numpy as np
+from scipy.linalg import svd as SVD
 import pandas as pd
 import spacy
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
@@ -10,13 +11,13 @@ from .emotional_lsa_utils import _transform, _calculate_sentiment_weights
 
 
 # PERFORMANCE ++
-def work(words, rank, u, weights, idx):
-    return _calculate_sentiment_weights(words, rank, u, weights, idx)
+def work(words, rank, u, weights):
+    return _calculate_sentiment_weights(words, rank, u, weights)
 
 
-def _calculate_emotional_state(u, idx, emotion_words, weights, rank):
+def _calculate_emotional_state(u, emotion_words, weights, rank):
     with concurrent.futures.ProcessPoolExecutor() as procs:
-        f = partial(work, rank=rank, u=u, weights=weights, idx=idx)
+        f = partial(work, rank=rank, u=u, weights=weights)
         wv = procs.map(f, list(emotion_words.values()))
         return np.asarray(list(wv)).T
 
@@ -45,7 +46,7 @@ class EmotionalLSA:
             self._vectorize = CountVectorizer()
         self.X = self._vectorize.fit_transform(documents).toarray()
         # Na tese é informado a remoção disso, mas nos teste não fez tanta diferença
-        # self.X = np.asarray([x for x in self.X.toarray() if np.sum(x) > np.max(x)])
+        self.X = np.asarray([x for x in self.X if np.sum(x) > np.max(x)])
         self.weights = pd.DataFrame(self.X.T, index=self._vectorize.get_feature_names())
         if self.debug: print(f'Actual number of features: {self.X.shape[1]}')
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
@@ -54,8 +55,7 @@ class EmotionalLSA:
         np.random.seed(0)
         start_time = time.time()
         if self.debug: print('Calculating SVD...')
-        U, S, V = np.linalg.svd(self.X.T, full_matrices=False)
-        U, V = U[:, :self.rank], V[:self.rank, :]
+        U, S, V = SVD(self.X.T, full_matrices=False, lapack_driver='gesvd')
         self.rank = U.shape[1]
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
         wv = self._emotional_state(U, emotion_words)
@@ -72,14 +72,13 @@ class EmotionalLSA:
     def _emotional_state(self, U, emotion_words):
         start_time = time.time()
         if self.debug: print('Processing emotional state... this may take a while...')
-        idx = {w: i for i, w in enumerate(self.weights.index.get_values())}
         # Vamos processar apenas as palavras que refletem sentimentos que realmente existem em nosso corpus
-        lista_palavras = idx.keys()
+        lista_palavras = [w for i, w in enumerate(self.weights.index.get_values())]
         for key, values in emotion_words.items():
             emotion_words[key] = [value for value in values if value in lista_palavras]
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
         start_time = time.time()
         if self.debug: print('Generating emotional state from lexicon...')
-        data = _calculate_emotional_state(U, idx, emotion_words, self.weights, self.rank)
+        data = _calculate_emotional_state(U, emotion_words, self.weights, self.rank)
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
         return data
