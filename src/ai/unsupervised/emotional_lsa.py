@@ -23,7 +23,7 @@ def _calculate_emotional_state(u, idx, emotion_words, weights, rank):
 
 class EmotionalLSA:
 
-    def __init__(self, use_tfidf=False, rank=100, language='pt', debug=False):
+    def __init__(self, use_tfidf=False, rank=50, language='pt', debug=False):
         self.debug = debug
         self.use_tfidf = use_tfidf
         self.rank = rank
@@ -43,16 +43,18 @@ class EmotionalLSA:
         else:
             if self.debug: print('using Count...')
             self._vectorize = CountVectorizer()
-        self.X = self._vectorize.fit_transform(documents)
-        self.weights = pd.DataFrame(self.X.toarray().T, index=self._vectorize.get_feature_names())
-        if self.debug: print(f'Actual number of features: {self.X.get_shape()[1]}')
+        self.X = self._vectorize.fit_transform(documents).toarray()
+        # Na tese é informado a remoção disso, mas nos teste não fez tanta diferença
+        # self.X = np.asarray([x for x in self.X.toarray() if np.sum(x) > np.max(x)])
+        self.weights = pd.DataFrame(self.X.T, index=self._vectorize.get_feature_names())
+        if self.debug: print(f'Actual number of features: {self.X.shape[1]}')
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
 
     def transform(self, emotion_words):
         np.random.seed(12345)
         start_time = time.time()
         if self.debug: print('Calculating SVD...')
-        U, S, V = np.linalg.svd(self.X.toarray().T, full_matrices=False)
+        U, S, V = np.linalg.svd(self.X.T, full_matrices=False)
         U, V = U[:, :self.rank], V[:self.rank, :]
         self.rank = U.shape[1]
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))

@@ -1,3 +1,5 @@
+import re
+
 import numpy as np
 cimport numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -37,9 +39,10 @@ cpdef np.ndarray _calculate_sentiment_weights(list words, int rank, np.ndarray U
 
     wv = np.zeros((rank))
     for value in words:
+        pattern = re.compile(r'\b({})\b'.format(value))
         for i in range(rank):
-            indexes = [e for e, inx in enumerate(idx.keys()) if value in inx]
-            wv[i] += sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
+            indexes = [e for e, inx in enumerate(idx.keys()) if pattern.search(inx)]
+            wv[i] += sum([U[index][i] for index in indexes])
     return wv / rank
 
 
@@ -53,6 +56,7 @@ cpdef np.ndarray _calculate_emotional_state(np.ndarray U, dict idx, dict emotion
     for k, values in enumerate(emotion_words.values()):
         for value in values:
             for i in range(rank):
-                indexes = [e for e, inx in enumerate(idx.keys()) if value in inx]
-                wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
+                indexes = [e for e, inx in enumerate(idx.keys()) if re.search(r'\b(%s)\b' % value, inx)]
+                wv[i][k] += np.sum([U[index][i] for index in indexes])
+                # wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
     return wv / rank
