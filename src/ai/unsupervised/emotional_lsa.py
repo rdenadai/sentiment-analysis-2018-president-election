@@ -51,7 +51,7 @@ class EmotionalLSA:
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
 
     def transform(self, emotion_words):
-        np.random.seed(12345)
+        np.random.seed(0)
         start_time = time.time()
         if self.debug: print('Calculating SVD...')
         U, S, V = np.linalg.svd(self.X.T, full_matrices=False)
