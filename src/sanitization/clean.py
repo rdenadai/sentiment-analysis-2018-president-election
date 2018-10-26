@@ -16,10 +16,10 @@ from ai.utils import tokenizer, clean_up
 
 async def run_model_update(model):
     # run filter?? .where(SQL('length(clean_comment) = 0'))
-    N = 10
+    N = 50
     total = int(model.select().where(SQL('length(clean_comment) = 0')).count() / N) + 1
     print(f'Total pag para {model.__name__}: {total}')
-    for tt in range(12305, total):
+    for tt in range(total):
         start_time = time.time()
         with db.atomic() as txn:
             rows = [(row.hash, row.comment) for row in model.select().where(SQL('length(clean_comment) = 0')).paginate(tt, N) if row]
