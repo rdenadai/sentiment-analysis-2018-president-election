@@ -7,6 +7,8 @@ class SmallComments(Model):
     candidate = CharField(max_length=150, index=True)
     username = CharField(max_length=255)
     comment = TextField()
+    clean_comment = TextField(default='')
+    sanitized_comment = TextField(default='')
 
     class Meta:
         database = db
@@ -51,6 +53,8 @@ class RawHashtagComments(Model):
     comment = TextField()
     data = CharField(max_length=50)
     timestamp = TimestampField(resolution=100)
+    clean_comment = TextField(default='')
+    sanitized_comment = TextField(default='')
 
     class Meta:
         database = db

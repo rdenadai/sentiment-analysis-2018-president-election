@@ -47,6 +47,7 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     $> python -m nltk.downloader machado
     $> python -m nltk.downloader stopwords
     $> python -m nltk.downloader rslp
+    $> python -m nltk.downloader perluniprops
     $> python -m spacy download en
     $> python -m spacy download pt
     $> python cython_setup.py build_ext --inplace
@@ -161,6 +162,11 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     - [Caixa2doBolsonaro](https://twitter.com/hashtag/Caixa2doBolsonaro)
     - [MarketeirosDoJair](https://twitter.com/hashtag/MarketeirosDoJair)
     - [Bolsolao](https://twitter.com/hashtag/Bolsolao)
+    - [AtentadoFakeDoPT](https://twitter.com/hashtag/AtentadoFakeDoPT)
+    - [HaddadNaoECristao](https://twitter.com/hashtag/HaddadNaoECristao)
+    - [SuasticaFake](https://twitter.com/hashtag/SuasticaFake)
+    - [BolsonaroPredsidente](https://twitter.com/hashtag/BolsonaroPredsidente)
+    
  
  #### Léxicos
  
