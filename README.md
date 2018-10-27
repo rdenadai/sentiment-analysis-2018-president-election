@@ -166,7 +166,15 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     - [HaddadNaoECristao](https://twitter.com/hashtag/HaddadNaoECristao)
     - [SuasticaFake](https://twitter.com/hashtag/SuasticaFake)
     - [BolsonaroPredsidente](https://twitter.com/hashtag/BolsonaroPredsidente)
-    
+    - [FakeNewsDoHaddad](https://twitter.com/hashtag/FakeNewsDoHaddad)
+    - [brasilcombolsonaro17](https://twitter.com/hashtag/brasilcombolsonaro17)
+    - [CagueiproIbope](https://twitter.com/hashtag/CagueiproIbope)
+    - [NãoAceitaremosFraudes](https://twitter.com/hashtag/NãoAceitaremosFraudes)
+    - [BolsonaroPresidenteEleito](https://twitter.com/hashtag/BolsonaroPresidenteEleito)
+    - [HaddadPresidente](https://twitter.com/hashtag/HaddadPresidente)
+    - [OBrasilFelizDeNovo](https://twitter.com/hashtag/OBrasilFelizDeNovo)
+    - [BrasilViraHaddad](https://twitter.com/hashtag/BrasilViraHaddad)
+    - [AndradeJaEra](https://twitter.com/hashtag/AndradeJaEra)
  
  #### Léxicos
  

@@ -2,6 +2,7 @@ import sys
 sys.path.append("..")  # Adds higher directory to python modules path.
 
 from peewee import DoesNotExist
+
 from database.models import RawFacebookComments, RawTwitterComments, RawInstagramComments, RawYouTubeComments, RawHashtagComments
 from selenium import webdriver
 

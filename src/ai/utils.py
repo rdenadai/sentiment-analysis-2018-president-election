@@ -21,7 +21,9 @@ def _load_emotion_file_content(emotion, path='dataset/emocoes'):
     with open(f'{path}/{emotion}', 'r') as h:
         words = h.readlines()
         for i, word in enumerate(words):
-            words[i] = STEMMER.stem(word.replace('\n', '').lower().strip())
+            word = word.replace('\n', '').lower().strip()
+            words[i] = STEMMER.stem(word)
+            # words[i] = [w.lemma_ for w in NLP(word, disable=['parser'])][0]
     return sorted(list(set(words)))
 
 
@@ -36,11 +38,6 @@ def load_six_emotions(filepath):
         'SURPRESA': _load_emotion_file_content('surpresa', filepath),
         'TRISTEZA': _load_emotion_file_content('tristeza', filepath),
     }
-    for key, values in emotion_words.items():
-        for i, word in enumerate(values):
-            # word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
-            emotion_words[key][i] = word
-        emotion_words[key] = sorted(list(set(emotion_words[key])))
     return emotion_words
 
 

@@ -31,7 +31,6 @@ class EmotionalLSA:
         self.nlp = spacy.load(language)
         self.X = None
         self.weights = None
-
         self._ldocs = 0
         self._vectorize = None
 
@@ -53,14 +52,14 @@ class EmotionalLSA:
 
     def transform(self, emotion_words):
         np.random.seed(0)
-        start_time = time.time()
         if self.debug: print('Calculating SVD...')
+        start_time = time.time()
         U, S, V = SVD(self.X.T, full_matrices=False, lapack_driver='gesvd')
         self.rank = U.shape[1]
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
         wv = self._emotional_state(U, emotion_words)
-        start_time = time.time()
         if self.debug: print('Calculating final emotional matrix...')
+        start_time = time.time()
         transformed = _transform(wv, V, emotion_words, self._ldocs)
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
         return transformed
@@ -70,15 +69,15 @@ class EmotionalLSA:
         return self.transform(emotion_words)
 
     def _emotional_state(self, U, emotion_words):
-        start_time = time.time()
         if self.debug: print('Processing emotional state... this may take a while...')
+        start_time = time.time()
         # Vamos processar apenas as palavras que refletem sentimentos que realmente existem em nosso corpus
         lista_palavras = [w for i, w in enumerate(self.weights.index.get_values())]
         for key, values in emotion_words.items():
             emotion_words[key] = [value for value in values if value in lista_palavras]
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
-        start_time = time.time()
         if self.debug: print('Generating emotional state from lexicon...')
+        start_time = time.time()
         data = _calculate_emotional_state(U, emotion_words, self.weights, self.rank)
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
         return data
