@@ -12,7 +12,7 @@ scikit-learn==0.20.0
 spacy==2.0.12
 Cython==0.28.5
 numba==0.40.1
-uvloop==0.11.2
 wordcloud==1.5.0
+uvloop==0.11.2
 aiomultiprocess==0.4.0
 emoji==0.5.1

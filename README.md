@@ -171,7 +171,6 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     - [CagueiproIbope](https://twitter.com/hashtag/CagueiproIbope)
     - [NãoAceitaremosFraudes](https://twitter.com/hashtag/NãoAceitaremosFraudes)
     - [BolsonaroPresidenteEleito](https://twitter.com/hashtag/BolsonaroPresidenteEleito)
-    - [HaddadPresidente](https://twitter.com/hashtag/HaddadPresidente)
     - [OBrasilFelizDeNovo](https://twitter.com/hashtag/OBrasilFelizDeNovo)
     - [BrasilViraHaddad](https://twitter.com/hashtag/BrasilViraHaddad)
     - [AndradeJaEra](https://twitter.com/hashtag/AndradeJaEra)
@@ -180,7 +179,7 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
  
  Coletamos e analisamos o uso dos seguintes possíveis léxicos para a língua portuguesa.
  
- Por fim, o trabalho atual se baseia na união do [SentiLex + OpLexicon + Conjuntos de palavras por sentimentos](https://github.com/rdenadai/sentiment-analysis-2018-president-election/tree/master/dataset/emocoes).
+ No momento presente o trabalho se baseia na união do [SentiLex + OpLexicon + Conjuntos de palavras por sentimentos](https://github.com/rdenadai/sentiment-analysis-2018-president-election/tree/master/dataset/emocoes).
  
  
  1. [WordNetAffectBR](http://www.inf.pucrs.br/linatural/wordpress/index.php/recursos-e-ferramentas/wordnetaffectbr/)
