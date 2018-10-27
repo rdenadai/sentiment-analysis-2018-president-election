@@ -166,13 +166,20 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     - [HaddadNaoECristao](https://twitter.com/hashtag/HaddadNaoECristao)
     - [SuasticaFake](https://twitter.com/hashtag/SuasticaFake)
     - [BolsonaroPredsidente](https://twitter.com/hashtag/BolsonaroPredsidente)
-    
+    - [FakeNewsDoHaddad](https://twitter.com/hashtag/FakeNewsDoHaddad)
+    - [brasilcombolsonaro17](https://twitter.com/hashtag/brasilcombolsonaro17)
+    - [CagueiproIbope](https://twitter.com/hashtag/CagueiproIbope)
+    - [NãoAceitaremosFraudes](https://twitter.com/hashtag/NãoAceitaremosFraudes)
+    - [BolsonaroPresidenteEleito](https://twitter.com/hashtag/BolsonaroPresidenteEleito)
+    - [OBrasilFelizDeNovo](https://twitter.com/hashtag/OBrasilFelizDeNovo)
+    - [BrasilViraHaddad](https://twitter.com/hashtag/BrasilViraHaddad)
+    - [AndradeJaEra](https://twitter.com/hashtag/AndradeJaEra)
  
  #### Léxicos
  
  Coletamos e analisamos o uso dos seguintes possíveis léxicos para a língua portuguesa.
  
- Por fim, o trabalho atual se baseia na união do [SentiLex + OpLexicon + Conjuntos de palavras por sentimentos](https://github.com/rdenadai/sentiment-analysis-2018-president-election/tree/master/dataset/emocoes).
+ No momento presente o trabalho se baseia na união do [SentiLex + OpLexicon + Conjuntos de palavras por sentimentos](https://github.com/rdenadai/sentiment-analysis-2018-president-election/tree/master/dataset/emocoes).
  
  
  1. [WordNetAffectBR](http://www.inf.pucrs.br/linatural/wordpress/index.php/recursos-e-ferramentas/wordnetaffectbr/)
