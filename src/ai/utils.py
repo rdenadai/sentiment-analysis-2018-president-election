@@ -202,6 +202,9 @@ def tokenizer(phrase, clean=False):
 
 def clean_up(phrase):
     STOPWORDS, PUNCT = _get_stopwords()
+    # Transforma as hashtags em palavras
+    phrase = re.sub(r'([A-Z])', r' \1', phrase, flags=re.MULTILINE)
+    # lowercase para fazer outros pré-processamentos
     phrase = phrase.lower()
     phrase = emoji.get_emoji_regexp().sub(r'', phrase)
     for stw in STOPWORDS:

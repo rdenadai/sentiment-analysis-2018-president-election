@@ -61,7 +61,8 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
  4. Extraia e copie o conteúdo da pasta **selenium_driver** caso queira executar o passo 4.
  5. Execute o arquivo extractor.py caso queira extrair novamente os dados das redes sociais.
     ```bash
-    $> python extractor.py
+    $> python scraping/extractor.py
+    $> python sanitization/clean.py
     ```
 
 #### Páginas extraídas
@@ -174,6 +175,9 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     - [OBrasilFelizDeNovo](https://twitter.com/hashtag/OBrasilFelizDeNovo)
     - [BrasilViraHaddad](https://twitter.com/hashtag/BrasilViraHaddad)
     - [AndradeJaEra](https://twitter.com/hashtag/AndradeJaEra)
+    - [ViraVotoHaddad13](https://twitter.com/hashtag/ViraVotoHaddad13)
+    - [AcabouaPiranhagemPT](https://twitter.com/hashtag/AcabouaPiranhagemPT)
+    
  
  #### Léxicos
  
