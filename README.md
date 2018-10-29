@@ -177,7 +177,12 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     - [AndradeJaEra](https://twitter.com/hashtag/AndradeJaEra)
     - [ViraVotoHaddad13](https://twitter.com/hashtag/ViraVotoHaddad13)
     - [AcabouaPiranhagemPT](https://twitter.com/hashtag/AcabouaPiranhagemPT)
-    
+    - [OBrasilVota17](https://twitter.com/hashtag/OBrasilVota17)
+    - [ViraVirouHaddad](https://twitter.com/hashtag/ViraVirouHaddad)
+    - [HadadPresidente13](https://twitter.com/hashtag/HadadPresidente13)
+    - [APesardoPToBrasilVaiVencerB17](https://twitter.com/hashtag/APesardoPToBrasilVaiVencerB17)
+    - [PrayForBrazil](https://twitter.com/hashtag/PrayForBrazil)
+    - [RIPBrasil](https://twitter.com/hashtag/RIPBrasil)
  
  #### Léxicos
  
