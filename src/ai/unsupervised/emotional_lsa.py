@@ -4,6 +4,8 @@ import concurrent.futures
 from multiprocessing import Pool
 import numpy as np
 from scipy.linalg import svd as SVD
+from scipy.sparse import csc_matrix
+# from sparsesvd import sparsesvd as SVDS
 import pandas as pd
 import spacy
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
@@ -55,7 +57,9 @@ class EmotionalLSA:
         if self.debug: print('Calculating SVD...')
         start_time = time.time()
         U, S, V = SVD(self.X.T, full_matrices=False, lapack_driver='gesvd')
-        self.rank = U.shape[1]
+        # U, S, V = SVDS(csc_matrix(self.X.T, dtype=np.float), k=min(self.X.shape))
+        # U = U.T
+        self.rank = min(U.shape)
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
         wv = self._emotional_state(U, emotion_words)
         if self.debug: print('Calculating final emotional matrix...')
@@ -69,14 +73,14 @@ class EmotionalLSA:
         return self.transform(emotion_words)
 
     def _emotional_state(self, U, emotion_words):
-        if self.debug: print('Processing emotional state... this may take a while...')
+        if self.debug: print('Processing emotional state...')
         start_time = time.time()
         # Vamos processar apenas as palavras que refletem sentimentos que realmente existem em nosso corpus
         lista_palavras = [w for i, w in enumerate(self.weights.index.get_values())]
         for key, values in emotion_words.items():
             emotion_words[key] = [value for value in values if value in lista_palavras]
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
-        if self.debug: print('Generating emotional state from lexicon...')
+        if self.debug: print('Generating emotional state from lexicon... this may take a while...')
         start_time = time.time()
         data = _calculate_emotional_state(U, emotion_words, self.weights, self.rank)
         if self.debug: print("--- %s seconds ---" % (time.time() - start_time))

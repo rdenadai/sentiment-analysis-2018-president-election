@@ -183,6 +183,8 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     - [APesardoPToBrasilVaiVencerB17](https://twitter.com/hashtag/APesardoPToBrasilVaiVencerB17)
     - [PrayForBrazil](https://twitter.com/hashtag/PrayForBrazil)
     - [RIPBrasil](https://twitter.com/hashtag/RIPBrasil)
+    - [EleNaoEMeuPresidente](https://twitter.com/hashtag/EleNaoEMeuPresidente)
+    - [meubolsominionsecreto](https://twitter.com/hashtag/meubolsominionsecreto)
  
  #### Léxicos
  
