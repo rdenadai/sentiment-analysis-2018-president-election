@@ -9,54 +9,36 @@ cpdef np.ndarray _normalization(np.ndarray x, int a, int b):
     return (2 * b) * (x - np.min(x)) / np.ptp(x) + a
 
 
-cpdef np.ndarray _transform(np.ndarray wv, np.ndarray V, dict emotion_words, int _ldocs):
+cpdef np.ndarray _transform(np.ndarray WV, np.ndarray V, dict emotion_words, int size):
     cdef int i
     cdef int k
-    cdef int size
     cdef int e_size
     cdef double mmax
     cdef double mmin
     cdef np.ndarray[np.double_t, ndim=2] dtframe
 
-    size = _ldocs + 2
     e_size = len(emotion_words.keys())
 
-    dtframe = np.ones((size, e_size))
-    for i in range(_ldocs):
-        for k in range(e_size):
-            a, b = [wv[:, k]], [V.T[i]]
-            dtframe[i][k] = cosine_similarity(a, b)
-        mmax, mmin = np.max(dtframe[i]), np.min(dtframe[i])
-        if abs(mmin) > mmax:
-            dtframe[i] = -dtframe[i]
-    dtframe[size-1] = np.tile([-1], e_size)
-    return np.round(_normalization(dtframe, -100, 100), 2)[:size-2, :]
+    dtframe = np.ones((size + 2, e_size))
+    dtframe[-1, :] = np.tile([-1], e_size)
+    for k in range(e_size):
+        for i in range(size):
+            dtframe[i][k] = cosine_similarity([WV[k]], [V.T[i, :]])
+            mmax, mmin = np.max(dtframe[i]), np.min(dtframe[i])
+            if abs(mmin) > mmax:
+                dtframe[i] = -dtframe[i]
+    return np.round(_normalization(dtframe, -100, 100)[:-2], 2)
 
 
-cpdef np.ndarray _calculate_sentiment_weights(list words, int rank, np.ndarray U, weights):
-    cdef int i
-    cdef np.ndarray[np.double_t, ndim=1] wv
-
-    wv = np.zeros((rank))
-    for value in words:
-        pattern = re.compile(r'\b({})\b'.format(value))
-        for i in range(rank):
-            indexes = [e for e, inx in enumerate(weights.index.values) if pattern.search(inx)]
-            wv[i] += sum([U[index][i] for index in indexes])
-    return wv / rank
-
-
-cpdef np.ndarray _calculate_emotional_state(np.ndarray U, dict emotion_words, weights, int rank):
+cpdef np.ndarray _calculate_sentiment_weights(int rank, dict sentiments, WC, np.ndarray U):
     cdef int k
-    cdef int i
-    cdef list values
-    cdef np.ndarray[np.double_t, ndim=2] wv
+    cdef np.ndarray[np.double_t, ndim=2] WV
 
-    wv = np.zeros((rank, len(emotion_words.keys())))
-    for k, values in enumerate(emotion_words.values()):
+    WV = np.zeros((len(sentiments.keys()), rank))
+    for k, values  in enumerate(sentiments.values()):
         for value in values:
-            for i in range(rank):
-                indexes = [e for e, inx in enumerate(weights.index.values) if re.search(r'\b(%s)\b' % value, inx)]
-                wv[i][k] += np.sum([U[index][i] for index in indexes])
-                # wv[i][k] += np.sum([U[index][i] * weights.iloc[index].values[i] for index in indexes])
-    return wv / rank
+            pattern = re.compile(r'\b({})\b'.format(value))
+            indexes = [e for e, inx in enumerate(WC.index.values) if pattern.search(inx)]
+            if len(indexes) > 0:
+                WV[k, :] += [U[index] for index in indexes][0]
+    return WV / rank

@@ -3,30 +3,17 @@ from functools import partial
 import concurrent.futures
 from multiprocessing import Pool
 import numpy as np
-from scipy.linalg import svd as SVD
+from sparsesvd import sparsesvd as SVDS
 from scipy.sparse import csc_matrix
-# from sparsesvd import sparsesvd as SVDS
 import pandas as pd
 import spacy
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from .emotional_lsa_utils import _transform, _calculate_sentiment_weights
 
 
-# PERFORMANCE ++
-def work(words, rank, u, weights):
-    return _calculate_sentiment_weights(words, rank, u, weights)
-
-
-def _calculate_emotional_state(u, emotion_words, weights, rank):
-    with concurrent.futures.ProcessPoolExecutor() as procs:
-        f = partial(work, rank=rank, u=u, weights=weights)
-        wv = procs.map(f, list(emotion_words.values()))
-        return np.asarray(list(wv)).T
-
-
 class EmotionalLSA:
 
-    def __init__(self, use_tfidf=False, rank=50, language='pt', debug=False):
+    def __init__(self, use_tfidf=False, rank=100, language='pt', debug=False):
         self.debug = debug
         self.use_tfidf = use_tfidf
         self.rank = rank
@@ -45,27 +32,27 @@ class EmotionalLSA:
         else:
             if self.debug: print('using Count...')
             self._vectorize = CountVectorizer()
-        self.X = self._vectorize.fit_transform(documents).toarray()
-        # Na tese é informado a remoção disso, mas nos teste não fez tanta diferença
-        self.X = np.asarray([x for x in self.X if np.sum(x) > np.max(x)])
-        self.weights = pd.DataFrame(self.X.T, index=self._vectorize.get_feature_names())
+        self.X = self._vectorize.fit_transform(documents)
+        self.weights = pd.DataFrame(self.X.T.toarray(), index=self._vectorize.get_feature_names())
+        self.weights = self.weights.loc[(self.weights.sum(axis=1) > 1)]
         if self.debug: print(f'Actual number of features: {self.X.shape[1]}')
-        if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
+        if self.debug: print('--- %s seconds ---' % (time.time() - start_time))
 
     def transform(self, emotion_words):
         np.random.seed(0)
         if self.debug: print('Calculating SVD...')
         start_time = time.time()
-        U, S, V = SVD(self.X.T, full_matrices=False, lapack_driver='gesvd')
-        # U, S, V = SVDS(csc_matrix(self.X.T, dtype=np.float), k=min(self.X.shape))
-        # U = U.T
-        self.rank = min(U.shape)
-        if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
-        wv = self._emotional_state(U, emotion_words)
+        X2 = csc_matrix(self.weights, dtype=np.float)
+        U, S, V = SVDS(X2, k=min(X2.shape))
+        U = U.T
+        U, V = U[:, :self.rank], V[:self.rank, :]
+        self.rank = max(min(U.shape), min(V.shape))
+        if self.debug: print('--- %s seconds ---' % (time.time() - start_time))
+        WV = self._emotional_state(U, emotion_words)
         if self.debug: print('Calculating final emotional matrix...')
         start_time = time.time()
-        transformed = _transform(wv, V, emotion_words, self._ldocs)
-        if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
+        transformed = _transform(WV, V, emotion_words, self._ldocs)
+        if self.debug: print('--- %s seconds ---' % (time.time() - start_time))
         return transformed
 
     def fit_transform(self, documents, emotion_words):
@@ -79,9 +66,9 @@ class EmotionalLSA:
         lista_palavras = [w for i, w in enumerate(self.weights.index.get_values())]
         for key, values in emotion_words.items():
             emotion_words[key] = [value for value in values if value in lista_palavras]
-        if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
+        if self.debug: print('--- %s seconds ---' % (time.time() - start_time))
         if self.debug: print('Generating emotional state from lexicon... this may take a while...')
         start_time = time.time()
-        data = _calculate_emotional_state(U, emotion_words, self.weights, self.rank)
-        if self.debug: print("--- %s seconds ---" % (time.time() - start_time))
-        return data
+        WV = _calculate_sentiment_weights(self.rank, emotion_words, self.weights, U)
+        if self.debug: print('--- %s seconds ---' % (time.time() - start_time))
+        return WV
