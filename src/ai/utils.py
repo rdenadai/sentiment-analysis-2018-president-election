@@ -174,7 +174,7 @@ def generate_corpus(documents=None, debug=False):
     tokenized_docs = documents
     with concurrent.futures.ProcessPoolExecutor() as procs:
         if debug: print('Executando processo de remoção das stopwords...')
-        tokenized_frases = procs.map(tokenizer, tokenized_docs, chunksize=100)
+        tokenized_frases = procs.map(tokenizer, tokenized_docs, chunksize=25)
     if debug: print('Finalizado...')
     return list(tokenized_frases)
 
@@ -190,18 +190,19 @@ def tokenizer(phrase, clean=False):
             word = palavra.text.strip()
             if not is_number(word) and len(word) > 1:
                 clfa(STEMMER.stem(palavra.text))
-                # if palavra.pos_ in ['NOUN']:
-                #     clfa(palavra.text)
-                # else:
-                #     clfa(STEMMER.stem(palavra.text))
-                #     clfa(palavra.text)
-                # else:
-                #     clfa(palavra.lemma_)
     return ' '.join(clean_frase)
 
 
 def clean_up(phrase):
     STOPWORDS, PUNCT = _get_stopwords()
+    # Transforma as hashtags em palavras
+    try:
+        for group in re.findall(r'#\S+\b', phrase, re.DOTALL):
+            g2 = re.sub(r'([A-Z])', r' \1', group, flags=re.MULTILINE)
+            phrase = re.sub(r'{}\b'.format(group), g2, phrase, flags=re.MULTILINE)
+    except Exception:
+        pass
+    # lowercase para fazer outros pré-processamentos
     phrase = phrase.lower()
     phrase = emoji.get_emoji_regexp().sub(r'', phrase)
     for stw in STOPWORDS:
