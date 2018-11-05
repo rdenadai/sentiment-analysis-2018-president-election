@@ -181,19 +181,15 @@ def generate_corpus(documents=None, debug=False):
 
 def tokenizer(phrase, clean=False):
     if not clean:
-        phrase = clean_up(phrase)
-    phrase = NLP(phrase, disable=['parser'])
+        phrase = clean_up(phrase, False)
     clean_frase = []
     clfa = clean_frase.append
     for palavra in phrase:
-        if palavra.pos_ != 'PUNCT':
-            word = palavra.text.strip()
-            if not is_number(word) and len(word) > 1:
-                clfa(STEMMER.stem(palavra.text))
+        clfa(STEMMER.stem(palavra))
     return ' '.join(clean_frase)
 
 
-def clean_up(phrase):
+def clean_up(phrase, join=True):
     STOPWORDS, PUNCT = _get_stopwords()
     # Transforma as hashtags em palavras
     try:
@@ -202,7 +198,7 @@ def clean_up(phrase):
             phrase = re.sub(r'{}\b'.format(group), g2, phrase, flags=re.MULTILINE)
     except Exception:
         pass
-    # lowercase para fazer outros pré-processamentos
+    # lowercase para fazer outros pre-processamentos
     phrase = phrase.lower()
     phrase = emoji.get_emoji_regexp().sub(r'', phrase)
     for stw in STOPWORDS:
@@ -211,7 +207,15 @@ def clean_up(phrase):
         phrase = phrase.replace(punct, ' ')
     for o, r in RM:
         phrase = re.sub(o, r, phrase, flags=re.MULTILINE)
-    return phrase
+
+    # Limpeza extra
+    phrase = word_tokenize(phrase)
+    clean_frase = []
+    clfa = clean_frase.append
+    for palavra in phrase:
+        if not is_number(palavra) and len(palavra) > 2:
+            clfa(palavra)
+    return ' '.join(clean_frase) if join else clean_frase
 
 
 # GLOBALS
@@ -220,8 +224,9 @@ NLP = spacy.load('pt')
 STEMMER = nltk.stem.SnowballStemmer('portuguese')
 STOPWORDS, PUNCT = _get_stopwords()
 RM = [
-    (r'\n+', r' . '), (r'"', r' '), (r'\'', r' '),  (r'@', r''), (r'[…]', ' . '), (r'[0-9]*', r''),
-    (r'#', r''), (r'(RT)', r''), (r'(http[s]*?:\/\/)+.*[\r\n]*', r''),
+    (r'(http[s]*?:\/\/)+.*[\r\n]*', r''), (r'@', r''),
+    (r'\n+', r' . '), (r'"', r' '), (r'\'', r' '),
+    (r'#', r''), (r'(RT)', r''), (r'[…]', ' . '), (r'[0-9]*', r''),
     (r'“', r''), (r'”', ''), (r'([aeiouqwtyupdfghjklçzxcvbnm|!@$%&\.\[\]\(\)+-_=<>,;:])\1+', r'\1'),
-    (r'(ñ)', r'não'), (r'(nã)', r'não'), (r'\s+', r' '),
+    (r'(\bñ\n)', 'não'), (r'(nã)', 'não'), (r'\s+', r' '), (r'(nãoo)', 'não'),
 ]
