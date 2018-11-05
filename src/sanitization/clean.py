@@ -16,9 +16,9 @@ from ai.utils import tokenizer, clean_up
 
 async def run_model_update(model):
     # run filter?? .where(SQL('length(clean_comment) = 0'))
-    N = 1000
+    N = 100
     total = int(model.select().count() / N) + 1
-    print(f'Total pag para {model.__name__}: {total}')
+    print(f'Total pag para {model.__name__}: {total-1}')
     for tt in range(total):
         start_time = time.time()
         with db.atomic() as txn:
@@ -29,8 +29,8 @@ async def run_model_update(model):
                 query = model.update(sanitized_comment=sanitized_comment, clean_comment=clean_comment).where(model.hash == hashy)
                 query.execute()
             txn.commit()
-        print(f'{model.__name__} pag. {tt} --- {round(time.time() - start_time, 2)} seconds ---')
-        await asyncio.sleep(.05)
+        print(f'{model.__name__} pag. {tt} - {total-1} --- {round(time.time() - start_time, 2)} seconds ---')
+        await asyncio.sleep(.1)
 
 
 async def main():
@@ -44,7 +44,7 @@ async def main():
 
     async with Pool() as pool:
        await pool.map(run_model_update, models)
-    # run_model_update(RawHashtagComments)
+    # run_model_update(RawTwitterComments)
 
 
 if __name__ == '__main__':

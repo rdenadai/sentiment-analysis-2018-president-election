@@ -224,8 +224,9 @@ NLP = spacy.load('pt')
 STEMMER = nltk.stem.SnowballStemmer('portuguese')
 STOPWORDS, PUNCT = _get_stopwords()
 RM = [
-    (r'\n+', r' . '), (r'"', r' '), (r'\'', r' '),  (r'@', r''), (r'[…]', ' . '), (r'[0-9]*', r''),
-    (r'#', r''), (r'(RT)', r''), (r'(http[s]*?:\/\/)+.*[\r\n]*', r''),
+    (r'(http[s]*?:\/\/)+.*[\r\n]*', r''), (r'@', r''),
+    (r'\n+', r' . '), (r'"', r' '), (r'\'', r' '),
+    (r'#', r''), (r'(RT)', r''), (r'[…]', ' . '), (r'[0-9]*', r''),
     (r'“', r''), (r'”', ''), (r'([aeiouqwtyupdfghjklçzxcvbnm|!@$%&\.\[\]\(\)+-_=<>,;:])\1+', r'\1'),
     (r'(\bñ\n)', 'não'), (r'(nã)', 'não'), (r'\s+', r' '), (r'(nãoo)', 'não'),
 ]

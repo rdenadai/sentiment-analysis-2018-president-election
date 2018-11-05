@@ -201,12 +201,11 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
  
  No momento presente o trabalho se baseia na união do [SentiLex + OpLexicon + Conjuntos de palavras por sentimentos](https://github.com/rdenadai/sentiment-analysis-2018-president-election/tree/master/dataset/emocoes).
  
- 
- 1. [WordNetAffectBR](http://www.inf.pucrs.br/linatural/wordpress/index.php/recursos-e-ferramentas/wordnetaffectbr/)
+1 . [WordNetAffectBR](http://www.inf.pucrs.br/linatural/wordpress/index.php/recursos-e-ferramentas/wordnetaffectbr/)
 
  > Essa base foi construída para aplicações que utilizam vocabulário de palavras de emoções. Esse trabalho é relacionado ao estudo da análise de sentimentos em discurso da língua portuguesa.
  
- 2. [SentiLex-PT](https://b2share.eudat.eu/records/93ab120efdaa4662baec6adee8e7585f)
+2 . [SentiLex-PT](https://b2share.eudat.eu/records/93ab120efdaa4662baec6adee8e7585f)
  
  > SentiLex-PT01 é um léxico de sentimentos para o português constituído por 6.321 lemas adjectivais (por convenção, na forma masculina singular) e 25.406 formas flexionadas.
  
@@ -215,36 +214,36 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
   - [SentiLex-PT01](http://xldb.fc.ul.pt/wiki/SentiLex-PT01)
   - [SentiLex-PT02](https://b2share.eudat.eu/records/93ab120efdaa4662baec6adee8e7585f)
 
- 3. [OpLexicon v2.1 & v3.0](http://ontolp.inf.pucrs.br/Recursos/downloads-OpLexicon.php)
+3 . [OpLexicon v2.1 & v3.0](http://ontolp.inf.pucrs.br/Recursos/downloads-OpLexicon.php)
  
  > OpLexicon é um léxico de sentimento para a língua portuguesa.
 
  ### Datasets
 
- 1. [TweetSentBR](https://bitbucket.org/HBrum/tweetsentbr/overview)
+1 . [TweetSentBR](https://bitbucket.org/HBrum/tweetsentbr/overview)
 
  > TweetSentBR is a corpus of Tweets in Brazilian Portuguese. It was labeled by several annotators following steps stablished on the literature for improving reliability on the task of Sentiment Analysis. Each Tweet was annotated in one of the three following classes: Positive - tweets where a user meant a positive reaction or evaluation about the main topic on the post; Negative - tweets where a user meant a negative reaction or evaluation about the main topic on the post; * Neutral - tweets not belonging to any of the last classes, usually not making a point, out of topic, irrelevant, confusing or containing only objective data.
 
- 2. [EMOÇÕES.BR](http://www.ppgia.pucpr.br/~paraiso/mineracaodeemocoes/index.php)
+2 . [EMOÇÕES.BR](http://www.ppgia.pucpr.br/~paraiso/mineracaodeemocoes/index.php)
  
  > Projeto desenvolvido no Programa de Pós-Graduação em Informática da Pontifícia Universidade Católica do Paraná
 
- 3. [MinerandoDados](https://github.com/minerandodados/mdrepo/blob/master/Tweets_Mg.csv)
+3 . [MinerandoDados](https://github.com/minerandodados/mdrepo/blob/master/Tweets_Mg.csv)
  
  > Repositório para armazenamento de código e notebooks de postagens do blog e cursos.
 
- 4. [ViesNoticias](http://www.each.usp.br/norton/viesnoticias/index_ing.html) 
+4 . [ViesNoticias](http://www.each.usp.br/norton/viesnoticias/index_ing.html) 
 
  > Este repositório conta com um corpus de notícias sobre política obtido de alguns produtores de notícias no Brasil.
 
- 5. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
+5 . [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
  
  > Chamamos de "Floresta Sintáctica" um conjunto de frases (corpus) analisadas (morfo)sintaticamente. Como, além da indicação das funções sintácticas, a análise também explicita hierarquicamente informação relativa à estrutura de constituintes, dizemos que uma frase sintaticamente analisada se parece com uma árvore, donde um conjunto de árvores constitui uma floresta sintáctica (em inglês, treebank).
 
  
  ##### Python libs
 
- Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
+1 . Para realizar toda a operação estamos utilizando as seguintes bibliotecas:
 
  - [selenium](https://selenium-python.readthedocs.io/)
     > Utlizada para realizar a raspagem dos comentários e outros dados das páginas apresentadas abaixo.
@@ -270,12 +269,14 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     > Ferramentas padrão e essenciais para projetos de data science e machine learning.
  
  
- 3 . Dados:
+ ### Extras
+ 
+1 . Dados Extras:
   - [Frases para Face](https://www.frasesparaface.com.br/outras-frases/)
   - [Dicionário Criativo](https://dicionariocriativo.com.br/)
   
  
- 4 . Tutoriais
+2 . Tutoriais
   - [Utilizando processamento de linguagem natural para criar uma sumarização automática de textos](https://medium.com/@viniljf/utilizando-processamento-de-linguagem-natural-para-criar-um-sumariza%C3%A7%C3%A3o-autom%C3%A1tica-de-textos-775cb428c84e)
   - [Latent Semantic Analysis (LSA) for Text Classification Tutorial](http://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/)
   - [Machine Learning :: Cosine Similarity for Vector Space Models (Part III)](http://blog.christianperone.com/2013/09/machine-learning-cosine-similarity-for-vector-space-models-part-iii/)
@@ -284,12 +285,15 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
   - [Euclidean vs. Cosine Distance](https://cmry.github.io/notes/euclidean-v-cosine)
   - [Word embeddings: exploration, explanation, and exploitation](https://towardsdatascience.com/word-embeddings-exploration-explanation-and-exploitation-with-code-in-python-5dac99d5d795)
   - [Complete Guide to Word Embeddings](https://nlpforhackers.io/word-embeddings/)
+  - [An Intuitive Understanding of Word Embeddings: From Count Vectors to Word2Vec](https://www.analyticsvidhya.com/blog/2017/06/word-embeddings-count-word2veec/)
  
- 5 . Topic Modelling
+ 
+3 . Topic Modelling
   - [Topic Modeling with LSA, PLSA, LDA & lda2Vec](https://medium.com/nanonets/topic-modeling-with-lsa-psla-lda-and-lda2vec-555ff65b0b05)
   - [Integrating Topics and Syntax (HHM-LDA)](http://psiexp.ss.uci.edu/research/papers/composite.pdf)
  
- 6 . LSA + Others
+ 
+4 . LSA + Others
   - [Um Método de Identificação de Emoções em Textos Curtos para o Português do Brasil](http://www.ppgia.pucpr.br/~paraiso/Projects/Emocoes/Emocoes.html)
   - [An Introduction to Latent Semantic Analysis](http://lsa.colorado.edu/papers/dp1.LSAintro.pdf)
   - [Unsupervised Emotion Detection from Text using Semantic and Syntactic Relations](http://www.cse.yorku.ca/~aan/research/paper/Emo_WI10.pdf)
@@ -298,4 +302,3 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
   - [Applying latent semantic analysis to classify emotions in Thai text](https://ieeexplore.ieee.org/document/5486137)
   - [Text Emotion Classification Research Based on Improved Latent Semantic Analysis Algorithm](https://www.researchgate.net/publication/266651993_Text_Emotion_Classification_Research_Based_on_Improved_Latent_Semantic_Analysis_Algorithm)
   - [PANAS-t: A Pychometric Scale for Measuring Sentiments on Twitter](https://arxiv.org/abs/1308.1857)
-
