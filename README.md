@@ -14,18 +14,27 @@ Os integrantes do projeto são:
  - Edgar Lopes Banhesse
  - [Rodolfo De Nadai](http://www.rdenadai.com.br)
 
-### Descrição
+### Abordagens
 
-Utilizando-se do algoritmo proposto pela mestranda [Barbara Martinazzo](https://www.ppgia.pucpr.br/pt/arquivos/mestrado/dissertacoes/2010/barbara_martinazzo_versaofinal.pdf), foi aplicado
-o procedimento descrito para validação e análise de sentimentos em mensagens coletadas pela internet e em uma base de tweets coletados, os quais foram amostrados e definidos sentimentos prévios no trabalho
+Inicialmente todos os testes foram realizados utilizando-se do algoritmo proposto pela mestranda [Barbara Martinazzo](https://www.ppgia.pucpr.br/pt/arquivos/mestrado/dissertacoes/2010/barbara_martinazzo_versaofinal.pdf).
+Foi aplicado o procedimento descrito para validação e análise de sentimentos em mensagens coletadas pela internet e em uma base de tweets coletados, os quais foram amostrados e definidos sentimentos prévios no trabalho
 do mestrando [Henrico Brum](https://bitbucket.org/HBrum/tweetsentbr/overview).
 
 Os resultados preliminares do proposto acima podem ser observado neste [jupyter notebook](https://github.com/rdenadai/sentiment-analysis-2018-president-election/blob/master/src/ai/validate.ipynb). 
 
-Expandimos o trabalho realizado pela Barbara Martinazzo, levando em consideração também uma emoção de neutralidade, algo que é mencionado em seu trabalho, mas não fora abordado.
+O trabalho realizado pela Barbara Martinazzo, for expandido, levando em consideração também uma emoção de neutralidade, algo que é mencionado em seu trabalho, mas não fora abordado.
 
-Além, disso, esse algoritmo implementado, não aborda a questão discutida por ela, com relação a usar essa implementação para novas mensagens. A abordagem utilizada por ela, leva em consideração o uso de contagem de palavras apenas,
+Além disso, o algoritmo implementado, não aborda a questão discutida por ela, com relação a usar essa implementação para novas mensagens. A abordagem utilizada por ela, leva em consideração o uso de contagem de palavras apenas,
 mas no algoritmo é possível optar pelo uso do [TF-IDF](https://pt.wikipedia.org/wiki/Tf%E2%80%93idf) para o cálculo das emoções.
+
+Entretanto os resultados não surtiram bons resultados. Entrando em contato com a mestranda ela nos cedeu gentilmente sua base de dados com as frases utilizadas por ela.
+
+Mesmo tendo em mãos essa base, os resultados ficaram aquém do esperado. Neste sentido, crer-se que em alguma parte o algoritmo não fora implementado corretamente.
+
+Entretanto com essa base de dados, e outros datasets (ver seção datasets abaixo), optou-se por experimentar um aprendizado supervisionado, o qual acarretou em resultados na faixa dos 60%.
+
+Os resultados no reconhecimento de emoções (As 6 emoções de Eckman), podem ser observadas neste [jupyter notebook](https://github.com/rdenadai/sentiment-analysis-2018-president-election/blob/master/src/ai/experiments/supervised/regular_supervised_ml.ipynb).
+
 
 ### Instalação
 
@@ -212,19 +221,22 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
 
  ### Datasets
 
- 1. [ViesNoticias](http://www.each.usp.br/norton/viesnoticias/index_ing.html) 
+ 1. [TweetSentBR](https://bitbucket.org/HBrum/tweetsentbr/overview)
+
+ > TweetSentBR is a corpus of Tweets in Brazilian Portuguese. It was labeled by several annotators following steps stablished on the literature for improving reliability on the task of Sentiment Analysis. Each Tweet was annotated in one of the three following classes: Positive - tweets where a user meant a positive reaction or evaluation about the main topic on the post; Negative - tweets where a user meant a negative reaction or evaluation about the main topic on the post; * Neutral - tweets not belonging to any of the last classes, usually not making a point, out of topic, irrelevant, confusing or containing only objective data.
+
+ 2. [EMOÇÕES.BR](http://www.ppgia.pucpr.br/~paraiso/mineracaodeemocoes/index.php)
+ 
+ > Projeto desenvolvido no Programa de Pós-Graduação em Informática da Pontifícia Universidade Católica do Paraná
+
+ 3. [ViesNoticias](http://www.each.usp.br/norton/viesnoticias/index_ing.html) 
 
  > Este repositório conta com um corpus de notícias sobre política obtido de alguns produtores de notícias no Brasil.
 
- 2. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
+ 4. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
  
  > Chamamos de "Floresta Sintáctica" um conjunto de frases (corpus) analisadas (morfo)sintaticamente. Como, além da indicação das funções sintácticas, a análise também explicita hierarquicamente informação relativa à estrutura de constituintes, dizemos que uma frase sintaticamente analisada se parece com uma árvore, donde um conjunto de árvores constitui uma floresta sintáctica (em inglês, treebank).
 
- #### Referências
- 
- 1 . [TweetSentBR](https://bitbucket.org/HBrum/tweetsentbr/overview)
- 
- > TweetSentBR is a corpus of Tweets in Brazilian Portuguese. It was labeled by several annotators following steps stablished on the literature for improving reliability on the task of Sentiment Analysis. Each Tweet was annotated in one of the three following classes: Positive - tweets where a user meant a positive reaction or evaluation about the main topic on the post; Negative - tweets where a user meant a negative reaction or evaluation about the main topic on the post; * Neutral - tweets not belonging to any of the last classes, usually not making a point, out of topic, irrelevant, confusing or containing only objective data.
  
  ##### Python libs
 
@@ -239,6 +251,8 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
     > Natural Language Toolkit em python, foi utilizada em alguns pontos específicos para realizar o tratamento e análise de textos. 
  - [spaCy](https://spacy.io/usage/spacy-101)
     > É uma exceleten biblioteca para NLP, adiciona várioas algoritmos e ferramental para análise de textos.
+ - [gensim](https://radimrehurek.com/gensim/)
+    > Topic Modelling for Humans
  - [scikit-learn](http://scikit-learn.org)
     > Excelente ferramenta para Machine Learning, mas possui diversas funções matemáticas prontas. Usamos suas operações para trabalhar com texto.
  - [Cython](https://cython.org/)
@@ -264,6 +278,8 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
   - [My Notes for Singular Value Decomposition with Interactive Code ](https://towardsdatascience.com/my-notes-for-singular-value-decomposition-with-interactive-code-feat-peter-mills-7584f4f2930a)
   - [Principal Component Analysis in Python](https://plot.ly/ipython-notebooks/principal-component-analysis/)
   - [Euclidean vs. Cosine Distance](https://cmry.github.io/notes/euclidean-v-cosine)
+  - [Word embeddings: exploration, explanation, and exploitation](https://towardsdatascience.com/word-embeddings-exploration-explanation-and-exploitation-with-code-in-python-5dac99d5d795)
+  - [Complete Guide to Word Embeddings](https://nlpforhackers.io/word-embeddings/)
  
  5 . Topic Modelling
   - [Topic Modeling with LSA, PLSA, LDA & lda2Vec](https://medium.com/nanonets/topic-modeling-with-lsa-psla-lda-and-lda2vec-555ff65b0b05)
