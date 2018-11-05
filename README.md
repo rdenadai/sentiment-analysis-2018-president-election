@@ -229,11 +229,15 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
  
  > Projeto desenvolvido no Programa de Pós-Graduação em Informática da Pontifícia Universidade Católica do Paraná
 
- 3. [ViesNoticias](http://www.each.usp.br/norton/viesnoticias/index_ing.html) 
+ 3. [MinerandoDados](https://github.com/minerandodados/mdrepo/blob/master/Tweets_Mg.csv)
+ 
+ > Repositório para armazenamento de código e notebooks de postagens do blog e cursos.
+
+ 4. [ViesNoticias](http://www.each.usp.br/norton/viesnoticias/index_ing.html) 
 
  > Este repositório conta com um corpus de notícias sobre política obtido de alguns produtores de notícias no Brasil.
 
- 4. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
+ 5. [Projeto Floresta Sintá(c)tica](https://www.linguateca.pt/Floresta/)
  
  > Chamamos de "Floresta Sintáctica" um conjunto de frases (corpus) analisadas (morfo)sintaticamente. Como, além da indicação das funções sintácticas, a análise também explicita hierarquicamente informação relativa à estrutura de constituintes, dizemos que uma frase sintaticamente analisada se parece com uma árvore, donde um conjunto de árvores constitui uma floresta sintáctica (em inglês, treebank).
 
