@@ -3,21 +3,19 @@ from functools import partial
 import concurrent.futures
 from multiprocessing import Pool
 import numpy as np
-from sparsesvd import sparsesvd as SVDS
 from scipy.sparse import csc_matrix
+from scipy.sparse.linalg import svds as SVDS
 import pandas as pd
-import spacy
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from .emotional_lsa_utils import _transform, _calculate_sentiment_weights
 
 
 class EmotionalLSA:
 
-    def __init__(self, use_tfidf=False, rank=100, language='pt', debug=False):
+    def __init__(self, use_tfidf=False, rank=100, debug=False):
         self.debug = debug
         self.use_tfidf = use_tfidf
         self.rank = rank
-        self.nlp = spacy.load(language)
         self.X = None
         self.weights = None
         self._ldocs = 0
@@ -34,7 +32,6 @@ class EmotionalLSA:
             self._vectorize = CountVectorizer()
         self.X = self._vectorize.fit_transform(documents)
         self.weights = pd.DataFrame(self.X.T.toarray(), index=self._vectorize.get_feature_names())
-        self.weights = self.weights.loc[(self.weights.sum(axis=1) > 1)]
         if self.debug: print(f'Actual number of features: {self.X.shape[1]}')
         if self.debug: print('--- %s seconds ---' % (time.time() - start_time))
 
@@ -43,9 +40,9 @@ class EmotionalLSA:
         if self.debug: print('Calculating SVD...')
         start_time = time.time()
         X2 = csc_matrix(self.weights, dtype=np.float)
-        U, S, V = SVDS(X2, k=min(X2.shape))
-        U = U.T
-        U, V = U[:, :self.rank], V[:self.rank, :]
+        k = min(X2.shape)
+        k = self.rank if k > self.rank else k - 1
+        U, S, V = SVDS(X2, k=k)
         self.rank = max(min(U.shape), min(V.shape))
         if self.debug: print('--- %s seconds ---' % (time.time() - start_time))
         WV = self._emotional_state(U, emotion_words)
