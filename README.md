@@ -27,13 +27,17 @@ O trabalho realizado pela Barbara Martinazzo, for expandido, levando em consider
 Além disso, o algoritmo implementado, não aborda a questão discutida por ela, com relação a usar essa implementação para novas mensagens. A abordagem utilizada por ela, leva em consideração o uso de contagem de palavras apenas,
 mas no algoritmo é possível optar pelo uso do [TF-IDF](https://pt.wikipedia.org/wiki/Tf%E2%80%93idf) para o cálculo das emoções.
 
-Entretanto os resultados não surtiram bons resultados. Entrando em contato com a mestranda ela nos cedeu gentilmente sua base de dados com as frases utilizadas por ela.
+Entretanto os resultados não foram tão satisfatórios. Entrando em contato com a mestranda ela nos cedeu gentilmente sua base de dados com as frases utilizadas por ela.
 
 Mesmo tendo em mãos essa base, os resultados ficaram aquém do esperado. Neste sentido, crer-se que em alguma parte o algoritmo não fora implementado corretamente.
 
-Entretanto com essa base de dados, e outros datasets (ver seção datasets abaixo), optou-se por experimentar um aprendizado supervisionado, o qual acarretou em resultados na faixa dos 60%.
+Entretanto com essa base de dados, e outros datasets (ver seção datasets abaixo), optou-se por experimentar um aprendizado supervisionado.
 
-Os resultados no reconhecimento de emoções (As 6 emoções de Eckman), podem ser observadas neste [jupyter notebook](https://github.com/rdenadai/sentiment-analysis-2018-president-election/blob/master/src/ai/experiments/supervised/regular_supervised_ml.ipynb).
+Os resultados no reconhecimento de emoções (As 6 emoções de Eckman), podem ser observadas neste [jupyter notebook](https://github.com/rdenadai/sentiment-analysis-2018-president-election/blob/master/src/ai/experiments/supervised/regular_supervised_ml.ipynb)
+ o qual acarretou em resultados na faixa dos 50%.
+
+Outra tentativa de treinamento supervisionado pode ser observado neste outro [jupyter notebook](https://github.com/rdenadai/sentiment-analysis-2018-president-election/blob/wip_rdenadai/src/ai/experiments/supervised/valence_regular_supervised_ml.ipynb),
+neste caso busca-se a valência de positivo/negativo/neutro, utilizando-se de várias técnicas chega-se a uma acurácia de aproximadamente 67%.
 
 
 ### Instalação
@@ -55,6 +59,7 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     $> python -m nltk.downloader mac_morpho
     $> python -m nltk.downloader machado
     $> python -m nltk.downloader stopwords
+    $> python -m nltk.downloader punkt
     $> python -m nltk.downloader rslp
     $> python -m nltk.downloader perluniprops
     $> python -m spacy download en

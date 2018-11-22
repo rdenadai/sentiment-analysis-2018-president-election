@@ -9,7 +9,7 @@ from functools import lru_cache
 import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-import spacy
+from spacy.lang.pt import Portuguese
 import emoji
 
 
@@ -22,7 +22,7 @@ def _load_emotion_file_content(emotion, path='dataset/emocoes'):
         words = h.readlines()
         for i, word in enumerate(words):
             word = word.replace('\n', '').lower().strip()
-            words[i] = STEMMER.stem(word)
+            words[i] = tokenizer(word)
             # words[i] = [w.lemma_ for w in NLP(word, disable=['parser'])][0]
     return sorted(list(set(words)))
 
@@ -97,7 +97,7 @@ def load_valence_emotions_from_oplexicon(filename):
                 info[1] = [spacy_conv.get(tag) for tag in info[1].split()]
                 word, tags, sent = info[:3]
                 if 'HTAG' not in tags and 'EMOT' not in tags:
-                    word = STEMMER.stem(word.lower().strip())
+                    word = tokenizer(word.lower().strip())
                     # word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
                     if len(word) > 2:
                         sent = int(sent)
@@ -127,7 +127,7 @@ def load_valence_emotions_from_sentilex(filename):
             info = line.lower().split('.')
             words = [word.strip() for word in info[0].split(',')]
             for word in words:
-                word = STEMMER.stem(word.lower().strip())
+                word = tokenizer(word.lower().strip())
                 # word = [w.lemma_ for w in NLP(word.lower().strip(), disable=['parser'])][0]
                 if len(word) > 2:
                     cdata = info[1].split(';')
@@ -185,6 +185,7 @@ def tokenizer(phrase, clean=False):
     clean_frase = []
     clfa = clean_frase.append
     for palavra in phrase:
+        palavra = ''.join([word.lemma_ for word in NLP(palavra)])
         clfa(STEMMER.stem(palavra))
     return ' '.join(clean_frase)
 
@@ -219,7 +220,7 @@ def clean_up(phrase, join=True):
 
 
 # GLOBALS
-NLP = spacy.load('pt')
+NLP = Portuguese()
 # STEMMER = nltk.stem.RSLPStemmer()
 STEMMER = nltk.stem.SnowballStemmer('portuguese')
 STOPWORDS, PUNCT = _get_stopwords()
