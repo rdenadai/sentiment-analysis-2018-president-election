@@ -16,3 +16,5 @@ wordcloud==1.5.0
 uvloop==0.11.3
 aiomultiprocess==0.4.0
 emoji==0.5.1
+starlette[full]
+uvicorn==0.3.21

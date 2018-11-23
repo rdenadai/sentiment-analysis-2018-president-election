@@ -47,10 +47,9 @@ async def run_ml_update(model, mls):
                     valence_prob=valence_prob
                 ).where(model.hash == hashy)
                 query.execute()
-                pass
             txn.commit()
         print(f'{model.__name__} pag. {tt} - {total-1} --- {round(time.time() - start_time, 2)} seconds ---')
-        await asyncio.sleep(1)
+        await asyncio.sleep(.1)
         # time.sleep(.1)
 
 
@@ -58,10 +57,10 @@ async def main():
 
 
     models = (
-        RawFacebookComments,
+        # RawFacebookComments,
         RawTwitterComments,
         RawInstagramComments,
-        RawYouTubeComments,
+        # RawYouTubeComments,
         RawHashtagComments,
     )
 
