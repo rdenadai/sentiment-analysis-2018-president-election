@@ -10,7 +10,7 @@
         <div id="app">
             <v-app dark>
                 <v-content>
-                    <v-container>{% block content %}{% endblock %}</v-container>
+                    <v-container fluid grid-list-md>{% block content %}{% endblock %}</v-container>
                 </v-content>
             </v-app>
         </div>
@@ -21,6 +21,7 @@
         </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
     <script>
         Vue.use(Vuetify, {
@@ -31,6 +32,26 @@
                 error: '#b71c1c'
             }
         });
-        new Vue({ el: '#app' })
+        new Vue({
+            el: '#app',
+            data: {
+                message: '',
+                phrase: ''
+            },
+            delimiters: ['[[',']]'],
+            methods: {
+                analyze(event) {
+                    this.$http.post('/analyze', this.data, {
+                       headers: {
+                           'Content-Type': 'multipart/form-data'
+                       }
+                    }).then(response => {
+                        // success callback
+                    }, response => {
+                        // error callback
+                    });
+                }
+            }
+        })
     </script>
 </html>

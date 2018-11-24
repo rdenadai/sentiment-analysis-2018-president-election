@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 {% block title %}Inicio{% endblock %}
 {% block content %}
-    <h1>Index</h1>
+    <h1>Análise de Sentimentos</h1>
     <p class="important">
-        Welcome to my awesome homepage.
+        <v-flex xs12 md12 text-xs-center>
+            <v-textarea
+                name="input-7-1"
+                box
+                label="Digite uma ou mais frases para reconhecimento de emoções"
+                auto-grow
+                value=[[phrase]]
+            ></v-textarea>
+        </v-flex>
+        <v-flex xs12 md12 text-xs-right text-md-right>
+            <v-btn v-on:click="analyze" color="info">
+                <v-icon left dark>assessment</v-icon>Analisar
+            </v-btn>
+        </v-flex>
     </p>
 {% endblock %}

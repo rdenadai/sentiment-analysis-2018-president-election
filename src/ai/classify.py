@@ -18,7 +18,7 @@ from database.models import RawFacebookComments, RawTwitterComments, RawInstagra
 from ai.utils import tokenizer, clean_up
 
 
-async def run_ml_update(model, mls):
+def run_ml_update(model, mls):
     emt_tfidf, emt_lsa, emt_ml, val_tfidf, val_lsa, val_ml = mls
     N = 50
     total = int(model.select().count() / N) + 1
@@ -49,18 +49,17 @@ async def run_ml_update(model, mls):
                 query.execute()
             txn.commit()
         print(f'{model.__name__} pag. {tt} - {total-1} --- {round(time.time() - start_time, 2)} seconds ---')
-        await asyncio.sleep(.1)
+        # await asyncio.sleep(.1)
         # time.sleep(.1)
 
 
 async def main():
 
-
     models = (
-        # RawFacebookComments,
+        RawFacebookComments,
         RawTwitterComments,
         RawInstagramComments,
-        # RawYouTubeComments,
+        RawYouTubeComments,
         RawHashtagComments,
     )
 
@@ -72,10 +71,10 @@ async def main():
                                  joblib.load('models/model_valence.sav')
     mls = (emt_tfidf, emt_lsa, emt_ml, val_tfidf, val_lsa, val_ml)
     
-    async with Pool() as pool:
-        await pool.map(partial(run_ml_update, mls=mls), models)
-    # for model in models:
-    #     run_ml_update(model, mls)
+    # async with Pool() as pool:
+    #     await pool.map(partial(run_ml_update, mls=mls), models)
+    for model in models:
+        run_ml_update(model, mls)
 
 
 if __name__ == '__main__':
