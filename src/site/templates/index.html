@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+    <h1>Análise de Sentimentos</h1>
+    <p>
+        Este é o projeto realizado para a conclusão da disciplina IA369-Y Computação Afetiva realizada na Unicamp durante o 2ºSemestre 2018, oferecidade pela Prof. Paula Dornhofer Paro Costa (mais informações).<br />
+        A intenção é identificar valência e emoções em textos, este site é apenas demonstração dos modelos gerados para a disciplina.
+    </p>
+    <p>
+        Os integrantes do projeto são:<br />
+        <ul>
+            <li>Edgar Lopes Banhesse</li>
+            <li><a href="http://www.rdenadai.com.br/">Rodolfo De Nadai</a></li>
+        </ul>
+    </p>
+
+    <p class="important">
+        <v-flex xs12 md12 text-xs-center>
+            <v-textarea
+                name="input-7-1"
+                v-model="phrase"
+                box
+                label="Digite uma ou mais frases para reconhecimento de emoções"
+                auto-grow
+            ></v-textarea>
+        </v-flex>
+        <v-flex xs12 md12 text-xs-right text-md-right>
+            <v-btn v-on:click="analyze" color="info">
+                <v-icon left dark>assessment</v-icon>Analisar
+            </v-btn>
+        </v-flex>
+    </p>
+    <template v-if="status">
+        <v-layout>
+            <v-flex xs12 md12 sm12>
+                <div>
+                    <v-list two-line>
+                          <v-list-tile avatar>
+                            <v-list-tile-content>
+                                <v-list-tile-title>Frase</v-list-tile-title>
+                                <v-list-tile-sub-title>[[phrase]]</v-list-tile-sub-title>
+                            </v-list-tile-content>
+                        </v-list-tile>
+
+
+                        <v-list-tile avatar>
+                            <v-list-tile-content>
+                                <v-list-tile-title>Tokens</v-list-tile-title>
+                                <v-list-tile-sub-title>[[tokens]]</v-list-tile-sub-title>
+                            </v-list-tile-content>
+                        </v-list-tile>
+
+                        <v-list-tile avatar>
+                            <v-list-tile-content>
+                                <v-list-tile-title>Valência</v-list-tile-title>
+                                <v-list-tile-sub-title><strong>[[valence]]</strong></v-list-tile-sub-title>
+
+                            </v-list-tile-content>
+                        </v-list-tile>
+
+                        <reactive :chart-data="valence_proba" style="height: 250px;"></reactive>
+
+                        <v-list-tile avatar>
+                            <v-list-tile-content>
+                                <v-list-tile-title>Emoção</v-list-tile-title>
+                                <v-list-tile-sub-title><strong>[[emotion]]</strong></v-list-tile-sub-title>
+                            </v-list-tile-content>
+                        </v-list-tile>
+
+                        <reactive :chart-data="emotion_proba" style="height: 250px;"></reactive>
+
+                    </v-list>
+                </div>
+            </v-flex>
+        </v-layout>
+    </template>
+{% endblock %}
