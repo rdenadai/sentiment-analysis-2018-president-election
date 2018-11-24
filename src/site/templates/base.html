@@ -104,9 +104,13 @@
                             this.valence_proba = resp.valence_proba
 
                             this.emotion_proba = {
-                                labels: ['ALEGRIA', 'SURPRESA', 'TRISTEZA', 'MEDO', 'RAIVA', 'DESGOSTO'],
+                                labels: ['NEUTRO', 'ALEGRIA', 'SURPRESA', 'TRISTEZA', 'MEDO', 'RAIVA', 'DESGOSTO'],
                                 datasets: [
                                     {
+                                        label: 'NEUTRO',
+                                        backgroundColor: '#C8C8C8',
+                                        data: [this.emotion_proba['NEUTRO']]
+                                    }, {
                                         label: 'ALEGRIA',
                                         backgroundColor: '#FFA726',
                                         data: [this.emotion_proba['ALEGRIA']]

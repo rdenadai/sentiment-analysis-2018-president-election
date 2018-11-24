@@ -1,5 +1,3 @@
-import sys
-sys.path.append("..")  # Adds higher directory to python modules path.
 
 from starlette.responses import HTMLResponse
 from starlette.responses import JSONResponse
@@ -7,16 +5,16 @@ import uvicorn
 import numpy as np
 from sklearn.externals import joblib
 
-from config import app
-from ai.utils import tokenizer
+from .config import app
+from ..ai.utils import tokenizer
 
 
-emt_tfidf, emt_lsa, emt_ml = joblib.load('../ai/models/tfidf_emotions.sav'), \
-                             joblib.load('../ai/models/lsa_emotions.sav'), \
-                             joblib.load('../ai/models/model_emotions.sav')
-val_tfidf, val_lsa, val_ml = joblib.load('../ai/models/tfidf_valence.sav'), \
-                             joblib.load('../ai/models/lsa_valence.sav'), \
-                             joblib.load('../ai/models/model_valence.sav')
+emt_tfidf, emt_lsa, emt_ml = joblib.load('src/ai/models/tfidf_emotions.sav'), \
+                             joblib.load('src/ai/models/lsa_emotions.sav'), \
+                             joblib.load('src/ai/models/model_emotions.sav')
+val_tfidf, val_lsa, val_ml = joblib.load('src/ai/models/tfidf_valence.sav'), \
+                             joblib.load('src/ai/models/lsa_valence.sav'), \
+                             joblib.load('src/ai/models/model_valence.sav')
 
 
 @app.route('/')
@@ -69,4 +67,4 @@ async def analyze(request):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+    uvicorn.run(app, host='0.0.0.0', port=80)
