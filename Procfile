@@ -1,1 +1,1 @@
-web: python -m nltk.downloader stopwords; python -m nltk.downloader rslp; python -m nltk.downloader perluniprops; python -m src.site.application
+web: python -m src.site.application
