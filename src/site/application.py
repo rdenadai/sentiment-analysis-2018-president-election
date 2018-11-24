@@ -9,29 +9,12 @@ from .config import app
 from ..ai.utils import tokenizer
 
 
-def analyze_emotion(tokens):
-    emt_tfidf, emt_lsa, emt_ml = joblib.load('src/ai/models/tfidf_emotions.sav'), \
-                                 joblib.load('src/ai/models/lsa_emotions.sav'), \
-                                 joblib.load('src/ai/models/model_emotions.sav')
-    X_tfidf = emt_tfidf.transform([tokens])
-    X_svd = emt_lsa.transform(X_tfidf)
-    emotion = emt_ml.predict(X_svd)[0]
-    emotion_prob = list(np.round(emt_ml.predict_proba(X_svd)[0] * 100, 2))
-    emotion_classes = emt_ml.classes_
-    return emotion, emotion_prob, emotion_classes
-
-
-def analyze_valence(tokens):
-    val_tfidf, val_lsa, val_ml = joblib.load('src/ai/models/tfidf_valence.sav'), \
-                                 joblib.load('src/ai/models/lsa_valence.sav'), \
-                                 joblib.load('src/ai/models/model_valence.sav')
-    # Valence
-    X_tfidf = val_tfidf.transform([tokens])
-    X_svd = val_lsa.transform(X_tfidf)
-    valence = val_ml.predict(X_svd)[0]
-    valence_prob = list(np.round(val_ml.predict_proba(X_svd)[0] * 100, 2))
-    valence_classes = val_ml.classes_
-    return valence, valence_prob, valence_classes
+emt_tfidf, emt_lsa, emt_ml = joblib.load('src/ai/models/tfidf_emotions.sav'), \
+                             joblib.load('src/ai/models/lsa_emotions.sav'), \
+                             joblib.load('src/ai/models/model_emotions.sav')
+val_tfidf, val_lsa, val_ml = joblib.load('src/ai/models/tfidf_valence.sav'), \
+                             joblib.load('src/ai/models/lsa_valence.sav'), \
+                             joblib.load('src/ai/models/model_valence.sav')
 
 
 @app.route('/')
@@ -51,8 +34,18 @@ async def analyze(request):
         # TOKENIZE
         tokens = tokenizer(phrase)
 
-        emotion, emotion_prob, emotion_classes = analyze_valence(tokens)
-        valence, valence_prob, valence_classes = analyze_valence(tokens)
+        X_tfidf = emt_tfidf.transform([tokens])
+        X_svd = emt_lsa.transform(X_tfidf)
+        emotion = emt_ml.predict(X_svd)[0]
+        emotion_prob = list(np.round(emt_ml.predict_proba(X_svd)[0] * 100, 2))
+        emotion_classes = emt_ml.classes_
+
+        # Valence
+        X_tfidf = val_tfidf.transform([tokens])
+        X_svd = val_lsa.transform(X_tfidf)
+        valence = val_ml.predict(X_svd)[0]
+        valence_prob = list(np.round(val_ml.predict_proba(X_svd)[0] * 100, 2))
+        valence_classes = val_ml.classes_
 
         emotion_probabilities = {}
         valence_probabilities = {}
@@ -74,4 +67,4 @@ async def analyze(request):
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+    uvicorn.run(app, host='0.0.0.0', port=80)
