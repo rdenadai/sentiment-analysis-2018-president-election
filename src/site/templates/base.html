@@ -39,6 +39,7 @@
                     options: {
                         scales: {
                             yAxes: [{
+                                display: false,
                                 stacked: true,
                                 ticks: {
                                     beginAtZero: true
@@ -61,6 +62,8 @@
                             display: true
                         },
                         tooltips: {
+                            enable: false,
+                            mode: 'point',
                             bodyFontSize: 10
                         },
                         responsive: true,
@@ -89,6 +92,10 @@
             },
             delimiters: ['[[',']]'],
             methods: {
+                clean(event) {
+                    this.phrase = '';
+                    this.status = false;
+                },
                 analyze(event) {
                     this.$http.post('/analyze', {'phrase': this.phrase}, {emulateJSON: true, responseType: 'json'})
                     .then(response => {

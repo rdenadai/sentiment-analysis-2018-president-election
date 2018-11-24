@@ -25,8 +25,11 @@
             ></v-textarea>
         </v-flex>
         <v-flex xs12 md12 text-xs-right text-md-right>
-            <v-btn v-on:click="analyze" color="info">
+            <v-btn v-on:click="analyze" color="success">
                 <v-icon left dark>assessment</v-icon>Analisar
+            </v-btn>
+            <v-btn v-on:click="clean" color="error">
+                <v-icon left dark>delete</v-icon>Limpar
             </v-btn>
         </v-flex>
     </p>
@@ -34,15 +37,15 @@
         <v-layout>
             <v-flex xs12 md12 sm12>
                 <div>
-                    <v-list two-line>
-                          <v-list-tile avatar>
+                    <v-list four-line>
+                        <v-list-tile avatar>
                             <v-list-tile-content>
                                 <v-list-tile-title>Frase</v-list-tile-title>
                                 <v-list-tile-sub-title>[[phrase]]</v-list-tile-sub-title>
                             </v-list-tile-content>
                         </v-list-tile>
 
-
+                        <v-divider></v-divider>
                         <v-list-tile avatar>
                             <v-list-tile-content>
                                 <v-list-tile-title>Tokens</v-list-tile-title>
@@ -50,24 +53,29 @@
                             </v-list-tile-content>
                         </v-list-tile>
 
+                        <v-divider></v-divider>
                         <v-list-tile avatar>
                             <v-list-tile-content>
-                                <v-list-tile-title>Valência</v-list-tile-title>
-                                <v-list-tile-sub-title><strong>[[valence]]</strong></v-list-tile-sub-title>
-
+                                <v-list-tile-title>Valência: <strong>[[valence]]</strong></v-list-tile-title>
+                                <v-list-tile-sub-title><small>Valores dados em porcentagem</small></v-list-tile-sub-title>
                             </v-list-tile-content>
                         </v-list-tile>
 
-                        <reactive :chart-data="valence_proba" style="height: 250px;"></reactive>
+                        <v-flex xs8 md8 sm8>
+                            <reactive :chart-data="valence_proba" style="height: 100px;"></reactive>
+                        </v-flex>
 
+                        <v-divider></v-divider>
                         <v-list-tile avatar>
                             <v-list-tile-content>
-                                <v-list-tile-title>Emoção</v-list-tile-title>
-                                <v-list-tile-sub-title><strong>[[emotion]]</strong></v-list-tile-sub-title>
+                                <v-list-tile-title>Emoção: <strong>[[emotion]]</strong></v-list-tile-title>
+                                <v-list-tile-sub-title><small>Valores dados em porcentagem</small></v-list-tile-sub-title>
                             </v-list-tile-content>
                         </v-list-tile>
 
-                        <reactive :chart-data="emotion_proba" style="height: 250px;"></reactive>
+                        <v-flex xs8 md8 sm8>
+                            <reactive :chart-data="emotion_proba" style="height: 100px;"></reactive>
+                        </v-flex>
 
                     </v-list>
                 </div>
