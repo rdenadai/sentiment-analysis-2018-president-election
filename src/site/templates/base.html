@@ -14,16 +14,14 @@
                 </v-content>
             </v-app>
         </div>
-        <div id="footer">
-            {% block footer %}
-            &copy; Copyright 2008 by <a href="http://domain.invalid/">you</a>.
-            {% endblock %}
-        </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
     <script>
+
         Vue.use(Vuetify, {
             theme: {
                 primary: '#3f51b5',
@@ -32,21 +30,129 @@
                 error: '#b71c1c'
             }
         });
+
+        Vue.component('reactive', {
+            extends: VueChartJs.HorizontalBar,
+            mixins: [VueChartJs.mixins.reactiveProp],
+            data: function () {
+                return {
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                stacked: true,
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                                gridLines: {
+                                    display: true
+                                }
+                            }],
+                            xAxes: [{
+                                stacked: true,
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                                gridLines: {
+                                    display: false
+                                }
+                            }]
+                        },
+                        legend: {
+                            display: true
+                        },
+                        tooltips: {
+                            bodyFontSize: 10
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                }
+            },
+            mounted () {
+                // this.chartData is created in the mixin
+                this.renderChart(this.chartData, this.options)
+            }
+        });
+
+
         new Vue({
             el: '#app',
             data: {
-                message: '',
-                phrase: ''
+                phrase: '',
+                status: false,
+                image: '',
+                tokens: '',
+                emotion: '',
+                emotion_proba: {},
+                valence: '',
+                valence_proba: {}
             },
             delimiters: ['[[',']]'],
             methods: {
                 analyze(event) {
-                    this.$http.post('/analyze', this.data, {
-                       headers: {
-                           'Content-Type': 'multipart/form-data'
-                       }
-                    }).then(response => {
-                        // success callback
+                    this.$http.post('/analyze', {'phrase': this.phrase}, {emulateJSON: true, responseType: 'json'})
+                    .then(response => {
+                        // get body data
+                        var resp = response.body;
+                        this.status = resp.status;
+                        if(this.status) {
+                            this.image = resp.image;
+                            this.tokens = resp.tokens;
+                            this.emotion = resp.emotion;
+                            this.valence = resp.valence;
+                            this.emotion_proba = resp.emotion_proba
+                            this.valence_proba = resp.valence_proba
+
+                            this.emotion_proba = {
+                                labels: ['ALEGRIA', 'SURPRESA', 'TRISTEZA', 'MEDO', 'RAIVA', 'DESGOSTO'],
+                                datasets: [
+                                    {
+                                        label: 'ALEGRIA',
+                                        backgroundColor: '#FFA726',
+                                        data: [this.emotion_proba['ALEGRIA']]
+                                    }, {
+                                        label: 'SURPRESA',
+                                        backgroundColor: '#66BB6A',
+                                        data: [this.emotion_proba['SURPRESA']]
+                                    }, {
+                                        label: 'TRISTEZA',
+                                        backgroundColor: '#42A5F5',
+                                        data: [this.emotion_proba['TRISTEZA']]
+                                    }, {
+                                        label: 'MEDO',
+                                        backgroundColor: '#FFEE58',
+                                        data: [this.emotion_proba['MEDO']]
+                                    }, {
+                                        label: 'RAIVA',
+                                        backgroundColor: '#EF5350',
+                                        data: [this.emotion_proba['RAIVA']]
+                                    }, {
+                                        label: 'DESGOSTO',
+                                        backgroundColor: '#AB47BC',
+                                        data: [this.emotion_proba['DESGOSTO']]
+                                    }
+                                ]
+                            };
+
+                            this.valence_proba = {
+                                labels: ['POSITIVO', 'NEGATIVO', 'NEUTRO'],
+                                datasets: [
+                                    {
+                                        label: 'POSITIVO',
+                                        backgroundColor: '#66BB6A',
+                                        data: [this.valence_proba['POSITIVO']]
+                                    }, {
+                                        label: 'NEGATIVO',
+                                        backgroundColor: '#EF5350',
+                                        data: [this.valence_proba['NEGATIVO']]
+                                    }, {
+                                        label: 'NEUTRO',
+                                        backgroundColor: '#42A5F5',
+                                        data: [this.valence_proba['NEUTRO']]
+                                    }
+                                ]
+                            }
+                        }
                     }, response => {
                         // error callback
                     });
