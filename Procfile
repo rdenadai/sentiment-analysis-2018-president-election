@@ -1,1 +1,1 @@
-web: python -m src.site.application
+web: uvicorn src.site.application:app --debug --port $PORT
