@@ -1,0 +1,80 @@
+-- Estatísticas gerais
+-- SELECT count(*) FROM raw_facebook_comments; -- 69437
+-- SELECT count(*) FROM raw_instagram_comments; -- 42219
+-- SELECT count(*) FROM raw_twitter_comments; -- 128064
+-- SELECT count(*) FROM raw_youtube_comments; -- 8698
+-- SELECT count(*) FROM raw_hashtag_comments; -- 283652
+
+-- Geração de dados para análise, criação de tabelas e gráficos
+SELECT candidate FROM raw_facebook_comments GROUP BY candidate ORDER BY candidate;
+
+-- Valências por candidato no facebook
+SELECT count(*), candidate FROM raw_facebook_comments WHERE candidate = "Ciro Gomes";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Ciro Gomes" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_facebook_comments WHERE candidate = "Fernando Haddad";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Fernando Haddad" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_facebook_comments WHERE candidate = "Geraldo Alckmin";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Geraldo Alckmin" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_facebook_comments WHERE candidate = "Jair Bolsonaro";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Jair Bolsonaro" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_facebook_comments WHERE candidate = "Marina Silva";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Marina Silva" GROUP BY emotion ORDER BY emotion ASC;
+
+-- Valências por candidato no instagram
+SELECT count(*), candidate FROM raw_instagram_comments WHERE candidate = "Ciro Gomes";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Ciro Gomes" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_instagram_comments WHERE candidate = "Fernando Haddad";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Fernando Haddad" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_instagram_comments WHERE candidate = "Geraldo Alckmin";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Geraldo Alckmin" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_instagram_comments WHERE candidate = "Jair Bolsonaro";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Jair Bolsonaro" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_instagram_comments WHERE candidate = "Marina Silva";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Marina Silva" GROUP BY emotion ORDER BY emotion ASC;
+
+-- Valências por candidato no twitter
+SELECT count(*), candidate FROM raw_twitter_comments WHERE candidate = "Ciro Gomes";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Ciro Gomes" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_twitter_comments WHERE candidate = "Fernando Haddad";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Fernando Haddad" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_twitter_comments WHERE candidate = "Geraldo Alckmin";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Geraldo Alckmin" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_twitter_comments WHERE candidate = "Jair Bolsonaro";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Jair Bolsonaro" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_twitter_comments WHERE candidate = "Marina Silva";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Marina Silva" GROUP BY emotion ORDER BY emotion ASC;
+
+-- Valências por candidato no youtube
+SELECT count(*), candidate FROM raw_youtube_comments WHERE candidate = "Ciro Gomes";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Ciro Gomes" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_youtube_comments WHERE candidate = "Fernando Haddad";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Fernando Haddad" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_youtube_comments WHERE candidate = "Geraldo Alckmin";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Geraldo Alckmin" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_youtube_comments WHERE candidate = "Jair Bolsonaro";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Jair Bolsonaro" GROUP BY emotion ORDER BY emotion ASC;
+
+SELECT count(*), candidate FROM raw_youtube_comments WHERE candidate = "Marina Silva";
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Marina Silva" GROUP BY emotion ORDER BY emotion ASC;
+
+-- Valências por hashtags
+SELECT * FROM raw_hashtag_comments;
+SELECT hashtag, count(*) AS num_hashtag FROM raw_hashtag_comments GROUP BY hashtag ORDER BY num_hashtag DESC;
+SELECT hashtag, emotion, count(emotion) AS num_com FROM raw_hashtag_comments GROUP BY hashtag, emotion ORDER BY hashtag ASC, num_com DESC;
+SELECT hashtag, emotion, count(emotion) AS num_com FROM raw_hashtag_comments WHERE hashtag = "17Neles" GROUP BY hashtag, emotion ORDER BY hashtag ASC, num_com DESC;
+SELECT count(*) FROM raw_hashtag_comments WHERE hashtag = "17Neles"; -- 4697
