@@ -1,1 +1,1 @@
-web: python -m spacy download pt; uvicorn src.site.application:app --debug --port $PORT;
+web: uvicorn src.site.application:app --debug --port $PORT;
