@@ -49,7 +49,7 @@ def print_statistics(rede_social, total_comentarios, comentarios_positivos, come
     print('-' * 20)
     print(f'Comentários Positivos : {round(len(comentarios_positivos)/total_comentarios * 100, 2)}%')
     print(f'Comentários Negativos : {round(len(comentarios_negativos)/total_comentarios * 100, 2)}%')
-    print(f'Comentários Negativos : {round(len(comentarios_neutros)/total_comentarios * 100, 2)}%')
+    print(f'Comentários Neutros   : {round(len(comentarios_neutros)/total_comentarios * 100, 2)}%')
     print(f'Total                 : {round(total/total_comentarios * 100, 2)}%')
 
 
