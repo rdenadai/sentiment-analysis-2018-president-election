@@ -1,0 +1,13 @@
+-- senhor, deus, povo, capitão, mito
+SELECT candidate, comment, valence, emotion FROM raw_facebook_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) AND (comment like '%senhor%' or comment like '%deus%' or comment like '%povo%' or comment like '%capitão%' or comment like '%mito%')
+union all
+SELECT candidate, comment, valence, emotion FROM raw_facebook_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) AND (comment like '%senhor%' or comment like '%deus%' or comment like '%povo%' or comment like '%capitão%' or comment like '%mito%')
+union all
+SELECT candidate, comment, valence, emotion FROM raw_facebook_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "NEUTRO" AND emotion = "NEUTRO") AND (comment like '%senhor%' or comment like '%deus%' or comment like '%povo%' or comment like '%capitão%' or comment like '%mito%') ORDER BY emotion;
+
+-- lula, democracia, candidato, povo, país
+SELECT candidate, comment, valence, emotion FROM raw_facebook_comments WHERE candidate = "Fernando Haddad" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) AND (comment like '%lula%' or comment like '%democracia%' or comment like '%candidato%' or comment like '%povo%' or comment like '%país%')
+union all
+SELECT candidate, comment, valence, emotion FROM raw_facebook_comments WHERE candidate = "Fernando Haddad" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) AND (comment like '%lula%' or comment like '%democracia%' or comment like '%candidato%' or comment like '%povo%' or comment like '%país%')
+union all
+SELECT candidate, comment, valence, emotion FROM raw_facebook_comments WHERE candidate = "Fernando Haddad" AND (valence = "NEUTRO" AND emotion = "NEUTRO") AND (comment like '%lula%' or comment like '%democracia%' or comment like '%candidato%' or comment like '%povo%' or comment like '%país%') ORDER BY emotion;
