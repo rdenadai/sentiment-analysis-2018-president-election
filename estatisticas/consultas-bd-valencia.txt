@@ -10,7 +10,7 @@ SELECT candidate FROM raw_facebook_comments GROUP BY candidate ORDER BY candidat
 
 -- Valências por candidato no facebook
 SELECT count(*), candidate FROM raw_facebook_comments WHERE candidate = "Ciro Gomes";
-SELECT candidate, valence, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Ciro Gomes" GROUP BY valence ORDER BY num_com DESC;
+SELECT * FROM raw_facebook_comments WHERE candidate = "Ciro Gomes";
 
 SELECT count(*), candidate FROM raw_facebook_comments WHERE candidate = "Fernando Haddad";
 SELECT candidate, valence, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Fernando Haddad" GROUP BY valence ORDER BY num_com DESC;
