@@ -2,43 +2,91 @@
 
 Análise de sentimentos relacionados aos candidatos a Eleição para a presidência de 2018.
 
-### Objetivo
+### Descrição
 
 Este é o projeto realizado para a conclusão da disciplina [IA369-Y Computação Afetiva](http://www.dca.fee.unicamp.br/~paula/teaching.html) realizada na Unicamp durante o 
 2°Semestre 2018, oferecidade pela Prof. Paula Dornhofer Paro Costa ([mais informações](http://www.dca.fee.unicamp.br/~paula/)).
-
-O principal objetivo do projeto é coletar, analisar e detectar as emoções das pessoas com relação aos candidatos às eleições
-a presidência no Brasil para o ano de 2018.
 
 Os integrantes do projeto são:
  - Edgar Lopes Banhesse
  - [Rodolfo De Nadai](http://www.rdenadai.com.br)
 
-### Abordagens
+### Motivação
 
-Inicialmente todos os testes foram realizados utilizando-se do algoritmo proposto pela mestranda [Barbara Martinazzo](https://www.ppgia.pucpr.br/pt/arquivos/mestrado/dissertacoes/2010/barbara_martinazzo_versaofinal.pdf).
-Foi aplicado o procedimento descrito para validação e análise de sentimentos em mensagens coletadas pela internet e em uma base de tweets coletados, os quais foram amostrados e definidos sentimentos prévios no trabalho
-do mestrando [Henrico Brum](https://bitbucket.org/HBrum/tweetsentbr/overview).
+ - Nova forma de fazer campanha política, da TV e Rádio para Redes Sociais
+
+ - Eleição presidencial dos Estados Unidos em 2016 foi marcada pelo uso das redes sociais como forma de se aproximar e entender os anseios do eleitorado americano
+
+ - No Brasil em 2018, as redes sociais foram utilizadas na divulgação de propostas dos candidatos e na conquista do eleitorado brasileiro
+
+ - Portanto, a análise de valências e emoções nos comentários nas redes sociais do Brasil (Instagram, Facebook, Twitter e Youtube), referentes a eleição presidencial Brasileira, pode contribuir para entender o papel das emoções no resultado da eleição e apresentar um panorama de influência entre o eleitorado (BERMINGHAM; SMEATON, 2011) (PÉREZ-ROSAS et al., 2017)
+
+
+### Objetivo
+
+Analisar as valências e emoções em comentários (textos) das principais redes sociais utilizadas no Brasil: Instagram, Facebook, Twitter (Tweets e Tendências) e Youtube referentes a eleição para presidente do Brasil em 2018.
+
+
+### Abordagem Proposta
+
+Utilizar modelo de emoção categórico baseado em valências e emoções com uma abordagem supervisionada composta por três etapas:
+
+ - *Coleta dos comentários* - coletar comentários cinco candidatos melhor classificados nas pesquisas eleitorais para presidente (Jair Bolsonaro, Geraldo Alckmin, Fernando Haddad (Lula), Marina Silva e Ciro Gomes) nas redes sociais (Facebook, Instagram, Twitter e Youtube)
+
+ - *Classificação dos comentários* - tratar os comentários e realizar testes para escolher o melhor classificador e os melhores datasets a serem utilizados para gerar as valências e emoções para os comentários coletados
+
+ - *Análise dos resultados* - analisar os resultados obtidos, após a classificação dos comentários para tentar entender o papel das emoções no resultado da eleição para presidente no Brasil e apresentar um panorama de influência entre o eleitorado
+
+
+### Histórico do Desenvolvimento
+
+Inicialmente para analisar as valências e as emoções nos comentários foi decidido  fazer uma busca na internet por datasets com frases em português do 
+Brasil rotuladas com valências e emoções.
+
+Alguns datasets com rótulos de valências foram encontrados no site Minerando Dados, são eles:
+ 
+ - Títulos de notícias, aproximadamente 2.000 linhas.
+ 
+ - Tweets de Minas Gerais, aproximadamente 3.000 linhas.
+
+Nessa busca inicial nenhum dataset rotulado com emoções foi encontrado. Dessa forma, optou-se a utilizar um método não 
+supervisionado de identificação de emoções em textos curtos para o português proposto pela mestranda [Barbara Martinazzo](https://www.ppgia.pucpr.br/pt/arquivos/mestrado/dissertacoes/2010/barbara_martinazzo_versaofinal.pdf).
+Foi aplicado o procedimento descrito para validação e análise de sentimentos em mensagens coletadas pela internet e em uma base de tweets coletados, 
+os quais foram amostrados e definidos sentimentos prévios no trabalho do mestrando [Henrico Brum](https://bitbucket.org/HBrum/tweetsentbr/overview).
 
 Os resultados preliminares do proposto acima podem ser observado neste [jupyter notebook](https://github.com/rdenadai/sentiment-analysis-2018-president-election/blob/master/src/ai/validate.ipynb). 
 
 O trabalho realizado pela Barbara Martinazzo, for expandido, levando em consideração também uma emoção de neutralidade, algo que é mencionado em seu trabalho, mas não fora abordado.
 
-Além disso, o algoritmo implementado, não aborda a questão discutida por ela, com relação a usar essa implementação para novas mensagens. A abordagem utilizada por ela, leva em consideração o uso de contagem de palavras apenas,
-mas no algoritmo é possível optar pelo uso do [TF-IDF](https://pt.wikipedia.org/wiki/Tf%E2%80%93idf) para o cálculo das emoções.
+Além disso, o algoritmo implementado, não aborda a questão discutida por ela, com relação a usar essa implementação para novas mensagens.
+A abordagem utilizada por ela, leva em consideração o uso de contagem de palavras apenas (termo-documento), mas no algoritmo é possível optar pelo uso do 
+[TF-IDF](https://pt.wikipedia.org/wiki/Tf%E2%80%93idf) para o cálculo das emoções.
 
-Entretanto os resultados não foram tão satisfatórios. Entrando em contato com a mestranda ela nos cedeu gentilmente sua base de dados com as frases utilizadas por ela.
+Entretanto após a implementação do método proposto por Martinazzo, os resultados ficaram aquém do esperado, com taxa de identificação na faixa dos 30%.
+Em contato com o grupo de pesquisa da Pontifícia Universidade Católica do Paraná no site Emoções foi obtido um dataset rotulado com as seis emoções de Ekman:
+ 
+ - Títulos de notícias, aproximadamente 1.000 linhas.
 
 Mesmo tendo em mãos essa base, os resultados ficaram aquém do esperado. Neste sentido, crer-se que em alguma parte o algoritmo não fora implementado corretamente.
 
-Entretanto com essa base de dados, e outros datasets (ver seção datasets abaixo), optou-se por experimentar um aprendizado supervisionado.
+Procurou-se aplicar uma nova abordagem baseada na clusterização de textos (Topic Modeling).
+Existem diversas abordagens para a clusterização, como descrito por (MOODY, 2015) e (YUAN; HUANG; WU, 2016).
+Para validar a possibilidade de identificação de emoções usando o conceito de modelagem por tópicos, utilizou-se o algoritmo t-SNE (*t-Distributed Stochastic Neighbor Embedding*) (MAATEN; HINTON, 2007),
+o qual permite redução de dimensionalidade e agrupamento das estruturas por tópicos dentro do espaço vetorial.
+
+Apesar dos resultados preliminares terem sido medianos e promissores, com uma acurácia em torno de 65%, 
+o método é demasiadamente “caótico” devido a natureza do algoritmo. Neste sentido, seria necessário um estudo melhor e 
+mais profundo das implicações necessárias a sua utilização.
+
+Entretanto com essa base de dados, e outros datasets (ver seção datasets abaixo), optou-se por experimentar a utilização de métodos de aprendizado supervisionado.
 
 Os resultados no reconhecimento de emoções (As 6 emoções de Eckman), podem ser observadas neste [jupyter notebook](https://github.com/rdenadai/sentiment-analysis-2018-president-election/blob/master/src/ai/experiments/supervised/regular_supervised_ml.ipynb)
- o qual acarretou em resultados na faixa dos 50%.
+ o qual acarretou em resultados na faixa dos 54%.
 
 Outra tentativa de treinamento supervisionado pode ser observado neste outro [jupyter notebook](https://github.com/rdenadai/sentiment-analysis-2018-president-election/blob/wip_rdenadai/src/ai/experiments/supervised/valence_regular_supervised_ml.ipynb),
-neste caso busca-se a valência de positivo/negativo/neutro, utilizando-se de várias técnicas chega-se a uma acurácia de aproximadamente 67%.
+neste caso busca-se a valência de positivo/negativo/neutro, utilizando-se de várias técnicas chega-se a uma acurácia de aproximadamente 57%.
 
+O presente projeto, apresenta todo o código do desenvolvimento descrito acima, além de todo o conteúdo de apoio ao desenvolvimento da aplicação final proposta.
 
 ### Instalação
 
@@ -55,9 +103,6 @@ Você pode usar o [pyenv](https://github.com/pyenv/pyenv) para instalar várias 
     $> virtualenv venv
     $> pip install -r requirements.txt
     $> source venv/bin/activate
-    $> python -m nltk.downloader floresta
-    $> python -m nltk.downloader mac_morpho
-    $> python -m nltk.downloader machado
     $> python -m nltk.downloader stopwords
     $> python -m nltk.downloader punkt
     $> python -m nltk.downloader rslp
@@ -296,6 +341,8 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
 3 . Topic Modelling
   - [Topic Modeling with LSA, PLSA, LDA & lda2Vec](https://medium.com/nanonets/topic-modeling-with-lsa-psla-lda-and-lda2vec-555ff65b0b05)
   - [Integrating Topics and Syntax (HHM-LDA)](http://psiexp.ss.uci.edu/research/papers/composite.pdf)
+  - [Visualizing MNIST: An Exploration of Dimensionality Reduction](http://colah.github.io/posts/2014-10-Visualizing-MNIST/)
+  - [How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)
  
  
 4 . LSA + Others
@@ -307,3 +354,34 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
   - [Applying latent semantic analysis to classify emotions in Thai text](https://ieeexplore.ieee.org/document/5486137)
   - [Text Emotion Classification Research Based on Improved Latent Semantic Analysis Algorithm](https://www.researchgate.net/publication/266651993_Text_Emotion_Classification_Research_Based_on_Improved_Latent_Semantic_Analysis_Algorithm)
   - [PANAS-t: A Pychometric Scale for Measuring Sentiments on Twitter](https://arxiv.org/abs/1308.1857)
+
+
+### Referências
+
+BERMINGHAM, A.; SMEATON, A. F. On using Twitter to monitor political sentiment and predict election results, 1 jan. 2011.
+
+EKMAN, P.; FRIESEN, W. V. The facial action coding system. Palo Alto, CA: Consulting Psychologists Press, 1976.
+
+JU, R. et al. An Efficient Method for Document Categorization Based on Word2vec and Latent Semantic Analysis, 1 jan. 2015.
+
+LANDAUER, T. K.; FOLTZ, P. W.; LAHAM, D. An introduction to latent semantic analysis. Discourse Processes, v. 25, n. 2-3, p. 259-284, 1 jan. 1998.
+
+MAATEN, L. VAN DER; HINTON, G. Visualizing Data using t-SNE. Journal of Machine Learning Research, v. 9, n. Nov, p. 2579-2605, 2007.
+
+MARTINAZZO, B.; PARAISO, E. C. Um Método de Identificação de Emoções em Textos Curtos para o Português do Brasil. [s.l: s.n.].
+
+MIKOLOV, T. et al. Distributed representations of words and phrases and their compositionality text mining. 2012.
+
+MOODY, C. E. Mixing Dirichlet Topic Models and Word Embeddings to Make lda2vec. arXiv: 1605.02019, p. 8, 2015.
+
+PÉREZ-ROSAS, V. et al. Automatic Detection of Fake News, 23 ago. 2017.
+
+PICARD, R. . Affective Computing. 2nd. ed. Cambridge, MA: MIT Press, 1995.
+
+PIYATIDA INRAK; SUKREE SINTHUPINYO. Applying latent semantic analysis to classify emotions in Thai text. 2010 2nd International Conference on Computer Engineering and Technology. Anais...IEEE, [s.d.]
+
+STRAPPARAVA, C.; MIHALCEA, R. Learning to identify emotions in text. Proceedings of the 2008 ACM symposium on Applied computing - SAC ’08. Anais...ACM Press, 2006. Acesso em: 2006
+
+WANG, X.; ZHENG, Q. Text Emotion Classification Research Based on Improved Latent Semantic Analysis Algorithm. Proceedings of the 2nd International Conference on Computer Science and Electronics Engineering (ICCSEE 2013). Anais...Atlantis Press, 2011. Acesso em: 2011
+
+YUAN, S.; HUANG, H.; WU, L. Use of Word Clustering to Improve Emotion Recognition from Short Text. Journal of Computing Science and Engineering, v. 10, n. 4, 30 dez. 2016.
