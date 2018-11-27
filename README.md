@@ -324,7 +324,6 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
 1 . Dados Extras:
   - [Frases para Face](https://www.frasesparaface.com.br/outras-frases/)
   - [Dicionário Criativo](https://dicionariocriativo.com.br/)
-  
  
 2 . Tutoriais
   - [Utilizando processamento de linguagem natural para criar uma sumarização automática de textos](https://medium.com/@viniljf/utilizando-processamento-de-linguagem-natural-para-criar-um-sumariza%C3%A7%C3%A3o-autom%C3%A1tica-de-textos-775cb428c84e)
@@ -336,14 +335,14 @@ foi realizado a raspagem de comentários das seguintes páginas de redes sociais
   - [Word embeddings: exploration, explanation, and exploitation](https://towardsdatascience.com/word-embeddings-exploration-explanation-and-exploitation-with-code-in-python-5dac99d5d795)
   - [Complete Guide to Word Embeddings](https://nlpforhackers.io/word-embeddings/)
   - [An Intuitive Understanding of Word Embeddings: From Count Vectors to Word2Vec](https://www.analyticsvidhya.com/blog/2017/06/word-embeddings-count-word2veec/)
- 
+  - [torchtext](https://spacy.io/universe/?id=tochtext)
  
 3 . Topic Modelling
   - [Topic Modeling with LSA, PLSA, LDA & lda2Vec](https://medium.com/nanonets/topic-modeling-with-lsa-psla-lda-and-lda2vec-555ff65b0b05)
   - [Integrating Topics and Syntax (HHM-LDA)](http://psiexp.ss.uci.edu/research/papers/composite.pdf)
   - [Visualizing MNIST: An Exploration of Dimensionality Reduction](http://colah.github.io/posts/2014-10-Visualizing-MNIST/)
   - [How to Use t-SNE Effectively](https://distill.pub/2016/misread-tsne/)
- 
+  - [sense2vec](https://spacy.io/universe/?id=sense2vec)
  
 4 . LSA + Others
   - [Um Método de Identificação de Emoções em Textos Curtos para o Português do Brasil](http://www.ppgia.pucpr.br/~paraiso/Projects/Emocoes/Emocoes.html)
