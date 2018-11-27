@@ -16,8 +16,8 @@ from ai.utils import tokenizer, clean_up
 
 async def run_model_update(model):
     # run filter?? .where(SQL('length(clean_comment) = 0'))
-    N = 100
-    total = int(model.select().count() / N) + 1
+    N = 50
+    total = int(model.select().count() / N) + 2
     print(f'Total pag para {model.__name__}: {total-1}')
     for tt in range(total):
         start_time = time.time()
@@ -44,7 +44,8 @@ async def main():
 
     async with Pool() as pool:
        await pool.map(run_model_update, models)
-    # run_model_update(RawTwitterComments)
+    # for model in models:
+    #     run_model_update(model)
 
 
 if __name__ == '__main__':

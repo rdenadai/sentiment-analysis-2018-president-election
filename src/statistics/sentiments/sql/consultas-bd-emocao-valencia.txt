@@ -1,0 +1,162 @@
+-- Valências por candidato no facebook
+
+-- Testes - Ciro Gomes
+SELECT candidate, emotion, valence FROM raw_facebook_comments WHERE candidate = "Ciro Gomes" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) ORDER BY emotion;
+SELECT candidate, emotion, valence FROM raw_facebook_comments WHERE candidate = "Ciro Gomes" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) ORDER BY emotion;
+SELECT candidate, emotion, valence FROM raw_facebook_comments WHERE candidate = "Ciro Gomes" AND (valence = "NEUTRO" AND emotion = "NEUTRO") ORDER BY emotion;
+
+-- Ciro Gomes
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Ciro Gomes" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Ciro Gomes" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Ciro Gomes" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Fernando Haddad
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Fernando Haddad" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Fernando Haddad" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Fernando Haddad" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Geraldo Alckmin
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Jair Bolsonaro
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Marina Silva
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Marina Silva" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Marina Silva" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_facebook_comments WHERE candidate = "Marina Silva" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Valências por candidato no instagram
+
+-- Ciro Gomes
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Ciro Gomes" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Ciro Gomes" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Ciro Gomes" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Fernando Haddad
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Fernando Haddad" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Fernando Haddad" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Fernando Haddad" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Geraldo Alckmin
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Jair Bolsonaro
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Marina Silva
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Marina Silva" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Marina Silva" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_instagram_comments WHERE candidate = "Marina Silva" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Valências por candidato no twitter
+
+-- Ciro Gomes
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Ciro Gomes" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Ciro Gomes" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Ciro Gomes" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Fernando Haddad
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Fernando Haddad" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Fernando Haddad" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Fernando Haddad" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Geraldo Alckmin
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Jair Bolsonaro
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Marina Silva
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Marina Silva" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Marina Silva" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_twitter_comments WHERE candidate = "Marina Silva" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Valências por candidato no youtube
+
+-- Ciro Gomes
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Ciro Gomes" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Ciro Gomes" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Ciro Gomes" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Fernando Haddad
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Fernando Haddad" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Fernando Haddad" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Fernando Haddad" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Geraldo Alckmin
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Geraldo Alckmin" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Jair Bolsonaro
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Jair Bolsonaro" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Marina Silva
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Marina Silva" AND (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Marina Silva" AND (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) GROUP BY emotion
+UNION ALL
+SELECT candidate, emotion, count(*) AS num_com FROM raw_youtube_comments WHERE candidate = "Marina Silva" AND (valence = "NEUTRO" AND emotion = "NEUTRO") GROUP BY emotion ORDER BY emotion ASC;
+
+-- Valências por hashtags
+SELECT hashtag, count(*) AS num_hashtag FROM raw_hashtag_comments GROUP BY hashtag ORDER BY num_hashtag DESC;
+SELECT hashtag, emotion, count(emotion) AS num_com FROM raw_hashtag_comments GROUP BY hashtag, emotion ORDER BY hashtag ASC, num_com DESC;
+
+SELECT hashtag, emotion, count(emotion) AS num_com FROM raw_hashtag_comments WHERE (valence = "POSITIVO" AND emotion IN ("ALEGRIA", "SURPRESA")) AND hashtag = "EleNão" GROUP BY hashtag, emotion
+UNION ALL
+SELECT hashtag, emotion, count(emotion) AS num_com FROM raw_hashtag_comments WHERE (valence = "NEGATIVO" AND emotion IN ("DESGOSTO", "MEDO", "RAIVA", "TRISTEZA")) AND hashtag = "EleNão" GROUP BY hashtag, emotion
+UNION ALL
+SELECT hashtag, emotion, count(emotion) AS num_com FROM raw_hashtag_comments WHERE (valence = "NEUTRO" AND emotion = "NEUTRO") AND hashtag = "EleNão" GROUP BY hashtag, emotion ORDER BY emotion ASC;
