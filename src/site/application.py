@@ -1,5 +1,3 @@
-import os
-ON_HEROKU = os.environ.get('ON_HEROKU')
 
 from starlette.responses import HTMLResponse
 from starlette.responses import JSONResponse
@@ -69,10 +67,4 @@ async def analyze(request):
 
 
 if __name__ == '__main__':
-    if ON_HEROKU:
-        # get the heroku port
-        port = int(os.environ.get('PORT', 17995))  # as per OP comments default is 17995
-    else:
-        port = 8000
-
-    uvicorn.run(app, port=port)
+    uvicorn.run(app, host='0.0.0.0', port=80)
