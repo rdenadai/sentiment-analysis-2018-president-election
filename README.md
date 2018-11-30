@@ -5,7 +5,7 @@ Análise de sentimentos relacionados aos candidatos a Eleição para a presidên
 ### Descrição
 
 Este é o projeto realizado para a conclusão da disciplina [IA369-Y Computação Afetiva](http://www.dca.fee.unicamp.br/~paula/teaching.html) realizada na Unicamp durante o 
-2°Semestre 2018, oferecidade pela Prof. Paula Dornhofer Paro Costa ([mais informações](http://www.dca.fee.unicamp.br/~paula/)).
+2°Semestre 2018, oferecida pela Prof. Paula Dornhofer Paro Costa ([mais informações](http://www.dca.fee.unicamp.br/~paula/)).
 
 Os integrantes do projeto são:
  - Edgar Lopes Banhesse
