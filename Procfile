@@ -1,1 +1,1 @@
-web: uvicorn src.site.application:app --debug --port $PORT;
+web: uvicorn src.site.application:app --debug --host 0.0.0.0 --port $PORT
