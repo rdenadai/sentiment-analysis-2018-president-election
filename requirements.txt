@@ -19,3 +19,4 @@ aiomultiprocess==0.4.0
 emoji==0.5.1
 starlette[full]
 uvicorn==0.3.21
+gunicorn==19.9.0
